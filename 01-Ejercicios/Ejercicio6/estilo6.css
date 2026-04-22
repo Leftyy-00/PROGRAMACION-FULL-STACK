@@ -1,0 +1,205 @@
+/* Centra TODO en la pantalla */
+#nivel-1{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 22vh;
+}
+
+/* Caja principal */
+.caja1{
+    background-color: whitesmoke;
+    width: 390px;
+    height: 150px;
+    border: 4px solid whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+        border-radius: 10px;
+}
+
+/* Contenedor de botones */
+.contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Botón verde */
+.button-1{
+    color: #FFFFFF;
+    background-color: #34C26B;
+    width: 95px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border: none;
+}
+.button-1:hover{
+    background-color: green;
+    cursor: pointer;
+    color: black;
+    transition: transform 0.3s ease;
+    transform: scale(1.1);
+}
+.button-1 img{
+    width: 15px;
+    height: 15px;
+    filter: brightness(0) invert(1);
+}
+.button-1:hover img{
+    filter: brightness(0) invert(0);
+}
+
+/* Botón amarillo */
+.button-2{
+    color: #000000;
+    background-color: #f8d84b;
+    width: 95px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border: none;
+}
+.button-2:hover{
+    background-color: orange;
+    cursor: pointer;
+    color: #FFFFFF;
+    transition: transform 0.3s ease;
+    transform: scale(1.1);
+}
+.button-2 img{
+    width: 15px;
+    height: 15px;
+}
+.button-2:hover img{
+    filter: brightness(0) invert(1);
+}
+
+/* Botón rojo */
+.button-3{
+    color: #FFFFFF;
+    background-color: #D93434;
+    width: 95px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border: none;
+}
+.button-3:hover{
+    background-color: red;
+    cursor: pointer;
+    color: black;
+    transition: transform 0.3s ease;
+    transform: scale(1.1);
+}
+.button-3 img{
+    width: 15px;
+    height: 15px;
+    filter: brightness(0) invert(1);
+}
+.button-3:hover img{
+    filter: brightness(0) invert(0);
+}
+
+    /*Efecto extra*/
+.zoom1 {
+  transition: transform 0.3s ease;
+}
+.zoom1:hover {
+  transform: scale(1.1) rotate(-10deg);
+}
+
+
+/*----------------------------------------------------*/
+
+#nivel-2{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 40vh;
+}
+
+/* Caja principal */
+.caja2{
+    background-color: whitesmoke;
+    width: 590px;
+    height: 250px;
+    border: 4px solid whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+/* Contenedor de botones */
+.contenedor2{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+}
+    
+.boton{
+    top: -20px;
+    position: relative;
+    display: flex;
+    padding: 10px 20px;
+    background-color: rgb(72, 139, 226);
+    color: white;
+    text-decoration: none; /* saca el subrayado */
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 80px;
+}
+
+.boton:hover{
+    background-color: darkblue;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.3s ease;
+    transform: scale(1.2);
+}
+
+.producto{
+    position: relative;
+    display: inline-block;
+}
+.caja-roja{
+    background-color: #f76c6c;
+    width: 200px;
+    height: 100px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.etiqueta{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 10px;
+    top: -20px;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    height: 90px;
+}

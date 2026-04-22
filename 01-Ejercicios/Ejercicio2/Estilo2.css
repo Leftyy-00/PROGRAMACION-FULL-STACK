@@ -1,0 +1,141 @@
+.Introduccion {
+    text-align: center;
+    width: 1450px;           /* Ancho */
+    height: 240px;          /* Alto*/
+    background-color: black;
+    border: 2px solid red; /* Borde: grosor, color */
+    border-radius: 8px;
+    margin: auto;           /* Espacio exterior */
+}
+.p-Introduccion {
+    color: white;
+    text-align: justify;
+    width: 85%;
+    margin: auto;
+    font-size: 1.35em;
+}
+.sinops {
+    text-align: center;
+    width: 990px;           /* Ancho */
+    height: 486px;          /* Alto*/
+    background-color: black; /* Color de fondo */
+    border: 2px solid red; /* Borde: grosor, color */
+    border-radius: 8px;    /* Opcional: esquinas redondeadas */
+    margin: auto;           /* Espacio exterior */
+}
+.Historia {
+    text-align: left;
+    width: 499px;           /* Ancho */
+    height: 590px;          /* Alto*/
+    background-color: black; /* Color de fondo */
+    border: 2px solid red; /* Borde: grosor, color */
+    border-radius: 8px;    /* Opcional: esquinas redondeadas */
+    margin: 10px; 
+}
+.Meniu {
+    text-align: center;
+    width: 1500px;           /* Ancho */
+    height: 120px;          /* Alto*/
+    background-color: rgb(194, 4, 4); /* Color de fondo */
+    border: 2px solid black; /* Borde: grosor, color */
+    border-radius: 8px;    /* Opcional: esquinas redondeadas */
+    margin: auto;           /* Espacio exterior */
+}
+.a {
+    color: black;
+    text-decoration: none;
+    margin: 10px;
+    font-size: 1.30em;
+}
+
+body{
+    background-image: url('Visual/rag2.jpg'); /*Coloca una imagen como background*/
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen */
+    background-size: cover; /* Cubre toda la pantalla sin deformarse */
+    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+     font-family: 'Montserrat', sans-serif; /*Sirve para definir la tipografía del texto.*/
+
+}
+footer{
+    background-color: darkred;
+}
+p {
+    color: white;
+    text-align: justify;
+    width: 99%;
+    margin: 10px;
+    font-size: 1.19em;
+}
+.p-4 {
+    color: white;
+    text-align: justify;
+    width: 94%;
+    margin: auto;
+    font-size: 1.08em;
+}
+.h23 {
+    color: white;
+    text-align: left;
+}
+ul {
+    color: white;
+    text-align: center;
+    list-style-type: none;
+}
+h1 {
+    color: white;
+}
+h2 {
+    color: white;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.Top videojuegos {
+    width: 400px;
+    height: 200px;
+    border: 2px solid red;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+.hr2{
+    border: 1px solid black;
+
+}
+hr{
+    border: 1px solid red;
+}
+.table-1 {
+    display: flex;
+    text-align: center;
+    border: 3px solid red;
+    width: 600px;
+    height: 750px;
+    color: white;
+    margin: auto;
+}
+table {
+    margin: 0 auto;
+}
+td {
+    border: 1px solid red;
+    padding: 10px;
+}
+tr {
+    font-size: 1.36em;
+}
+
+.videos {
+  display: flex;
+  gap: 20px; /* los espacios entre los videos */
+}
+
+.videos iframe {
+  width: 200%;
+  height: 400px;
+}

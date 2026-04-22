@@ -1,0 +1,70 @@
+.mi-cuadro2 {
+    text-align: center;
+    width: 1400px;           /* Ancho */
+    height: 240px;          /* Alto (igual al ancho para cuadrado) */
+    background-color: black; /* Color de fondo */
+    border: 2px solid red; /* Borde: grosor, estilo, color */
+    border-radius: 8px;    /* Opcional: esquinas redondeadas */
+    margin: 15px;           /* Espacio exterior */
+}
+p {
+  color: white; /* Color del texto */
+  font-size: 18px; /* Tamaño del texto */
+  text-align: center; /* Alineación del texto */
+  padding: 10px; /* Espacio interior */
+}
+h2 {
+  color: red; /* Color del texto */
+  font-size: 24px; /* Tamaño del texto */
+  text-align: center; /* Alineación del texto */
+  padding: 10px; /* Espacio interior */
+}
+body{
+  background-color: black;
+}
+.contenedor {
+  display: flex;
+  align-items: center; /* alinea verticalmente */
+  gap: 20px; /* espacio entre texto e imagen */
+}
+
+.texto {
+  flex: 1; /* ocupa espacio disponible */
+}
+
+.imagen img {
+  width: 200px; /* tamaño de la imagen */
+}
+/* Quitar margenes por defecto del navegador */
+body {
+    margin: 0;
+    padding-top: 60px; /* Margen para que el contenido no quede oculto */
+}
+
+.navbar {
+    background-color: #333;
+    color: white;
+    position: fixed; /* Fija el menú arriba */
+    top: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between; /* Logo a la izq, nav a la der */
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Alinea los li en horizontal */
+    gap: 20px; /* Espacio entre enlaces */
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-family: Arial, sans-serif;
+}

@@ -1,0 +1,5 @@
+8, muy bueno trabajo en general.
+
+Recuerda que las etiquetas semanticas basicas siempre deben estar.(deben = no obligatorio, pero son buenas practicas)
+
+Como main,header o footer, 
