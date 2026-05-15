@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sistem Archive</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#090909;
+    color:white;
+    overflow:hidden;
+}
+
+/* ========================================================= */
+/* ======================= BOOT ============================ */
+/* ========================================================= */
+
+#bootScreen{
+    position:fixed;
+    inset:0;
+
+    background:
+    radial-gradient(circle at center,#1b1f24 0%,#040404 80%);
+
+    z-index:999999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    animation:desaparecer 1.5s ease forwards;
+    animation-delay:6s;
+}
+
+.ruido{
+    position:absolute;
+    inset:0;
+
+    background-image:
+    repeating-radial-gradient(
+        circle at center,
+        rgba(255,255,255,0.03) 0px,
+        rgba(255,255,255,0.01) 1px,
+        transparent 2px
+    );
+
+    opacity:0.15;
+
+    animation:ruidoMove 0.3s linear infinite;
+}
+
+.scanlines{
+    position:absolute;
+    inset:0;
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        rgba(255,255,255,0.03) 2px,
+        transparent 4px
+    );
+
+    pointer-events:none;
+}
+
+.contenido-boot{
+    width:70%;
+    max-width:900px;
+
+    text-align:center;
+
+    position:relative;
+    z-index:10;
+}
+
+.simbolo img{
+    width:190px;
+
+    margin-bottom:20px;
+
+    animation:pulso 2s infinite;
+}
+
+.titulo-boot{
+    font-size:3rem;
+    letter-spacing:10px;
+
+    color:#dce4ee;
+
+    margin-bottom:40px;
+
+    text-shadow:0 0 15px #93a4b6;
+}
+
+.barra-carga{
+    width:100%;
+    height:20px;
+
+    border:2px solid #98a7b8;
+
+    background:#111;
+
+    overflow:hidden;
+
+    margin-bottom:30px;
+}
+
+.progreso{
+    width:0%;
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        #e3e9f0,
+        #8d9cad,
+        #d8e2ec
+    );
+
+    animation:cargar 5.5s linear forwards;
+}
+
+.texto-boot{
+    font-size:1.2rem;
+
+    color:#cfd7e2;
+
+    letter-spacing:3px;
+
+    margin-bottom:35px;
+}
+
+.codigo{
+    font-family:monospace;
+
+    color:#95a5b8;
+
+    opacity:0.6;
+}
+
+/* ========================================================= */
+/* ======================= HEADER ========================== */
+/* ========================================================= */
+
+header{
+    width:100%;
+    height:80px;
+
+    border-bottom:3px solid #bcc7d3;
+
+    background:#0d0d0d;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 25px;
+}
+
+.logo{
+    width:85px;
+    height:70px;
+
+    background:black;
+
+    border-radius:50% 10% 50% 10%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-right:15px;
+
+    overflow:hidden;
+
+    border:2px solid #95a3b4;
+}
+
+.logo img{
+    width:75px;
+}
+
+.titulo{
+    font-size:2.5rem;
+    font-weight:300;
+
+    color:#dce4ee;
+}
+
+/* ========================================================= */
+/* ===================== CONTENIDO ========================= */
+/* ========================================================= */
+
+.contenedor{
+    display:flex;
+    height:calc(100vh - 80px);
+}
+
+/* ================= SIDEBAR ================= */
+
+aside{
+    width:280px;
+
+    background:#3b3f46;
+
+    padding:35px 20px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:18px;
+}
+
+.boton{
+    width:100%;
+    min-height:58px;
+
+    padding:12px 15px;
+
+    border:none;
+    border-radius:18px;
+
+    background:#1d1f22;
+
+    color:white;
+
+    font-size:1.1rem;
+
+    font-weight:600;
+
+    font-family:'Montserrat', sans-serif;
+
+    letter-spacing:1px;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    border:2px solid #5f6c7b;
+}
+
+.boton:hover{
+    transform:scale(1.02);
+
+    background:#2d3136;
+
+    box-shadow:0 0 20px rgba(200,220,255,0.2);
+}
+
+/* ================= MAIN ================= */
+
+main{
+    flex:1;
+
+    background:#060606;
+
+    padding:35px;
+
+    overflow-y:auto;
+}
+
+/* ================= PRINCIPAL ================= */
+
+#paginaPrincipal{
+    display:block;
+}
+
+.saludo{
+    width:90%;
+    min-height:260px;
+
+    margin:auto;
+
+    background:#14171b;
+
+    border:2px solid #5e6d7d;
+
+    border-radius:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:30px;
+
+    color:#dbe3ec;
+
+    padding:20px;
+}
+
+.saludo img{
+    height:250px;
+}
+
+.linea{
+    width:100%;
+    height:1px;
+
+    background:#bcc6d1;
+
+    margin:50px 0;
+}
+
+.contenedor-iconos{
+    display:flex;
+    justify-content:space-between;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+}
+
+.icono{
+    width:180px;
+    height:260px;
+
+    background:black;
+
+    border-radius:30px;
+
+    border:2px solid #5d6b7b;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:2rem;
+
+    transition:0.3s;
+}
+
+.icono:hover{
+    transform:translateY(-10px);
+}
+
+/* ========================================================= */
+/* ======================= TEXTO =========================== */
+/* ========================================================= */
+
+#paginaTexto{
+    display:none;
+    position:relative;
+}
+
+.panel-texto{
+    width:95%;
+    min-height:700px;
+
+    margin:auto;
+
+    background:#121417;
+
+    border-radius:40px;
+
+    border:2px solid #5f6e7f;
+
+    padding:20px;
+
+    position:relative;
+}
+
+.numero{
+    font-size:3rem;
+
+    margin-bottom:20px;
+}
+
+.texto-central{
+
+    width:92%;
+
+    min-height:600px;
+
+    margin:auto;
+
+    background:
+    linear-gradient(
+        180deg,
+        #d7dee8,
+        #c8d2dd
+    );
+
+    color:#2c3238;
+
+    display:block;
+
+    overflow-y:auto;
+
+    padding:40px;
+
+    font-size:1.05rem;
+
+    font-family:'Special Elite', cursive;
+
+    line-height:1.9;
+
+    border-radius:20px;
+
+    border:3px solid #8e9aa7;
+}
+
+.texto-central h1{
+
+    font-size:2.4rem;
+
+    margin-bottom:25px;
+
+    color:#111;
+
+    border-bottom:3px solid #7d8b99;
+
+    padding-bottom:10px;
+}
+
+.texto-central h2{
+
+    margin-top:40px;
+    margin-bottom:18px;
+
+    color:#20262d;
+
+    font-size:1.5rem;
+}
+
+.texto-central p{
+    margin-bottom:22px;
+}
+
+.texto-central strong{
+    color:#111;
+}
+
+/* ================= VOLVER ================= */
+
+.volver{
+    position:absolute;
+
+    top:20px;
+    right:20px;
+
+    width:80px;
+    height:60px;
+
+    border:none;
+    border-radius:15px;
+
+    background:#25292e;
+
+    color:white;
+
+    font-size:2rem;
+
+    cursor:pointer;
+}
+
+/* ========================================================= */
+/* ================== CARGA DE TEXTO ======================= */
+/* ========================================================= */
+
+#pantallaCargaTexto{
+    position:fixed;
+
+    top:80px;
+    left:280px;
+    right:0;
+    bottom:0;
+
+    background:
+    radial-gradient(circle,#16181c 0%,#090909 100%);
+
+    border-radius:0;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:9999;
+}
+
+.contenedor-carga-texto{
+    width:50%;
+
+    text-align:center;
+}
+
+.titulo-carga{
+    font-size:2rem;
+
+    letter-spacing:8px;
+
+    margin-bottom:30px;
+
+    color:#dbe4ef;
+}
+
+.barra-carga-texto{
+    width:100%;
+    height:22px;
+
+    border:2px solid #aab7c7;
+
+    background:#111;
+
+    overflow:hidden;
+
+    margin-bottom:20px;
+}
+
+.progreso-texto{
+    width:0%;
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        #dfe7f0,
+        #7d8b9c,
+        #dce5ef
+    );
+}
+
+.porcentaje{
+    font-size:1.4rem;
+
+    color:#c9d4df;
+}
+
+/* ========================================================= */
+/* ======================= ANIMACIONES ===================== */
+/* ========================================================= */
+
+@keyframes cargar{
+
+    from{
+        width:0%;
+    }
+
+    to{
+        width:100%;
+    }
+}
+
+@keyframes desaparecer{
+
+    0%{
+        opacity:1;
+        visibility:visible;
+    }
+
+    100%{
+        opacity:0;
+        visibility:hidden;
+    }
+}
+
+@keyframes ruidoMove{
+
+    from{
+        transform:translateY(0px);
+    }
+
+    to{
+        transform:translateY(10px);
+    }
+}
+
+@keyframes pulso{
+
+    0%{
+        transform:scale(1);
+        opacity:0.5;
+    }
+
+    50%{
+        transform:scale(1.1);
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:0.5;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ========================================================= -->
+<!-- ===================== BOOT SCREEN ====================== -->
+<!-- ========================================================= -->
+
+<div id="bootScreen">
+
+    <div class="ruido"></div>
+
+    <div class="scanlines"></div>
+
+    <div class="contenido-boot">
+
+        <div class="simbolo">
+            <img src="visual/ICON.30v.png" alt="">
+        </div>
+
+        <div class="titulo-boot">
+            ARCHIVE SYSTEM
+        </div>
+
+        <div class="barra-carga">
+            <div class="progreso"></div>
+        </div>
+
+        <div class="texto-boot" id="textoBoot">
+            Iniciando sistema...
+        </div>
+
+        <div class="codigo">
+            BETA v0.1
+        </div>
+
+    </div>
+
+</div>
+
+<header>
+
+    <div class="logo">
+        <img src="visual/ICON.30v.png" alt="Logo">
+    </div>
+
+    <h1 class="titulo">
+        Sistema Archive<i style="color: gray;">_BETA</i>
+    </h1>
+
+</header>
+
+<div class="contenedor">
+
+    <aside>
+
+        <button class="boton" onclick="mostrarTexto('001')">
+            Caso 001
+        </button>
+
+        <button class="boton" onclick="mostrarTexto('002')">
+            Caso 002
+        </button>
+
+        <button class="boton" onclick="mostrarTexto('003')">
+            Caso 003
+        </button>
+
+        <button class="boton" onclick="mostrarTexto('004')">
+            Caso 004
+        </button>
+
+        <button class="boton" onclick="mostrarTexto('005')">
+            Caso 005
+        </button>
+
+    </aside>
+
+    <main>
+
+        <!-- ================= PRINCIPAL ================= -->
+
+        <section id="paginaPrincipal">
+
+            <div class="saludo">
+                <span class="titulo-boot">
+                    Welcome to the Archive
+                </span>
+
+            </div>
+
+            <div class="linea"></div>
+
+            <div class="contenedor-iconos">
+
+                <div class="icono"></div>
+                <div class="icono"></div>
+                <div class="icono"></div>
+                <div class="icono"></div>
+                <div class="icono"></div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= TEXTO ================= -->
+
+        <section id="paginaTexto">
+
+            <!-- ================= CARGA ================= -->
+
+            <div id="pantallaCargaTexto">
+
+                <div class="contenedor-carga-texto">
+
+                    <div class="titulo-carga">
+                        CARGANDO INFORMACION
+                    </div>
+
+                    <div class="barra-carga-texto">
+                        <div class="progreso-texto"></div>
+                    </div>
+
+                    <div class="porcentaje" id="porcentajeCarga">
+                        0%
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ================= PANEL ================= -->
+
+            <div class="panel-texto">
+
+                <button class="volver" onclick="volverInicio()">
+                    <<
+                </button>
+
+                <div class="numero" id="numeroPanel">
+                    001
+                </div>
+
+                <div class="texto-central" id="contenidoTexto">
+                    Text
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+
+/* ========================================================= */
+/* ==================== BOOT TEXTOS ======================== */
+/* ========================================================= */
+
+const bootTextos = [
+
+    "Conectando núcleo...",
+    "Verificando memoria...",
+    "Activando protocolos...",
+    "Escaneando sistema...",
+    "Inicializando interfaz...",
+    "Acceso concedido."
+
+];
+
+let indiceBoot = 0;
+
+const textoBoot = document.getElementById("textoBoot");
+
+const intervaloBoot = setInterval(() => {
+
+    indiceBoot++;
+
+    if(indiceBoot < bootTextos.length){
+
+        textoBoot.innerText = bootTextos[indiceBoot];
+
+    }
+
+}, 900);
+
+setTimeout(() => {
+
+    clearInterval(intervaloBoot);
+
+}, 5500);
+
+/* ========================================================= */
+/* =================== CAMBIO PAGINAS ====================== */
+/* ========================================================= */
+
+function mostrarTexto(numero){
+
+    document.getElementById("paginaPrincipal").style.display = "none";
+
+    document.getElementById("paginaTexto").style.display = "block";
+
+    const pantallaCarga =
+    document.getElementById("pantallaCargaTexto");
+
+    const barra =
+    document.querySelector(".progreso-texto");
+
+    const porcentaje =
+    document.getElementById("porcentajeCarga");
+
+    pantallaCarga.style.display = "flex";
+
+    barra.style.width = "0%";
+
+    porcentaje.innerText = "0%";
+
+    let progreso = 0;
+
+    const intervalo = setInterval(() => {
+
+        progreso += 4;
+
+        barra.style.width = progreso + "%";
+
+        porcentaje.innerText = progreso + "%";
+
+        if(progreso >= 100){
+
+            clearInterval(intervalo);
+
+            setTimeout(() => {
+
+                pantallaCarga.style.display = "none";
+
+                document.getElementById("numeroPanel").innerText = numero;
+
+                let contenidoDinamico = "";
+
+                if(numero === "002"){
+
+                    contenidoDinamico = `
+
+                    <h1>Bernie Madoff: El Mayor Esquema Ponzi de la Historia</h1>
+
+                    <p>
+                    Bernie Madoff no solo fue un criminal, sino una figura que personificó la traición a la confianza en el corazón <br>financiero del mundo. Su estafa, valorada en unos 65.000 millones de dólares (incluyendo ganancias ficticias), <br>es el esquema Ponzi más grande y duradero de la historia.
+                    </p>
+
+                    <p>
+                    Aquí tienes la radiografía completa de su ascenso, su método y su caída:
+                    </p>
+
+                    <h2>1. El Método: El Esquema Ponzi Maestro</h2>
+
+                    <p>
+                    A diferencia de otros estafadores que prometen retornos astronómicos para atraer incautos, Madoff fue mucho más <br>sofisticado.
+                    </p>
+
+                    <p>
+                    <strong>La Estrategia "Split-Strike Conversion":</strong>Madoff afirmaba utilizar una estrategia legítima de <br>opciones y acciones para minimizar el riesgo. Lo que lo hacía creíble era que sus retornos no eran "demasiado <br>buenos para ser verdad" (promediaba un 10% o 12% anual), pero eran sospechosamente constantes, incluso cuando el mercado caía.
+                    </p>
+
+                    <p>
+                    <strong>La Realidad:</strong> No existía tal inversión. El dinero de los nuevos inversores se utilizaba para pagar <br>los retornos de los antiguos. El resto se desviaba para mantener el estilo de vida de su familia y empleados cómplices.
+                    </p>
+
+                    <p>
+                    <strong>Contabilidad de Humo:</strong> En su oficina del "piso 17" del edificio Lipstick en Nueva York, un equipo <br>de empleados con poca formación financiera generaba miles de estados de cuenta falsos cada mes usando <br>computadoras antiguas, simulando operaciones que nunca ocurrieron en el mercado real.
+                    </p>
+
+                    <h2>2. Cómo Mantuvo la Mentira por 40 Años</h2>
+
+                    <p>
+                    El éxito de Madoff no fue solo técnico, sino psicológico. Logró lo que nadie más pudo gracias a tres pilares:
+                    </p>
+
+                    <p>
+                    <strong>Prestigio Institucional:</strong>Madoff no era un aparecido. Fue uno de los fundadores y presidente del <br> <strong>NASDAQ</strong>. Ayudó a desarrollar los sistemas electrónicos que hoy rigen Wall Street. Ese currículum lo hacía "intocable" ante los ojos de los reguladores.
+                    </p>
+
+                    <p>
+                    <strong>El Aura de Exclusividad:</strong> Aplicaba la psicología inversa. No perseguía a los inversores; a menudo <br>los rechazaba o les ponía condiciones difíciles. Esto creaba una necesidad de "pertenecer" al club selecto de <br>Madoff. Si estabas con Bernie, habías "llegado" a la cima.
+                    </p>
+
+                    <p>
+                    <strong>El Fallo de la SEC:</strong> La Comisión de Bolsa y Valores (SEC) recibió múltiples alertas, especialmente <br>del analista <strong>Harry Markopolos</strong>, quien demostró matemáticamente que los números de Madoff eran <br>imposibles. Sin <br>embargo, debido a la reputación de Bernie, las investigaciones fueron superficiales y él <br>logró engañar a los <br>auditores mostrando registros incompletos.
+                    </p>
+
+
+                    <h2>3. Su Forma de Ser: El Narcisista Imperturbable</h2>
+
+                    <p>
+                    Quienes lo conocieron lo describen como un hombre de contrastes:
+                    </p>
+
+                    <p>
+                    <strong>Carisma Silencioso:</strong> No era el típico vendedor gritón. Era un hombre reservado, extremadamente <br>ordenado (casi obsesivo con la limpieza y la disposición de los objetos en su oficina) y proyectaba una calma absoluta.
+                    </p>
+
+                    <p>
+                    <strong>Frialdad Emocional:</strong> A pesar de arruinar a organizaciones benéficas, universidades y amigos de <br>toda la vida, Madoff mostró poca empatía real. En entrevistas posteriores desde la cárcel, racionalizaba sus <br>actos diciendo que los inversores eran "codiciosos" y que él solo les daba lo que querían ver.
+                    </p>
+
+                    <p>
+                    <strong>Doble Vida:</strong> Mientras era un filántropo respetado en la comunidad judía y un pilar de Palm Beach, <br>dirigía una operación criminal que requería mentir diariamente a sus propios hijos, quienes trabajaban en la sección legítima de la empresa.    
+                    </p>
+
+
+                    <h2>4. El Colapso: La Crisis de 2008</h2>
+
+                    <p>
+                    El esquema Ponzi solo muere cuando el flujo de salida de dinero supera al de entrada.
+                    </p>
+
+                    <p>
+                    <strong>La Tormenta Perfecta:</strong> Con la crisis financiera de 2008, los inversores de Madoff, asustados, <br>intentaron retirar 7.000 millones de dólares. Madoff solo tenía unos 300 millones en el banco.
+                    </p>
+
+                    <p>
+                    <strong>La Confesión:</strong> El 10 de diciembre de 2008,
+                    <br>confesó a sus hijos que todo el negocio era “una gran mentira”.
+                    </p>
+
+
+                    <h2>5. El Veredicto y el Trágico Final</h2>
+
+                    <p>
+                    <strong>Sentencia:</strong> En 2009, Madoff se declaró culpable de 11 cargos federales y recibió la pena máxima de 150 años de prisión.
+                    </p>
+
+                    <p>
+                    <strong>Tragedia Familiar:</strong> Su hijo mayor, Mark, se suicidó en el segundo aniversario del arresto de su <br>padre. Su otro hijo, Andrew, murió de cáncer años después, culpando al estrés del escándalo por su recaída. Su <br>esposa, Ruth, terminó viviendo en el anonimato, repudiada por gran parte de su círculo social.
+                    </p>
+
+                    <p>
+                    <strong>Muerte:</strong> Bernie Madoff murió en prisión el 14 de abril de 2021, a los 82 años, por una enfermedad renal.
+                    </p>
+
+                    `;
+
+
+                }else if(numero === "003"){
+
+                    contenidoDinamico = `
+
+                    <h1>El Desastre de Tenerife</h1>
+
+                    <p>
+                    El desastre de Tenerife, ocurrido el 27 de marzo de 1977, sigue siendo el accidente aéreo más mortífero de la <br>historia. Dos aviones Boeing 747, de las aerolíneas KLM y Pan Am, colisionaron en la pista del aeropuerto de <br>Los Rodeos, provocando la muerte de 583 personas. La tragedia fue el resultado de una fatídica combinación de <br>azar, clima extremo y errores de comunicación.
+                    </p>
+
+                    <p>
+                        Detalles clave basados en las investigaciones oficiales de las autoridades españolas, holandesas y <br>estadounidenses:    
+                    </p>
+
+                    <h2>1. El Desvío Inesperado</h2>
+
+                    <p>
+                        Ninguno de los aviones debía estar en Tenerife. Una bomba colocada por un grupo terrorista en el aeropuerto de <br>Gran Canaria obligó a desviar el tráfico aéreo hacia el pequeño aeropuerto de Los Rodeos.
+                    </p>
+
+                    <p>
+                        <strong>Saturación:</strong> El aeropuerto no estaba preparado para recibir tantos aviones de gran tamaño. La <br>plataforma principal se llenó, obligando a los aviones a utilizar la calle de rodaje como estacionamiento <br>y la pista principal para maniobrar.
+                    </p>
+
+
+                    <h2>Factores Críticos: Niebla y Radio</h2>
+
+                    <p>
+                        Las condiciones meteorológicas empeoraron drásticamente en minutos, reduciendo la visibilidad a apenas unos metros.    
+                    </p>
+
+                    <p>
+                        <strong>Interferencias:</strong> Una comunicación crucial por radio fue bloqueada por una "interferencia" (un <br>pitido agudo). Cuando el controlador y Pan Am intentaron advertir que el avión seguía en pista, sus <br>mensajes se solaparon, y el capitán de KLM solo escuchó un silencio que interpretó como vía libre.
+                    </p>
+
+                    <p>
+                        <strong>Barrera del idioma:</strong>  El uso de terminología no estándar, como "We are at take-off", generó <br>confusión entre si el avión estaba listo para despegar o iniciando la carrera.
+                    </p>
+
+
+                    <h2>3. El Impacto en la Pista</h2>
+
+                    <p>
+                        El capitán de KLM, Jacob Veldhuyzen van Zanten, inició el despegue sin una autorización clara de la torre. Al <br>mismo tiempo, el avión de Pan Am intentaba salir de la pista por la tercera intersección.
+                    </p>
+
+                    <p>
+                        <strong>La colisión:</strong> Al ver las luces del Pan Am entre la niebla, KLM intentó elevarse <br>prematuramente, rozando la pista con la cola. Aunque logró despegar brevemente, los motores impactaron <br>contra la parte superior del Pan Am, arrancando el techo y provocando una explosión masiva debido a que el <br>KLM acababa de repostar combustible.
+                    </p>
+
+
+                    <h2>4. Testimonios y Supervivencia</h2>
+
+                    <p>
+                        Los 248 ocupantes del KLM fallecieron instantáneamente. En el avión de Pan Am, 61 personas lograron escapar de las llamas.
+                    </p>
+
+                    <p>
+                        <strong>Pánico en la cabina:</strong> Supervivientes del Pan Am relataron cómo el techo desapareció de <br>repente. El copiloto de Pan Am, Robert Bragg, recordó ver al KLM surgir de la niebla y pensar: "¡Por Dios, <br>viene hacia nosotros!".    
+                    </p>
+
+                    <p>
+                        <strong>El rescate ciego:</strong> Debido a la densa niebla, los controladores de la torre inicialmente no <br>sabían que había habido un choque; solo veían fuego pero no podían identificar qué aviones estaban involucrados.    
+                    </p>
+
+
+                    <h2>5. El Legado en la Aviación</h2>
+
+                    <p>
+                        La investigación oficial concluyó que el error principal fue del capitán de KLM al despegar sin autorización, <br>pero subrayó que el sistema de seguridad falló en múltiples niveles.    
+                    </p>
+
+                    <p>
+                        <strong>CRM (Crew Resource Management):</strong> Tras este accidente, la industria cambió radicalmente. Se <br>eliminó la jerarquía absoluta del capitán, fomentando que los copilotos cuestionen las decisiones erróneas.    
+                    </p>
+
+                    <p>
+                        <strong>Lenguaje universal:</strong> Se estandarizó el uso del inglés aeronáutico y frases específicas: la <br>palabra "Take-off" solo puede usarse cuando se da o se recibe la autorización final de despegue.
+                    </p>
+
+                    `;
+
+                }else if(numero === "004"){
+
+                    contenidoDinamico = `
+
+                    <h1>El Caso James Bulger</h1>
+
+                    <p>
+                    El asesinato de James Bulger, ocurrido el 12 de febrero de 1993 en Liverpool, Inglaterra, es uno de los crímenes <br> más conmocionantes del Reino Unido. No solo por la brutalidad del acto, sino porque los perpetradores, Robert <br> Thompson y Jon Venables, tenían apenas 10 años, convirtiéndose en los asesinos convictos más jóvenes de la <br>era moderna.
+                    </p>
+
+                    <p>
+                        Reconstrucción oficial de los hechos, la investigación y el veredicto:    
+                    </p>
+
+                    <h2>1. El Secuestro y los Hechos</h2>
+
+                    <p>
+                    A plena luz del día, James (de 2 años) fue apartado de su madre en el centro comercial <strong>New Strand</strong>. Las cámaras de <br>seguridad captaron la imagen de los dos niños de 10 años llevándoselo de la mano.
+                    </p>
+
+                    <p>
+                        <strong>El trayecto:</strong> Thompson y Venables caminaron con James durante casi 4 kilómetros. En el camino, varios testigos
+                        <br>los vieron; algunos notaron que James tenía un golpe en la frente y lloraba, pero los asesinos <br>convencieron a los transeúntes de que James era su hermano menor o un niño perdido que llevaban a la policía.
+                    </p>
+
+                    <p>
+                        <strong>La tortura:</strong> Al llegar a una vía ferroviaria en Walton, los niños sometieron a James a una tortura atroz. Lo golpearon con piedras, ladrillos y una barra de hierro (éclisse) de 10 kg. Le aplicaron pintura azul en un ojo y, finalmente, lo dejaron tendido en las vías esperando que un tren ocultara el crimen.    
+                    </p>
+
+                    <h2>2. La Investigación y Arresto</h2>
+
+                    <p>
+                        El cuerpo de James fue hallado dos días después, partido en dos por un tren, aunque la autopsia confirmó que <br>murió por los golpes previos y no por el impacto del ferrocarril.
+                    </p>
+
+                    <p>
+                        <strong>Pruebas forenses:</strong> La policía analizó las grabaciones de CCTV y recibió llamadas de ciudadanos que sospechaban <br>de los dos niños. Al registrar sus casas, hallaron manchas de la misma pintura azul en sus ropas y sangre <br>de James en sus zapatos.    
+                    </p>
+
+                    <p>
+                        <strong>Interrogatorios:</strong> Inicialmente, ambos negaron todo, culpándose mutuamente. Sin embargo, las inconsistencias en sus relatos y la evidencia física los obligaron a admitir que estuvieron presentes en el lugar, aunque trataron de minimizar su rol individual.
+                    </p>
+                    
+                    <h2>3. Testimonios y Clima Social</h2>
+
+                    <p>
+                        El juicio en 1993 fue descrito como un evento de "odio nacional".
+                    </p>
+
+                    <p>
+                        <strong>Testigos presenciales:</strong> 38 personas declararon haber visto a los niños con James durante su <br>largo recorrido. El remordimiento de estos testigos por no haber intervenido marcó profundamente el caso.
+                    </p>
+
+                    <p>
+                        <strong>Comportamiento en el tribunal:</strong> Durante el proceso, Thompson se mostró impasible y desafiante, mientras que <br>Venables parecía angustiado y lloraba con frecuencia. Los expertos describieron el acto como un caso de <br>"maldad pura" potenciada por una dinámica de grupo disfuncional.    
+                    </p>
+
+                    <h2>4. Veredicto y Sentencia</h2>
+
+                    <p>
+                        El 24 de noviembre de 1993, ambos fueron declarados culpables de secuestro y asesinato.    
+                    </p>
+
+                    <p>
+                        <strong>La condena:</strong> Fueron sentenciados a detención indefinida (a disposición de Su Majestad). El juez recomendó un mínimo de 8 años, que luego fue aumentado por la presión pública y política, aunque finalmente la justicia europea intervino para fijar su liberación a los 18 años.
+                    </p>
+
+                    <p>
+                        <strong>Identidades protegidas:</strong> Al salir en 2001, recibieron identidades nuevas y protección de por vida. Mientras Thompson se ha mantenido fuera del radar, Venables ha regresado a prisión en varias ocasiones por posesión de material de abuso infantil.
+                    </p>
+
+                    <h2>5. Legado Judicial</h2>
+
+                    <p>
+                        El caso Bulger cambió para siempre el debate sobre la edad de responsabilidad penal en el Reino Unido (fijada en 10 años). También impulsó reformas en cómo se trata a los menores en tribunales de adultos, tras las críticas sobre si dos niños de esa edad podían entender realmente la magnitud de un proceso judicial tan mediático.
+                    </p>
+                    `;
+
+                }else if(numero === "005"){
+
+                    contenidoDinamico = `
+
+                    <h1>El Caso Chad Doerman-<strong>"El monstruo de Ohio"</strong></h1>
+
+                    <p>
+                    El caso de Chad Doerman, apodado por la prensa y la opinión pública como "El monstruo de Ohio", es uno de los <br>crímenes familiares más perturbadores de los últimos años. El 15 de junio de 2023, Doerman ejecutó a sus tres  <br>hijos pequeños en su casa del municipio de Monroe, condado de Clermont.
+                    </p>
+
+                    <p>Reconstrucción oficial de los hechos, los testimonios y el desenlace judicial:</p>
+
+                    <h2>1. La Reconstrucción de los Hechos</h2>
+
+                    <p>
+                        <strong>La ejecución:</strong> Doerman utilizó un rifle Marlin calibre .22. Alineó a sus tres hijos —Clayton (7), Hunter (4) y <br> Chase (3)— y les disparó a quemarropa en el jardín de su casa.
+                    </p>
+
+                    <p>
+                        <strong>El intento de fuga:</strong> El niño de 7 años logró escapar inicialmente y corrió por un campo cercano. Doerman lo persiguió, lo atrapó, lo llevó de vuelta a la propiedad y lo ejecutó frente a los demás.
+                    </p>
+
+                    <p>
+                        <strong>Heridas a la madre:</strong> La madre de los niños, Laura Doerman, intentó protegerlos desesperadamente. Durante el forcejeo, recibió un disparo en la mano al intentar arrebatarle el arma.
+                    </p>
+
+                    
+                    <h2>2. Testimonios Oficiales y Pruebas</h2>
+
+                    <p>
+                        El caso contó con evidencia gráfica y testimonial extremadamente cruda que fue presentada ante el tribunal:    
+                    </p>
+
+                    <p>
+                        <strong>Cámaras corporales (Bodycam):</strong> El video del arresto muestra a Doerman sentado tranquilamente en su porche junto <br>al rifle, mientras los agentes llegaban a una escena dantesca. Se le escucha decir con frialdad: "No voy a <br>lastimar a nadie", mientras los cuerpos de sus hijos yacían a pocos metros.
+                    </p>
+
+                    <p>
+                        <strong>La llamada al 911:</strong> Una vecina llamó aterrada informando que una mujer gritaba en la calle que "estaban matando a sus hijos". Otra llamada provino de una conductora que vio a una niña (la hijastra de Doerman) corriendo por la carretera gritando que su padre estaba "matando a todo el mundo".
+                    </p>
+
+                    <p>
+                        <strong>Confesión inicial:</strong> Aunque luego sus abogados intentaron suprimirla alegando que no se le leyeron sus derechos correctamente (lo cual un juez aceptó parcialmente), Doerman admitió inicialmente ante los detectives haber "planeado el evento".
+                    </p>
+
+
+                    <h2>3. Perfil y Salud Mental</h2>
+
+                    <p>
+                        La defensa de Doerman basó gran parte de su estrategia en su estado psíquico:
+                    </p>
+
+                    <p>
+                        <strong>Argumento de la defensa:</strong> Afirmaron que sufría de una "enfermedad mental grave" al momento del crimen. Entraron <br>inicialmente en una declaración de "no culpable por razones de demencia".
+                    </p>
+
+                    <p>
+                        <strong>Comportamiento previo:</strong> Vecinos testificaron que Doerman solía ser una persona colérica y que se le escuchaba <br>gritar con frecuencia, pero nadie imaginó que llegaría a tal nivel de violencia.
+                    </p>
+
+                    <h2>4. Resolución Judicial (Agosto 2024)</h2>
+
+                    <p>
+                        Para evitar la pena de muerte y ahorrar a la familia el trauma de un juicio prolongado con pruebas visuales <br>devastadoras, la fiscalía aceptó un acuerdo de culpabilidad.
+                    </p>
+
+                    <p>
+                        <strong>La sentencia:</strong> El 2 de agosto de 2024, Chad Doerman se declaró culpable de tres cargos de asesinato agravado.<br> Fue sentenciado a tres cadenas perpetuas consecutivas sin posibilidad de libertad condicional.
+                    </p>
+
+                    <p>
+                        <strong>Declaración de la madre:</strong> En la sentencia, Laura Doerman leyó un emotivo mensaje: "Mi vida fue arrancada de <br>mí... El dolor nunca se irá porque es todo el amor que queda sin lugar a donde ir". Pidió que sus hijos <br>sean recordados como niños que amaban jugar béisbol y estar juntos, y no solo por la forma en que murieron.
+                    </p>
+
+
+                    <h2>5. El Legado del Caso</h2>
+
+                    <p>
+                        El caso provocó un cambio en la percepción de la seguridad doméstica en la zona y críticas sobre el sistema de <br>salud mental y el control de armas. Doerman permanecerá el resto de sus días en el Instituto Correccional <br>de Orient, donde se espera que muera en prisión.
+                    </p>
+
+                    `;
+
+                }else{
+
+
+                    contenidoDinamico = `
+
+                <h1>El Desastre del Costa Concordia</h1>
+
+                <p>
+                El desastre del <strong>Costa Concordia</strong>, ocurrido el 13 de enero de 2012,
+                es recordado como una de las mayores negligencias marítimas de la historia moderna.
+                No fue solo un accidente técnico, sino una cadena de fallos humanos que terminó en tragedia
+                frente a la pequeña Isla del Giglio, en Italia.
+                </p>
+
+                <p>
+                Esta es una reconstrucción simplificada y detallada basada en los informes oficiales y testimonios <br>
+                de quienes estuvieron allí.
+                </p>
+
+                <h2>1. El Desencadenante: El "Saluto"</h2>
+
+                <p>
+                El capitán Francesco Schettino decidió desviarse de la ruta planificada para realizar un "saluto" (saludo), una maniobra no autorizada para acercarse a la costa de la isla y rendir homenaje a un excolega y a la familia del jefe de camareros.
+                </p>
+
+                <p>
+                <strong>El impacto:</strong>A las 21:45, el barco chocó contra las rocas de Le Scole. Una formación rocosa abrió una brecha de 70 metros en el casco, inundando inmediatamente la sala de máquinas y dejando al buque sin energía eléctrica.
+                </p>
+
+                <p>
+                <strong>El error del timonel:</strong> Informes de la caja negra revelaron que, segundos antes del impacto, el timonel entendió mal una orden de Schettino. Aunque se analizó como un factor, la investigación concluyó que la velocidad (15.5 nudos) y la proximidad eran ya fatales.
+                </p>
+
+                <h2>2. Cronología del Caos y "Mentiras"</h2>
+
+                <p>
+                Lo que siguió al impacto fue descrito por los supervivientes como una 
+                <br>"noche de errores y mentiras":
+                </p>
+
+                <p>
+                <strong>Información falsa:</strong> Mientras el barco comenzaba a inclinarse, la tripulación, bajo órdenes del puente, <br>dijo a los pasajeros que solo se trataba de un "problema eléctrico" y que la situación estaba bajo control.
+                </p>
+
+                <p>
+                <strong>El código "Tango India":</strong>Testigos relataron que escucharon a los trabajadores usar códigos internos <br>como "Tango India" (que indicaba heridos) mucho antes de que se diera la alarma general.
+                </p>
+
+                <p>
+                <strong>Evacuación tardía:</strong> La orden oficial de abandonar el barco no se dio hasta más de una hora después del<br> impacto. Para entonces, la inclinación era tan pronunciada que muchos botes salvavidas no pudieron ser <br>arriados.
+                </p>
+
+                <h2>3. Testimonios Impactantes</h2>
+
+                <p>
+                Los relatos de los pasajeros pintan una escena de pánico absoluto, 
+                <br>similar a las crónicas del Titanic:
+                </p>
+
+                <p>
+                <strong>Música irónica:</strong> Varios supervivientes informaron que, en el momento del impacto, 
+                <br>en el comedor se escuchaba la canción "My Heart Will Go On" de Celine Dion.
+                </p>
+
+                <p>
+                <strong>Sálvese quien pueda:</strong> Ester Percossi, una superviviente, 
+                <br>relató: "No había ley, solo supervivencia. 
+                <br>La gente se arrebataba los chalecos salvavidas unos a otros".
+                </p>
+
+                <p>
+                <strong>Héroes anónimos:</strong> Se reportó que el pianista y un violonchelista del barco ayudaron a otros a escapar;<br> el violonchelista fue encontrado muerto más tarde. Otros pasajeros tuvieron que hacer rápel por el costado del<br> casco usando cuerdas durante horas para llegar al agua o a los botes.
+                </p>
+
+                <h2>4.El "Capitán Cobarde" y la Llamada de De Falco</h2>
+
+                <p>
+                Uno de los puntos más infames fue el abandono de Schettino. El capitán dejó el barco cuando aún había cientos de <br>personas a bordo (él alegó que "se cayó" en un bote salvavidas debido a la inclinación).
+                </p>
+
+                <p>
+                <strong>"¡Vada a bordo, cazzo!"</strong>(Vuelva a bordo, carajo): Esta fue la orden que el comandante de la Guardia Costera, Gregorio De Falco, le gritó por radio a Schettino a la 01:46 AM, tras descubrir que el capitán estaba en tierra mientras el rescate seguía en curso.
+                </p>
+
+                <h2>5. Consecuencias y Cifras</h2>
+
+                <p>
+                <strong>Víctimas:</strong>32 personas perdieron la vida. Los últimos cuerpos fueron recuperados
+                <br> mucho tiempo después, durante las tareas de desguace.
+                </p>
+
+                <p>
+                <strong>Condena:</strong> Francesco Schettino fue condenado en 2015 a 16 años de prisión por homicidio involuntario, <br>causar un naufragio y abandonar el barco.
+                </p>
+
+                <p>
+                <strong>El Barco:</strong>El Costa Concordia permaneció encallado durante dos años frente a la isla hasta que se <br>realizó una operación de ingeniería sin precedentes para enderezarlo (parbuckling) y remolcarlo a Génova para su<br> desguace en 2014.
+                </p>
+
+                <p>
+                El accidente cambió las normativas de seguridad en cruceros, haciendo obligatorio que los simulacros de emergencia se <br>realicen antes de que el barco abandone el puerto de salida.
+                </p>
+
+                `;
+
+                }
+
+                document.getElementById("contenidoTexto").innerHTML = contenidoDinamico;
+
+            }, 250);
+
+        }
+
+    }, 40);
+
+}
+
+function volverInicio(){
+
+    document.getElementById("paginaPrincipal").style.display = "block";
+
+    document.getElementById("paginaTexto").style.display = "none";
+
+}
+
+</script>
+
+</body>
+</html>
