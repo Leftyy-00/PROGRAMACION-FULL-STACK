@@ -1,4 +1,4 @@
-/* Decimo primero ejercicio */
+/*  Décimo tercero ejercicio */
 let Menu = prompt("Seleccione una opción: \n1. Saludar \n2. Mostrar fecha \n3. Numero Random");
 
 if (Menu == "1") {
@@ -12,7 +12,7 @@ if (Menu == "1") {
     alert("Opción no válida");
 }
 
-/* Decimo segundo ejercicio */
+/* Décimo cuarto ejercicio */
 alert("Bienvenido, juguemos un juego de adivinanza, elija un numero del 1 al 10");
 let numero = Math.floor(Math.random() * 10) + 1;
 

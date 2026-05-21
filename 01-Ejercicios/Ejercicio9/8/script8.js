@@ -1,4 +1,4 @@
-/* Decimo tercero ejercicio */
+/* Décimo quinto ejercicio */
 let NumerosPares = 0;
 let numeros = Number;
 do {
@@ -9,7 +9,7 @@ do {
 } while (numeros != 0);
 alert("La cantidad de numeros pares ingresados es: " + NumerosPares);
 
-/* Decimo cuarto ejercicio */
+/*  Décimo sexto ejercicio */
 const Nombres = ["Freddy", "Bonnie", "Chica", "Foxy", "Golden Freddy"];
 console.log(Nombres[0]);
 alert(Nombres[0]);
