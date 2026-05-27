@@ -4,8 +4,9 @@ const boton = document.getElementById("btnTitle");
 
 boton.addEventListener("click", function () {
     titulo.textContent = "Decimo ejercicio resuelto";
+    titulo.style.color = "blue";
 });
-
+/* ---------------------------------------------------- */
 
 /* -Alteracion del párrafo- */
 const parrafo = document.getElementById("parrafo");
@@ -14,7 +15,7 @@ const botonParrafo = document.getElementById("btnParrafo");
 botonParrafo.addEventListener("click", function () {
     parrafo.textContent = "El párrafo fue cambiado exitosamente.";
 });
-
+/* ---------------------------------------------------- */
 
 /* -Alteracion de la imagen- */
 const img = document.getElementById("img");
@@ -24,7 +25,7 @@ botonImg.addEventListener("click", function () {
     img.src = "/01-Ejercicios/Ejercicio10/visual10/Metal_sonic_danger_icon.webp";
     img.alt = "Nueva imagen de una pagina web";
 });
-
+/* ---------------------------------------------------- */
 
 /* -Mostrar mensaje- */
 const inputMensaje = document.getElementById("inputMensaje");
@@ -34,7 +35,7 @@ botonMensaje.addEventListener("click", function () {
     const mensaje = inputMensaje.value;
     alert(mensaje);
 });
-
+/* ---------------------------------------------------- */
 
 /* Agregar elemento */
 const texto = document.getElementById("TextoClase");
@@ -48,6 +49,8 @@ btnAgregar.addEventListener("click", function () {
 btnQuitar.addEventListener("click", function () {
     texto.classList.remove("estiloRojo");
 });
+/* ---------------------------------------------------- */
+
 
 /* Modo Claro/Oscuro */
 const btnModo = document.getElementById("btnModoOscuro");
@@ -56,6 +59,8 @@ const body = document.body;
 btnModo.addEventListener("click", function () {
     body.classList.toggle("dark-mode");
 });
+/* ---------------------------------------------------- */
+
 
 /* Lista dinámica */
 const Lista = document.getElementById("LListaDinamica");
@@ -75,6 +80,7 @@ BtnEliminarElemento.addEventListener("click", function () {
     elemento.remove();
     });
 });
+/* ---------------------------------------------------- */
 
 
 /* Formulario--Nivel 3 */
@@ -112,3 +118,4 @@ Formulario.addEventListener("submit", function (event) {
     Resultado.appendChild(targeta);
     Formulario.reset();
 });
+/* ---------------------------------------------------- */
