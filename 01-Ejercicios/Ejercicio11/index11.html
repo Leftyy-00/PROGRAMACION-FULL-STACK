@@ -1,58 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="icon" type="image/png" href="Metal.png">
-    <link rel="stylesheet" href="11.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería de Imágenes</title>
+
+  <link rel="stylesheet" href="11.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <button id="tema"> Cambiar Tema </button>
-        </nav>
-    </header>
-    <br><br><br>
-    <main>
-        <section id="formulario">
-            <form>
-                <div>
-                    <label for="Timagen">Titulo de la imagen:</label>
-                    <br>
-                    <input type="text" id="titulo" name="titulo">
-                </div>
-                <br>
-                <div>
-                    <label for="URL">URL de la imagen:</label>
-                    <br>
-                    <input type="url" id="url" name="url">
-                </div>
-                <br>
-                <div>
-                    <button type="submit">Agregar Imagen</button>
-                </div>
-            </form>
-        </section>
-        <br>
-        <br>
-        <hr>
-        <section>
-            <h2>Resultado</h2>
-            <div id="Resultado"></div>
-        </section>
+  <header>
+    <div class="logo">
+      <img src="Metal.png" alt="Icono de galería" width="55" class="logo img">
+      Archive Gallery
+    </div>
 
-        <!-- ERRORES -->
-        <section>
-            <div id="Errores"></div>
-        </section>
+    <div>
+        <button class="btn" id="btnSoloFav">
+          <p style="color: green;"> ★ Favoritas</p>
+        </button>
 
-    </main>
+        <button class="btn" id="btnBorrarTodas">
+          <p style="color: red;">X Borrar Todo</p>
+        </button>
+    </div>
+  </header>
 
-    <footer class="footer">
-        <p style="text-align: center;">&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
-    </footer>
+  <main>
+    <h1 class="page-title">
+      The Archive Gallery
+    </h1>
 
-    <script src="11.JS"></script>
+    <p class="page-subtitle">
+      Agregá imágenes, <br> marcá favoritas y organizá tu colección visual.
+    </p>
+
+    <section class="form-panel">
+
+      <h2>Agregar nueva imagen</h2>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="Titulo">Título</label>
+          <input type="text" id="Titulo" placeholder="Ej: Paisaje nocturno">
+        </div>
+
+        <div class="form-group">
+          <label for="URL">
+            URL de la imagen
+          </label>
+
+          <input 
+            type="text" 
+            id="URL" 
+            placeholder="https://..."
+          >
+        </div>
+
+        <div class="form-group full">
+          <label for="Descripcion">
+            Descripción
+          </label>
+
+          <textarea 
+            id="Descripcion"
+            placeholder="Descripción opcional..."
+          ></textarea>
+        </div>
+
+      </div>
+      <div class="form-footer">
+
+        <button class="btn btn-primary" id="btnAgregar">
+          + Agregar imagen
+        </button>
+
+        <span class="error-msg" id="errorMsg">
+          ⚠️ Completá el título y la URL.
+        </span>
+      </div>
+    </section>
+
+    <section class="toolbar">
+
+      <div class="counter" id="counter">
+        0 imágenes · 0 favoritas
+      </div>
+
+    </section>
+
+    
+    <section class="gallery" id="galeria"></section>
+  </main>
+
+  <footer>
+      <p>
+        Galería creada con HTML, CSS y JavaScript
+      </p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="11.js"></script>
 </body>
 </html>
