@@ -1,0 +1,27 @@
+/* Modo oscuro */
+body {
+background-color: rgb(0, 0, 0);
+color: #ffffff;
+padding: 20px;
+transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Modo claro */
+body.light-mode {
+background-color: #ffffff;
+color: #000000;
+}
+
+
+
+
+.footer {
+    position: absolute; /* O usa fixed para que siempre sea visible */
+    bottom: 0;
+    width: 100%;
+}
+
+#Errores {
+    color: red;
+    font-weight: bold;
+}

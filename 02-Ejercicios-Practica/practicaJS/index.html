@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mostrar imagen</title>
+</head>
+<body>
+
+    <h2>Mostrar imagen desde URL</h2>
+
+    <input type="text" id="urlImg" placeholder="Pega la URL de la imagen">
+    
+    <button id="btnMostrar">
+        Mostrar imagen
+    </button>
+
+    <br><br>
+
+    <img id="imagen" width="300">
+
+    <script>
+
+        const input = document.getElementById("urlImg");
+        const boton = document.getElementById("btnMostrar");
+        const imagen = document.getElementById("imagen");
+
+        boton.addEventListener("click", function () {
+
+            const url = input.value;
+
+            imagen.src = url;
+
+        });
+
+    </script>
+
+</body>
+</html>
