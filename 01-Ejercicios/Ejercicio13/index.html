@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Chistes</title>
+    <link rel="icon" type="image/png" href="logo/Metal.png">
+    <link rel="stylesheet" href="13.css">
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <h1>Generador de Chistes</h1>
+                <button id="btnModoOscuro">Tema</button>
+        </nav>
+    </header>
+    <main class="container">
+
+        <section class="controls">
+            <div class="control-group">
+                <label for="category">Categoría:</label>
+                <select id="category">
+                    <option value="Any">Any</option>
+                    <option value="Programming">Programming</option>
+                    <option value="Misc">Misc</option>
+                    <option value="Pun">Pun</option>
+                    <option value="Spooky">Spooky</option>
+                    <option value="Christmas">Christmas</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="type">Tipo:</label>
+                <select id="type">
+                    <option value="any">Cualquiera</option>
+                    <option value="single">Single</option>
+                    <option value="twopart">Two Part</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="lang">Idioma:</label>
+                <select id="lang">
+                    <option value="es">Español</option>
+                    <option value="en">Inglés</option>
+                </select>
+            </div>
+        </section>
+
+        <section id="filters" class="filters">
+            <h2>Filtros</h2>
+            <label>
+                <input type="checkbox" value="nsfw">NSFW
+            </label>
+            <label>
+                <input type="checkbox" value="religious">Religious
+            </label>
+            <label>
+                <input type="checkbox" value="political">Political
+            </label>
+            <label>
+                <input type="checkbox" value="racist">Racist
+            </label>
+            <label>
+                <input type="checkbox" value="sexist">Sexist
+            </label>
+            <label>
+                <input type="checkbox" value="explicit">Explicit
+            </label>
+        </section>
+
+        <button id="btnJoke">Traer chiste</button>
+
+        <div id="loading"></div>
+
+        <section id="jokeBox"><div id="content"></div></section>
+
+        <div id="error"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Generador de Chistes. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="13.js"></script>
+</body>
+</html>

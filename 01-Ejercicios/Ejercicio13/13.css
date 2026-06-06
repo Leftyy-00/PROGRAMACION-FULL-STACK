@@ -1,0 +1,198 @@
+/* =========================
+   MODO CLARO
+========================= */
+
+body {
+    background-color: white;
+    color: #000000;
+    padding: 20px;
+    transition: background-color 0.5s ease, color 0.5s ease;
+
+    #content {
+    background-color: #dfd8d8;
+    }
+
+    #filters {
+    background-color: rgb(238, 238, 243);
+    }
+
+    #navbar {
+        background-color: rgb(238, 238, 243);
+    }
+}
+
+/* =========================
+   MODO OSCURO
+========================= */
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+     
+    #content {
+    background-color: #312e2e;
+    }
+
+    #filters {
+    background-color: rgb(39, 39, 43);
+    }
+
+    #navbar {
+        background-color: rgb(39, 39, 43);
+    }
+}
+
+/* =========================
+   CONTENEDOR PRINCIPAL
+========================= */
+
+#content {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 900px;
+    height: 500px;
+    transition: background-color 0.5s ease;
+}
+
+/* =========================
+   NAV
+========================= */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+nav h1 {
+    margin: 0;
+}
+
+#btnModoOscuro {
+    display: flex;
+    padding: 10px 20px;
+    border: black 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 80px;
+}
+
+#btnModoOscuro:hover {
+    transform: scale(1.05);
+}
+
+/* =========================
+   CONTROLES
+========================= */
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+/* =========================
+   FILTROS
+========================= */
+
+.filters {
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.filters h2 {
+    margin-bottom: 10px;
+}
+
+.filters label {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+/* =========================
+   BOTÓN CHISTES
+========================= */
+
+#jokesboton {
+    padding: 10px 20px;
+    border: black 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#jokesboton:hover {
+    transform: scale(1.05);
+}
+
+/* =========================
+   CONTENEDOR CHISTES
+========================= */
+
+#jokes {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 250px;
+    background-color: rgba(0, 0, 0, 0.05);
+    line-height: 1.6;
+}
+
+/* =========================
+   LOADING Y ERRORES
+========================= */
+
+#loading {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+#error {
+    margin-top: 15px;
+    color: red;
+    font-weight: bold;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .controls {
+        flex-direction: column;
+        padding: 25px;
+        border-radius: 25px;
+        margin-bottom: 25px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+}
