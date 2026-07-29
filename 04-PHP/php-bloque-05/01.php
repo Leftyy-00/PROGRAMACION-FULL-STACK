@@ -4,8 +4,8 @@ $ususarioingresado_loguin = "admin";
 $contraseñaingresada_loguin = "1234";
 
 if ($ususarioingresado_loguin == "admin" && $contraseñaingresada_loguin == "1234") {
-    echo " Bienvenido Chanchito Feliz";
+    echo " Bienvenido";
 } else {
-    echo " Saquenme a èsta igualada de acà";
+    echo "largo jilipollas";
 }
 ?>

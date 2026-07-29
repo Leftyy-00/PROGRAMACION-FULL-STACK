@@ -3,8 +3,8 @@
 $rol_user = "administrador";
 
 if ($rol_user == "administrador" || $rol_user == "docente" ) {
-    echo "Acceso permitido Chanchito Feliz";
+    echo "Acceso permitido";
 } else {
-    echo "Saquenme a èsta igualada de aca";
+    echo "Acceso denegado";
 }
 ?>
