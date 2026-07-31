@@ -291,7 +291,7 @@ El sistema debe permitir la emisión de los siguientes reportes:
 | NRF10 | El sistema debe registrar la trazabilidad de las acciones importantes realizadas por los usuarios.                       |
 | NRF11 | El sistema debe restringir los formatos de archivos adjuntos a PDF e imágenes JPG, acorde a los tipos soportados en v1.  |
 | NRF12 | El sistema debe restringir el tamaño de los archivos adjuntos permitidos.                                                |
-| NRF13 | El código del sistema debe estar organizado, ser reutilizable y mantenible.	                                             |
+| NRF13 | El código del sistema debe estar organizado, ser reutilizable y mantenible.	                                           |
 | NRF14 | El sistema debe contar con documentación técnica dentro del repositorio.                                                 |
 | NRF15 | El equipo debe utilizar Git para registrar y revisar los cambios del código.                                             |
 
@@ -311,3 +311,16 @@ El sistema debe permitir la emisión de los siguientes reportes:
 | EP6    | Gestión de perfil de usuario      | Permitir a cada usuario administrar su propia información personal.                    |
 
 
+<br>
+
+## 14. Estimacion por Epica
+
+
+| Código | Épica                             | Estimación en puntos |
+| ------ | --------------------------------- | -------------------- |
+| EP1    | Autenticación y control de acceso |                      |
+| EP2    | Gestión de usuarios y talleres    |                      |
+| EP3    | Gestión de asistencia             |                      |
+| EP4    | Gestión de material y tareas      |                      |
+| EP5    | Reportes e informes               |                      |
+| EP6    | Gestión de perfil de usuario      |                      |
