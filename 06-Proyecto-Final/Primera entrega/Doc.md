@@ -313,14 +313,16 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 <br>
 
+
 ## 14. Estimacion por Epica
 
 
-| Código | Épica                             | Estimación en puntos |
-| ------ | --------------------------------- | -------------------- |
-| EP1    | Autenticación y control de acceso |                      |
-| EP2    | Gestión de usuarios y talleres    |                      |
-| EP3    | Gestión de asistencia             |                      |
-| EP4    | Gestión de material y tareas      |                      |
-| EP5    | Reportes e informes               |                      |
-| EP6    | Gestión de perfil de usuario      |                      |
+| Código | Épica | Estimación en puntos |
+| --- | --- | --- |
+| EP1 | Autenticación y control de acceso | 8 |
+| EP2 | Gestión de usuarios y talleres | 13 |
+| EP3 | Gestión de asistencia | 8 |
+| EP4 | Gestión de material y tareas | 20 |
+| EP5 | Reportes e informes | 13 |
+| EP6 | Gestión de perfil de usuario | 3 |
+| EP-Totales | Estimacion de puntos de todas las EP | 65 |
