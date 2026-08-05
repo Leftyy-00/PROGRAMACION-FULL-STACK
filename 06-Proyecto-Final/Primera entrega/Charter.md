@@ -1,4 +1,4 @@
-# Nombre del Proyecto: GestorTalleres – Plataforma de gestión de talleres en convenio con INAU
+# Nombre del Proyecto:  TheNewfutures – Plataforma de gestión de talleres en convenio con INAU
 
 ---
 

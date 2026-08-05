@@ -200,7 +200,7 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 ## 7. Nombre propuesto del producto
 
-**GestorTalleres - Convenio con INAU**
+**TheNewfutures - Convenio con INAU**
 
 **Sistema de Gestión de Talleres en Convenio con INAU**
 
@@ -219,6 +219,7 @@ El sistema debe permitir la emisión de los siguientes reportes:
 ---
 
 <br>
+
 
 ## 9. Alcance incluido (primera versión):
 
