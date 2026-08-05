@@ -1,21 +1,21 @@
-# CONVENIO-INAU
-## Primera Entrega – Análisis y Diseño Seguro
+# Proyecto: TheNewfutures – Plataforma de gestión de talleres en convenio con INAU - Rama de Ciberseguridad
 
-**Proyecto de Egreso – BT 3° Tecnologías de la Información**
-**ELEC CIBERSEGURIDAD**
+<br>
 
-**Docente:** Ana Victoria Reyes Macedo
+### Estudiantes:
 
-**Estudiantes:**
-- Maximiliano Leal
-- Ignacio Viera
 - Emiliano Sanchez
 - Gabriel Rendon
 - Thiago Ferragut
+- Maximiliano Leal
+- Ignacio Viera
 
 ---
 
+<br>
+
 ## 1. Identificación de amenazas digitales
+
 
 ### Amenaza 1: Phishing
 
@@ -23,11 +23,15 @@ El phishing consiste en engañar a los usuarios mediante correos, mensajes o sit
 
 **Riesgo para el proyecto:** Un funcionario podría ingresar su usuario y contraseña en una página falsa, permitiendo que un atacante acceda al sistema.
 
+---
+
 ### Amenaza 2: Cross-Site Scripting (XSS)
 
 El XSS ocurre cuando un atacante introduce código JavaScript malicioso en campos de entrada y este se ejecuta en el navegador de otros usuarios.
 
 **Riesgo para el proyecto:** Si el sistema tiene formularios para registrar información, comentarios o mensajes, un atacante podría insertar código malicioso.
+
+---
 
 ### Amenaza 3: Ransomware
 
@@ -36,6 +40,8 @@ El ransomware es un tipo de malware que cifra los archivos de un equipo o sistem
 **Riesgo para el proyecto:** Si alguno de los equipos donde se desarrolla o almacena el sistema es infectado, los archivos del proyecto podrían quedar inaccesibles o perderse, afectando el desarrollo del sistema y la disponibilidad de la información.
 
 ---
+
+<br>
 
 ## 2. Mapa de Riesgos
 
@@ -47,7 +53,16 @@ El ransomware es un tipo de malware que cifra los archivos de un equipo o sistem
 
 **Leyenda:** 🟢 Bajo · 🟡 Medio · 🔴 Alto / crítico
 
-### Impacto detallado por amenaza
+---
+
+<br>
+
+### Impacto detallado por amenaza.
+
+---
+
+<br>
+
 
 **Phishing:**
 - *Impacto técnico:* Puede comprometer cuentas, robar credenciales y permitir accesos no autorizados al sistema.
@@ -63,7 +78,11 @@ El ransomware es un tipo de malware que cifra los archivos de un equipo o sistem
 
 ---
 
+<br>
+
 ## 4. Buenas prácticas de seguridad en desarrollo web
+
+<br>
 
 La primera entrega utiliza HTML, CSS y JavaScript, por lo que se aplicarán las siguientes buenas prácticas de seguridad:
 
