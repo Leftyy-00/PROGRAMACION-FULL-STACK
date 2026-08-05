@@ -36,8 +36,9 @@
 | Herramienta | Etapa / documento | Tipo de uso (investigación / redacción) | Integrante |
 | --- | --- | --- | --- |
 | Gemini | Redacción (Project Charter) | Redacción: ajustes de formato a un tono formal, corrección de errores ortográficos y de formato previos. | Gabriel Rendon |
-| Claude Sonnet 5 | Documentación | Investigación: definición de conceptos del proyecto. Redacción: ajustes de formato a un tono formal, corrección de errores ortográficos y de formato previos. Revisión: se usó para revisión de coherencia, supervisada por el Subcoordinador y Lider. | Gabriel Rendon |
-| Claude Sonnet 5 | Coherencia y redacción (Actas de reuniones) | Coherencia: verificó la coherencia de las actas, supervisado por el Subcoordinador y Lider. Redacción: ajustes de formato a un tono formal, corrección de errores ortográficos y de formato previos. | Gabriel Rendon |
+| Claude Sonnet 5 | Documentación | Investigación: definición de conceptos del proyecto. Redacción: ajustes de formato a un tono formal, corrección de errores ortográficos y de formato previos. Revisión: se usó para revisión de coherencia, supervisada por el Subcoordinador y Líder. | Gabriel Rendon |
+|Claude Sonnet 5 | Redaccion(Anotaciones de la entrevista) | Redacción: ajustes de formato a un tono formal, corrección de errores ortográficos y de formato previos. | Gabriel Rendon |
+| Claude Sonnet 5 | Coherencia y redacción (Actas de reuniones) | Coherencia: verificó la coherencia de las actas, supervisado por el Subcoordinador y Líder. Redacción: ajustes de formato a un tono formal, corrección de errores ortográficos y de formato previos. | Gabriel Rendon |
 | Claude Sonnet 5 | Contenido visual (Electiva Ciberseguridad) | Contenido visual: se utilizó para la generación de imágenes de un documento de la materia de Ciberseguridad. | Maximiliano Leal |
 | ChatGPT Codex | Frontend (HTML y CSS) | Código: se utilizó la IA para la revisión del código y como ayuda en la estructura; fue revisado por el Subcoordinador. | Emiliano Sánchez |
 
@@ -47,8 +48,8 @@
 
 | Integrante | Firma / fecha |
 | --- | --- |
-| Emiliano Sánchez – Líder/Scrum Master. | Emiliano Sánchez-04/08/26 |
-| Gabriel Rendon – Subcoordinador. | Gabriel Rendon-04/08/26 |
-| Ignacio Viera – Desarrollador Frontend/Backend. | Ignacio Viera-04/08/26 |
-| Maximiliano Leal – Desarrollador Frontend/Backend. | Maximiliano Leal-04/08/26 |
-| Thiago Ferragut – Desarrollador Frontend/Backend. | Thiago Ferragut-04/08/26 |
+| Emiliano Sánchez – Líder/Scrum Master. | Emiliano Sánchez - 04/08/26 |
+| Gabriel Rendon – Subcoordinador. | Gabriel Rendon - 04/08/26 |
+| Ignacio Viera – Desarrollador Frontend/Backend. | Ignacio Viera - 04/08/26 |
+| Maximiliano Leal – Desarrollador Frontend/Backend. | Maximiliano Leal - 04/08/26 |
+| Thiago Ferragut – Desarrollador Frontend/Backend. | Thiago Ferragut - 04/08/26 |
