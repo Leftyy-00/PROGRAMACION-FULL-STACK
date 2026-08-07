@@ -1,6 +1,5 @@
-# Nombre del Proyecto:  TheNewfutures – Plataforma de gestión de talleres en convenio con INAU
+# Nombre del Proyecto: TheNewfutures – Plataforma de gestión de talleres en convenio con INAU
 
----
 
 ### Cliente / patrocinador: INAU
 
@@ -11,7 +10,7 @@
 ---
 
 ### Equipo: 
-> -Emiliano Sánchez: Lider / Scrum Master <br>
+> -Emiliano Sánchez: Líder / Scrum Master <br>
 > -Gabriel Rendon: Sublíder <br>
 > -Ignacio Viera: desarrolladores Frontend y Backend <br>
 > -Maximiliano Leal: desarrolladores Frontend y Backend <br>
@@ -21,7 +20,7 @@
 
 ### Fecha de inicio: 17 de julio de 2026
 
-### Duración estimada: 16 semanas
+### Duración estimada: 24 semanas
 
 ---
 
@@ -41,7 +40,9 @@
 ---
 
 ### Visión del producto: 
-   **Desarrollar una plataforma web responsive que centralice la gestión de talleres en convenio con INAU, permitiendo a administradores y talleristas gestionar talleres, participantes, asistencias, informes y comunicación interna de forma organizada, segura y accesible desde distintos dispositivos.**
+   **Desarrollar una plataforma web responsive que centralice la gestión de talleres en convenio con INAU, permitiendo a administradores y talleristas gestionar talleres, participantes, asistencias e informes de forma organizada, segura y accesible desde distintos dispositivos.**
+
+   **La comunicación interna entre administradores y talleristas está prevista como funcionalidad deseable para una etapa futura, conforme al alcance excluido de la primera versión.**
 
 ---
 
@@ -71,23 +72,22 @@
 
 ---
 
+<br>
 
-| **Rol**              | **Persona / referente**          | **Responsabilidad**                                                |
-| -------------------- | -------------------------------- | ------------------------------------------------------------------ |
-| Cliente / Sponsor    | Referente del convenio con INAU  | Define las necesidades del sistema, valida el alcance y aprueba la |
-|                      |                                  |  solución final.                                                   |
-|----------------------|----------------------------------|--------------------------------------------------------------------|
-| Administrador        | Responsable de la administración | Gestiona usuarios, talleres, alumnos y supervisa el funcionamiento |
-|                      |                                  | general de la plataforma.                                          |
-|----------------------|----------------------------------|--------------------------------------------------------------------|
-| Tallerista           | Talleristas del convenio         | Registran asistencias, gestionan la información de sus talleres y  |
-|                      |                                  | se comunican con la administración.                                |
-|----------------------|----------------------------------|--------------------------------------------------------------------|
-| Equipo de desarrollo | Equipo de 3.º BT Informática     | Analiza los requerimientos, diseña, desarrolla, prueba y documenta |
-|                      |                                  | el sistema.                                                        |
+## Stakeholders principales:
 
+| **Rol** | **Persona / referente** | **Responsabilidad** |
+| --- | --- | --- |
+| Cliente / Sponsor | Referente del convenio con INAU | Define las necesidades del sistema, valida el alcance y aprueba la solución final. |
+| Administrador | Responsable de la administración | Gestiona usuarios, talleres, alumnos y supervisa el funcionamiento general de la plataforma. |
+| Tallerista | Talleristas del convenio | Registran asistencias, gestionan la información de sus talleres y se comunican con la administración. |
+| Equipo de desarrollo | Equipo de 3.º BT Informática | Analiza los requerimientos, diseña, desarrolla, prueba y documenta el sistema. |
 
 ---
+
+<br>
+
+## Riesgos iniciales:
 
 | **Riesgo**                                                  | **Impacto**                                               |
 |-------------------------------------------------------------|-----------------------------------------------------------|
@@ -105,7 +105,7 @@
 ---
 
 ### Esfuerzo estimado: 
-**55 Puntos, distribuidos en cuatro épicas principales de desarrollo.**
+**65 Puntos, distribuidos en seis épicas principales de desarrollo.**
 
 ---
 

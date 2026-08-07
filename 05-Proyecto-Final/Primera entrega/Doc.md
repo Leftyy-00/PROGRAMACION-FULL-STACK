@@ -30,18 +30,18 @@
 ## 3. Primer análisis del equipo de desarrollo
 
 
-| Área a aclarar     | Preguntas iniciales del equipo                                                                                                             |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Roles y usuarios   | ¿Qué roles existen dentro de la plataforma? ¿Qué puede ver, cargar, modificar y eliminar cada uno?                                         |
-| Talleres           | ¿Cómo se organiza un taller? ¿Un tallerista puede tener varios talleres o un taller varios talleristas?                                    |
-| Participantes      | ¿Cómo se identifica a cada alumno dentro del sistema? ¿Se inscriben a un taller o a varios?                                                |
-| Asistencia         | ¿Cómo se registra actualmente la asistencia? ¿Por clase, por día, por taller?                                                              |
-| Material y tareas  | ¿Qué tipo de contenido suben los talleristas (documentos, imágenes, videos)? ¿Cómo entregan los alumnos sus tareas?                        |
-| Foros              | ¿Qué se espera que contenga un foro? ¿Es por taller, general, o incluye a las familias?                                                    |
-| Usuarios técnicos  | ¿Quiénes van a usar el sistema en el día a día: solo talleristas y administración, o también otro personal?                                |
-| Infraestructura    | ¿Desde qué dispositivos se accederá (celular, tablet, computadora)? ¿Hay conectividad estable en los lugares donde se dictan los talleres? |
-| Seguridad y datos  | ¿Qué datos personales de alumnos y talleristas se manejan? ¿Cuáles se consideran sensibles?                                                |
-| Plazo              | ¿Cuándo necesitan tener una primera versión funcionando?                                                                                   |
+| Área a aclarar | Preguntas iniciales del equipo |
+| --- | --- |
+| Roles y usuarios | ¿Qué roles existen dentro de la plataforma? ¿Qué puede ver, cargar, modificar y eliminar cada uno? |
+| Talleres | ¿Cómo se organiza un taller? ¿Un tallerista puede tener varios talleres o un taller varios talleristas? |
+| Participantes | ¿Cómo se identifica a cada alumno dentro del sistema? ¿Se inscriben a un taller o a varios? |
+| Asistencia | ¿Cómo se registra actualmente la asistencia? ¿Por clase, por día, por taller? |
+| Material y tareas | ¿Qué tipo de contenido suben los talleristas (documentos, imágenes, videos)? ¿Cómo entregan los alumnos sus tareas? |
+| Foros | ¿Qué se espera que contenga un foro? ¿Es por taller, general, o incluye a las familias? |
+| Usuarios técnicos | ¿Quiénes van a usar el sistema en el día a día: solo talleristas y administración, o también otro personal? |
+| Infraestructura | ¿Desde qué dispositivos se accederá (celular, tablet, computadora)? ¿Hay conectividad estable en los lugares donde se dictan los talleres? |
+| Seguridad y datos | ¿Qué datos personales de alumnos y talleristas se manejan? ¿Cuáles se consideran sensibles? |
+| Plazo | ¿Cuándo necesitan tener una primera versión funcionando? |
 
 
 
@@ -50,12 +50,11 @@
 
 ## 4. Participantes de la entrevista
 
-| Rol                   | Participante                       |  Responsabilidad                                              |
-| --------------------- | ---------------------------------  | ------------------------------------------------------------- |
-| Usuario experto	      | Lemuel Szwec González, tallerista	 | Explica el proceso operativo actual y las necesidades del rol |
-|                       |                                    | tallerista dentro de la plataforma.                           |
-| Equipo de desarrollo  | Emiliano Sánchez, líder de equipo  | Relevar necesidades y transformar la información en backlog.  |
-| Equipo de desarrollo  | Maximiliano Leal, desarrollador FE | Relevar necesidades y transformar la información en backlog.  |
+| Rol | Participante |  Responsabilidad |
+| --- | --- | --- |
+| Usuario experto | Lemuel Szwec González, tallerista | Explica el proceso operativo actual y las necesidades del rol tallerista dentro de la plataforma. |
+| Equipo de desarrollo. | Emiliano Sánchez, líder de equipo  | Relevar necesidades y transformar la información en backlog. |
+| Equipo de desarrollo. | Maximiliano Leal, desarrollador FE | Relevar necesidades y transformar la información en backlog. |
 
 
 
@@ -179,20 +178,17 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 ## 6. Información obtenida en la entrevista
 
-| Categoría                          | Información relevada                                                                                      |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| Problema principal                 | Falta de una plataforma digital que otorgue acceso a alumnos, talleristas y administradores, dificultando |
-|                                    | la accesibilidad, disponibilidad y organización de los talleres.                                          |
-| Objetivo de negocio                | Alcanzar una plataforma con las funciones mencionadas, mejorando el control, accesibilidad y              |
-|                                    | organización, para alumnos, talleristas y administradores.                                                |
-| Alcance inicial                    | Que los talleristas puedan subir material y tareas, pasar asistencia; que los alumnos puedan ver y enviar |
-|                                    | lo que hicieron; y que el administrador tenga acceso a ver todo lo que sucede.                            |
-| Plazo esperado                     | Finales de año.                                                                                           |
-| Usuarios                           | Administradores, Talleristas, Alumnos.                                                                    |
-| Infraestructura                    | No se especificó.                                                                                         |
-| Seguridad                          | Acceso por roles, protección de datos sensibles de los usuarios.                                          |
-| Riesgo operativo                   | No se especificó.                                                                                         |
-| Restricción técnica                | No se especificó.                                                                                         |
+| Categoría | Información relevada |
+| ---| --- |
+| Problema principal | Falta de una plataforma digital que otorgue acceso a alumnos, talleristas y administradores, dificultando la accesibilidad, disponibilidad y organización de los talleres. |
+| Objetivo de negocio | Alcanzar una plataforma con las funciones mencionadas, mejorando el control, accesibilidad y organización, para alumnos, talleristas y administradores. |
+| Alcance inicial | Que los talleristas puedan subir material y tareas, pasar asistencia; que los alumnos puedan ver y enviar lo que hicieron; y que el administrador tenga acceso a ver todo lo que sucede. |
+| Plazo esperado | Finales de año. |
+| Usuarios | Administradores, Talleristas, Alumnos. |
+| Infraestructura | No se especificó. |
+| Seguridad | Acceso por roles, protección de datos sensibles de los usuarios. |
+| Riesgo operativo | No se especificó. |
+| Restricción técnica | No se especificó. |
 
 
 
@@ -254,47 +250,47 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 ## 11. Requerimientos funcionales:
 
-|Codigo | Requerimiento funcional
-|-------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| RF01  | El sistema debe permitir iniciar sesión con usuario y contraseña, diferenciando el acceso según el rol (alumno, tallerista, administrador).  |
-| RF02  | El sistema debe permitir al administrador gestionar usuarios (alumnos y talleristas) y talleres: crear, modificar, eliminar y consultar.     |
-| RF03  | El sistema debe permitir al administrador asignar alumnos y talleristas a los talleres correspondientes.                                     |
-| RF04  | El sistema debe permitir al tallerista registrar la asistencia de los alumnos de su taller, indicando fecha.                                 |
-| RF05  | El sistema debe permitir consultar y modificar la asistencia registrada por taller y fecha.                                                  |
-| RF06 	| El sistema debe permitir al tallerista subir material y tareas asociados a su taller.                                                        |
-| RF07  | El sistema debe permitir al alumno visualizar el material y las tareas de su taller.                                                         |
-| RF08  | El sistema debe permitir al alumno enviar/subir los archivos correspondientes a una tarea asignada.                                          |
-| RF09  | El sistema debe permitir al tallerista corregir las tareas enviadas por los alumnos.                                                         |
-| RF10  | El sistema debe permitir al tallerista asignar una nota a cada alumno por tarea.                                                             |
-| RF11  | El sistema debe permitir generar informes de asistencia por taller.                                                                          |
-| RF12  | El sistema debe permitir generar informes de talleres con sus talleristas asignados.                                                         |
-| RF13  | El sistema debe permitir exportar los informes generados en formato PDF o Excel.                                                             |
-| RF14  | El sistema debe permitir a cada usuario gestionar su perfil según su rol (modificar contraseña y datos personales).                          |
-| RF15  | El sistema debe permitir al alumno eliminar ciertos datos de su perfil (foto, biografía).                                                    |
+|Codigo | Requerimiento funcional |
+|-------|---|
+| RF01 | El sistema debe permitir iniciar sesión con usuario y contraseña, diferenciando el acceso según el rol (alumno, tallerista, administrador). |
+| RF02 | El sistema debe permitir al administrador gestionar usuarios (alumnos y talleristas) y talleres: crear, modificar, eliminar y consultar. |
+| RF03 | El sistema debe permitir al administrador asignar alumnos y talleristas a los talleres correspondientes. |
+| RF04 | El sistema debe permitir al tallerista registrar la asistencia de los alumnos de su taller, indicando fecha. |
+| RF05 | El sistema debe permitir consultar y modificar la asistencia registrada por taller y fecha. |
+| RF06 | El sistema debe permitir al tallerista subir material y tareas asociados a su taller. |
+| RF07 | El sistema debe permitir al alumno visualizar el material y las tareas de su taller. |
+| RF08 | El sistema debe permitir al alumno enviar/subir los archivos correspondientes a una tarea asignada. |
+| RF09 | El sistema debe permitir al tallerista corregir las tareas enviadas por los alumnos. |
+| RF10 | El sistema debe permitir al tallerista asignar una nota a cada alumno por tarea. |
+| RF11 | El sistema debe permitir generar informes de asistencia por taller. |
+| RF12 | El sistema debe permitir generar informes de talleres con sus talleristas asignados. |
+| RF13 | El sistema debe permitir exportar los informes generados en formato PDF o Excel. |
+| RF14 | El sistema debe permitir a cada usuario gestionar su perfil según su rol (modificar contraseña y datos personales). |
+| RF15 | El sistema debe permitir al alumno eliminar ciertos datos de su perfil (foto, biografía). |
 
 
 
 <br>
 
-## 12. Requerimientos no funcionales:
+## 12. Requerimientos no funcional:
 
 |Codigo | Requerimiento funcional
-|-------|--------------------------------------------------------------------------------------------------------------------------|
-| NRF01 | El sistema debe presentar un diseño responsive, adaptándose a computadora, tablet y teléfono.                            |
-| NRF02 | El sistema debe estar disponible las 24 horas del día una vez desplegado.                                                |
-| NRF03 | El sistema debe responder con rapidez en las operaciones habituales.                                                     |
-| NRF04 | El sistema debe presentar una navegación clara y consistente para el usuario.                                            |
-| NRF05 | El sistema debe validar los formularios tanto en el frontend como en el backend.                                         |
-| NRF06 | El sistema debe mantener una arquitectura separada entre frontend y backend.                                             |
-| NRF07 | El sistema debe controlar el acceso a las funcionalidades según el rol del usuario.                                      |
-| NRF08 | El sistema debe proteger los datos personales de los usuarios.                                                           |
-| NRF09 | El sistema debe garantizar la persistencia confiable de los datos en una base de datos relacional.                       |
-| NRF10 | El sistema debe registrar la trazabilidad de las acciones importantes realizadas por los usuarios.                       |
-| NRF11 | El sistema debe restringir los formatos de archivos adjuntos a PDF e imágenes JPG, acorde a los tipos soportados en v1.  |
-| NRF12 | El sistema debe restringir el tamaño de los archivos adjuntos permitidos.                                                |
-| NRF13 | El código del sistema debe estar organizado, ser reutilizable y mantenible.	                                           |
-| NRF14 | El sistema debe contar con documentación técnica dentro del repositorio.                                                 |
-| NRF15 | El equipo debe utilizar Git para registrar y revisar los cambios del código.                                             |
+|---|---|
+| NRF01 | El sistema debe presentar un diseño responsive, adaptándose a computadora, tablet y teléfono. |
+| NRF02 | El sistema debe estar disponible las 24 horas del día una vez desplegado. |
+| NRF03 | El sistema debe responder con rapidez en las operaciones habituales. |
+| NRF04 | El sistema debe presentar una navegación clara y consistente para el usuario. |
+| NRF05 | El sistema debe validar los formularios tanto en el frontend como en el backend. |
+| NRF06 | El sistema debe mantener una arquitectura separada entre frontend y backend. |
+| NRF07 | El sistema debe controlar el acceso a las funcionalidades según el rol del usuario. |
+| NRF08 | El sistema debe proteger los datos personales de los usuarios. |
+| NRF09 | El sistema debe garantizar la persistencia confiable de los datos en una base de datos relacional. |
+| NRF10 | El sistema debe registrar la trazabilidad de las acciones importantes realizadas por los usuarios. |
+| NRF11 | El sistema debe restringir los formatos de archivos adjuntos a PDF e imágenes JPG, acorde a los tipos soportados en v1. |
+| NRF12 | El sistema debe restringir el tamaño de los archivos adjuntos permitidos. |
+| NRF13 | El código del sistema debe estar organizado, ser reutilizable y mantenible. |
+| NRF14 | El sistema debe contar con documentación técnica dentro del repositorio. |
+| NRF15 | El equipo debe utilizar Git para registrar y revisar los cambios del código. |
 
 
 
@@ -302,14 +298,14 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 ## 13. Epicas
 
-| Código | Épica                             | Descripcióm                                                                            |
-| ------ | --------------------------------- | -------------------------------------------------------------------------------------- |
-| EP1    | Autenticación y control de acceso | Permitir el ingreso seguro y diferenciado a la plataforma según el rol del usuario.    |
-| EP2    | Gestión de usuarios y talleres    | Administrar los usuarios (alumnos, talleristas) y su relación con los talleres.        |
-| EP3    | Gestión de asistencia             | Registrar y controlar la asistencia de los alumnos a los talleres.                     |
-| EP4    | Gestión de material y tareas      | Permitir la carga, entrega y corrección de material y tareas de cada taller.           |
-| EP5    | Reportes e informes               | Generar y exportar información consolidada de asistencia, talleres y trazabilidad.     |
-| EP6    | Gestión de perfil de usuario      | Permitir a cada usuario administrar su propia información personal.                    |
+| Código | Épica | Descripcióm |
+| --- | --- | ---|
+| EP1 | Autenticación y control de acceso | Permitir el ingreso seguro y diferenciado a la plataforma según el rol del usuario. |
+| EP2 | Gestión de usuarios y talleres | Administrar los usuarios (alumnos, talleristas) y su relación con los talleres. |
+| EP3 | Gestión de asistencia | Registrar y controlar la asistencia de los alumnos a los talleres. |
+| EP4 | Gestión de material y tareas | Permitir la carga, entrega y corrección de material y tareas de cada taller. |
+| EP5 | Reportes e informes | Generar y exportar información consolidada de asistencia, talleres y trazabilidad. |
+| EP6 | Gestión de perfil de usuario | Permitir a cada usuario administrar su propia información personal.|
 
 
 <br>
