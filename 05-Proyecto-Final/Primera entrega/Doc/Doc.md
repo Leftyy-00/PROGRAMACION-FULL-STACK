@@ -323,3 +323,13 @@ El sistema debe permitir la emisión de los siguientes reportes:
 | EP5 | Reportes e informes | 13 |
 | EP6 | Gestión de perfil de usuario | 3 |
 | EP-Totales | Estimacion de puntos de todas las EP | 65 |
+
+
+<br>
+
+
+## 15. Historias de usuario
+
+
+
+---
