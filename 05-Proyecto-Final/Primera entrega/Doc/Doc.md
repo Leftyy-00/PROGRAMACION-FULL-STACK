@@ -223,13 +223,20 @@ El sistema debe permitir la emisión de los siguientes reportes:
 2. Gestión de usuarios, talleristas, alumnos y talleres.
 3. Asignación de alumnos y talleristas a los talleres.
 4. Registro, consulta y modificación de asistencias por taller y fecha.
-5. Carga de material y tareas por parte del tallerista (sin especificar tipos de archivo extra, imágenes o datos adicionales).
+5. Carga y modificación de material y tareas por parte del tallerista (sin especificar tipos de archivo extra, imágenes o datos adicionales).
 6. Visualización de material y tareas por parte del alumno, y envío/carga de los archivos correspondientes a la tarea asignada.
-7. Corrección de tareas y asignación de notas por parte del tallerista.
-8. Consulta y generación de informes de asistencia y talleres.
-9. Exportación de informes en formatos PDF y Excel.
-10. Gestión de perfiles de usuario según el rol.
-11. Plataforma web responsive accesible desde distintos dispositivos.
+7. Eliminación de material, calificaciones y registros de asistencia del taller por parte del tallerista.
+8. Corrección de tareas y asignación de notas por parte del tallerista.
+9. Consulta y generación de informes de asistencia y talleres.
+10. Generación de listados e informes de alumnos y talleristas, incluyendo el histórico de calificaciones.
+11. Exportación de informes en formatos PDF y Excel.
+12. Gestión de perfiles de usuario según el rol.
+13. Plataforma web responsive accesible desde distintos dispositivos.
+14. Comunicación asincrónica del tallerista con los alumnos de su taller.
+15. Visualización de las notas asignadas al alumno.
+16. Consulta de datos sensibles utilizados en la plataforma por parte del administrador.
+17. Consulta del listado de alumnos inscritos en el taller por parte del tallerista.
+
 
 ---
 
@@ -250,7 +257,7 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 ## 11. Requerimientos funcionales:
 
-|Codigo | Requerimiento funcional |
+|Código | Requerimiento funcional |
 |-------|---|
 | RF01 | El sistema debe permitir iniciar sesión con usuario y contraseña, diferenciando el acceso según el rol (alumno, tallerista, administrador). |
 | RF02 | El sistema debe permitir al administrador gestionar usuarios (alumnos y talleristas) y talleres: crear, modificar, eliminar y consultar. |
@@ -267,14 +274,26 @@ El sistema debe permitir la emisión de los siguientes reportes:
 | RF13 | El sistema debe permitir exportar los informes generados en formato PDF o Excel. |
 | RF14 | El sistema debe permitir a cada usuario gestionar su perfil según su rol (modificar contraseña y datos personales). |
 | RF15 | El sistema debe permitir al alumno eliminar ciertos datos de su perfil (foto, biografía). |
-
+| RF16 | El sistema debe permitir al tallerista eliminar material de su taller. |
+| RF17 | El sistema debe permitir al tallerista eliminar la nota asignada a un alumno. |
+| RF18 | El sistema debe permitir al tallerista eliminar un registro de asistencia de su taller. |
+| RF19 | El sistema debe permitir al tallerista comunicarse con los alumnos de su taller, de forma asincrónica (no en tiempo real). |
+| RF20 | El sistema debe permitir generar un listado de alumnos. |
+| RF21 | El sistema debe permitir generar un informe del histórico de calificaciones de los alumnos. |
+| RF22 | El sistema debe permitir generar un informe con información detallada de los alumnos. |
+| RF23 | El sistema debe permitir generar un informe con información detallada de los talleristas. |
+| RF24 | El sistema debe permitir al alumno visualizar las notas asignadas por el tallerista. |
+| RF25 | El sistema debe permitir al administrador consultar los datos sensibles utilizados en la plataforma. |
+| RF26 | El sistema debe permitir al tallerista consultar el listado de alumnos inscritos en su taller. |
+| RF27 | El sistema debe permitir al tallerista modificar el material o las tareas ya subidas a su taller. |
 
 
 <br>
 
-## 12. Requerimientos no funcional:
 
-|Codigo | Requerimiento funcional
+## 12. Requerimiento no funcionales:
+
+|Código | Requerimiento funcional
 |---|---|
 | NRF01 | El sistema debe presentar un diseño responsive, adaptándose a computadora, tablet y teléfono. |
 | NRF02 | El sistema debe estar disponible las 24 horas del día una vez desplegado. |
@@ -298,14 +317,15 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 ## 13. Epicas
 
-| Código | Épica | Descripcióm |
+| Código | Épica | Descripción |
 | --- | --- | ---|
 | EP1 | Autenticación y control de acceso | Permitir el ingreso seguro y diferenciado a la plataforma según el rol del usuario. |
-| EP2 | Gestión de usuarios y talleres | Administrar los usuarios (alumnos, talleristas) y su relación con los talleres. |
-| EP3 | Gestión de asistencia | Registrar y controlar la asistencia de los alumnos a los talleres. |
-| EP4 | Gestión de material y tareas | Permitir la carga, entrega y corrección de material y tareas de cada taller. |
-| EP5 | Reportes e informes | Generar y exportar información consolidada de asistencia, talleres y trazabilidad. |
+| EP2 | Gestión de usuarios y talleres | Administrar los usuarios (alumnos, talleristas) y su relación con los talleres, incluyendo la consulta de datos sensibles y del listado de alumnos por taller. |
+| EP3 | Gestión de asistencia | Registrar, controlar y eliminar la asistencia de los alumnos a los talleres. |
+| EP4 | Gestión de material y tareas | Permitir la carga, modificación, entrega, corrección, eliminación y visualización de material, tareas y notas de cada taller. |
+| EP5 | Reportes e informes | Generar y exportar información consolidada de asistencia, talleres, alumnos y talleristas, incluyendo el histórico de calificaciones. |
 | EP6 | Gestión de perfil de usuario | Permitir a cada usuario administrar su propia información personal.|
+| EP7 | Comunicación | Permitir el intercambio de mensajes, de forma asincrónica, entre los distintos roles de la plataforma. |
 
 
 <br>
@@ -317,18 +337,19 @@ El sistema debe permitir la emisión de los siguientes reportes:
 | Código | Épica | Estimación en puntos |
 | --- | --- | --- |
 | EP1 | Autenticación y control de acceso | 8 |
-| EP2 | Gestión de usuarios y talleres | 13 |
-| EP3 | Gestión de asistencia | 8 |
-| EP4 | Gestión de material y tareas | 20 |
-| EP5 | Reportes e informes | 13 |
+| EP2 | Gestión de usuarios y talleres | 18 |
+| EP3 | Gestión de asistencia | 10 |
+| EP4 | Gestión de material y tareas | 30 |
+| EP5 | Reportes e informes | 22 |
 | EP6 | Gestión de perfil de usuario | 3 |
-| EP-Totales | Estimacion de puntos de todas las EP | 65 |
+| EP7 | Comunicación | 8 |
+| EP-Totales | Estimacion de puntos de todas las EP | 99 |
 
 
 <br>
 
 
-## 15. Historias de usuario
+## 15. Ajuste de alcance para respetar plazo.
 
 
 
