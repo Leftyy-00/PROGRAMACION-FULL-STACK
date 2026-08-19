@@ -1,3 +1,5 @@
+<?php
+
 $productos = [
     ["nombre" => "Teclado",
      "precio" => 1200],
