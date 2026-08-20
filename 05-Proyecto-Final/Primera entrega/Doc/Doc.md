@@ -259,33 +259,33 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 |Código | Requerimiento funcional |
 |-------|---|
-| RF01 | El sistema debe permitir iniciar sesión con usuario y contraseña, diferenciando el acceso según el rol (alumno, tallerista, administrador). |
-| RF02 | El sistema debe permitir al administrador gestionar usuarios (alumnos y talleristas) y talleres: crear, modificar, eliminar y consultar. |
-| RF03 | El sistema debe permitir al administrador asignar alumnos y talleristas a los talleres correspondientes. |
-| RF04 | El sistema debe permitir al tallerista registrar la asistencia de los alumnos de su taller, indicando fecha. |
-| RF05 | El sistema debe permitir consultar y modificar la asistencia registrada por taller y fecha. |
-| RF06 | El sistema debe permitir al tallerista subir material y tareas asociados a su taller. |
-| RF07 | El sistema debe permitir al alumno visualizar el material y las tareas de su taller. |
-| RF08 | El sistema debe permitir al alumno enviar/subir los archivos correspondientes a una tarea asignada. |
-| RF09 | El sistema debe permitir al tallerista corregir las tareas enviadas por los alumnos. |
-| RF10 | El sistema debe permitir al tallerista asignar una nota a cada alumno por tarea. |
-| RF11 | El sistema debe permitir generar informes de asistencia por taller. |
-| RF12 | El sistema debe permitir generar informes de talleres con sus talleristas asignados. |
-| RF13 | El sistema debe permitir exportar los informes generados en formato PDF o Excel. |
-| RF14 | El sistema debe permitir a cada usuario gestionar su perfil según su rol (modificar contraseña y datos personales). |
-| RF15 | El sistema debe permitir al alumno eliminar ciertos datos de su perfil (foto, biografía). |
-| RF16 | El sistema debe permitir al tallerista eliminar material de su taller. |
-| RF17 | El sistema debe permitir al tallerista eliminar la nota asignada a un alumno. |
-| RF18 | El sistema debe permitir al tallerista eliminar un registro de asistencia de su taller. |
-| RF19 | El sistema debe permitir al tallerista comunicarse con los alumnos de su taller, de forma asincrónica (no en tiempo real). |
-| RF20 | El sistema debe permitir generar un listado de alumnos. |
-| RF21 | El sistema debe permitir generar un informe del histórico de calificaciones de los alumnos. |
-| RF22 | El sistema debe permitir generar un informe con información detallada de los alumnos. |
-| RF23 | El sistema debe permitir generar un informe con información detallada de los talleristas. |
-| RF24 | El sistema debe permitir al alumno visualizar las notas asignadas por el tallerista. |
-| RF25 | El sistema debe permitir al administrador consultar los datos sensibles utilizados en la plataforma. |
-| RF26 | El sistema debe permitir al tallerista consultar el listado de alumnos inscritos en su taller. |
-| RF27 | El sistema debe permitir al tallerista modificar el material o las tareas ya subidas a su taller. |
+| **RF01** | El sistema debe permitir iniciar sesión con usuario y contraseña, diferenciando el acceso según el rol (alumno, tallerista, administrador). |
+| **RF02** | El sistema debe permitir al administrador gestionar usuarios (alumnos y talleristas) y talleres: crear, modificar, eliminar y consultar. |
+| **RF03** | El sistema debe permitir al administrador asignar alumnos y talleristas a los talleres correspondientes. |
+| **RF04** | El sistema debe permitir al tallerista registrar la asistencia de los alumnos de su taller, indicando fecha. |
+| **RF05** | El sistema debe permitir consultar y modificar la asistencia registrada por taller y fecha. |
+| **RF06** | El sistema debe permitir al tallerista subir material y tareas asociados a su taller. |
+| **RF07** | El sistema debe permitir al alumno visualizar el material y las tareas de su taller. |
+| **RF08** | El sistema debe permitir al alumno enviar/subir los archivos correspondientes a una tarea asignada. |
+| **RF09** | El sistema debe permitir al tallerista corregir las tareas enviadas por los alumnos. |
+| **RF10** | El sistema debe permitir al tallerista asignar una nota a cada alumno por tarea. |
+| **RF11** | El sistema debe permitir generar informes de asistencia por taller. |
+| **RF12** | El sistema debe permitir generar informes de talleres con sus talleristas asignados. |
+| **RF13** | El sistema debe permitir exportar los informes generados en formato PDF o Excel. |
+| **RF14** | El sistema debe permitir a cada usuario gestionar su perfil según su rol (modificar contraseña y datos personales). |
+| **RF15** | El sistema debe permitir al alumno eliminar ciertos datos de su perfil (foto, biografía). |
+| **RF16** | El sistema debe permitir al tallerista eliminar material de su taller. |
+| **RF17** | El sistema debe permitir al tallerista eliminar la nota asignada a un alumno. |
+| **RF18** | El sistema debe permitir al tallerista eliminar un registro de asistencia de su taller. |
+| **RF19** | El sistema debe permitir al tallerista comunicarse con los alumnos de su taller, de forma asincrónica (no en tiempo real). |
+| **RF20** | El sistema debe permitir generar un listado de alumnos. |
+| **RF21** | El sistema debe permitir generar un informe del histórico de calificaciones de los alumnos. |
+| **RF22** | El sistema debe permitir generar un informe con información detallada de los alumnos. |
+| **RF23** | El sistema debe permitir generar un informe con información detallada de los talleristas. |
+| **RF24** | El sistema debe permitir al alumno visualizar las notas asignadas por el tallerista. |
+| **RF25** | El sistema debe permitir al administrador consultar los datos sensibles utilizados en la plataforma. |
+| **RF26** | El sistema debe permitir al tallerista consultar el listado de alumnos inscritos en su taller. |
+| **RF27** | El sistema debe permitir al tallerista modificar el material o las tareas ya subidas a su taller. |
 
 
 <br>
@@ -293,23 +293,23 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 ## 12. Requerimiento no funcionales:
 
-|Código | Requerimiento funcional
+|Código | Requerimiento funcional |
 |---|---|
-| NRF01 | El sistema debe presentar un diseño responsive, adaptándose a computadora, tablet y teléfono. |
-| NRF02 | El sistema debe estar disponible las 24 horas del día una vez desplegado. |
-| NRF03 | El sistema debe responder con rapidez en las operaciones habituales. |
-| NRF04 | El sistema debe presentar una navegación clara y consistente para el usuario. |
-| NRF05 | El sistema debe validar los formularios tanto en el frontend como en el backend. |
-| NRF06 | El sistema debe mantener una arquitectura separada entre frontend y backend. |
-| NRF07 | El sistema debe controlar el acceso a las funcionalidades según el rol del usuario. |
-| NRF08 | El sistema debe proteger los datos personales de los usuarios. |
-| NRF09 | El sistema debe garantizar la persistencia confiable de los datos en una base de datos relacional. |
-| NRF10 | El sistema debe registrar la trazabilidad de las acciones importantes realizadas por los usuarios. |
-| NRF11 | El sistema debe restringir los formatos de archivos adjuntos a PDF e imágenes JPG, acorde a los tipos soportados en v1. |
-| NRF12 | El sistema debe restringir el tamaño de los archivos adjuntos permitidos. |
-| NRF13 | El código del sistema debe estar organizado, ser reutilizable y mantenible. |
-| NRF14 | El sistema debe contar con documentación técnica dentro del repositorio. |
-| NRF15 | El equipo debe utilizar Git para registrar y revisar los cambios del código. |
+| **NRF01** | El sistema debe presentar un diseño responsive, adaptándose a computadora, tablet y teléfono. |
+| **NRF02** | El sistema debe estar disponible las 24 horas del día una vez desplegado. |
+| **NRF03** | El sistema debe responder con rapidez en las operaciones habituales. |
+| **NRF04** | El sistema debe presentar una navegación clara y consistente para el usuario. |
+| **NRF05** | El sistema debe validar los formularios tanto en el frontend como en el backend. |
+| **NRF06** | El sistema debe mantener una arquitectura separada entre frontend y backend. |
+| **NRF07** | El sistema debe controlar el acceso a las funcionalidades según el rol del usuario. |
+| **NRF08** | El sistema debe proteger los datos personales de los usuarios. |
+| **NRF09** | El sistema debe garantizar la persistencia confiable de los datos en una base de datos relacional. |
+| **NRF10** | El sistema debe registrar la trazabilidad de las acciones importantes realizadas por los usuarios. |
+| **NRF11** | El sistema debe restringir los formatos de archivos adjuntos a PDF e imágenes JPG, acorde a los tipos soportados en v1. |
+| **NRF12** | El sistema debe restringir el tamaño de los archivos adjuntos permitidos. |
+| **NRF13** | El código del sistema debe estar organizado, ser reutilizable y mantenible. |
+| **NRF14** | El sistema debe contar con documentación técnica dentro del repositorio. |
+| **NRF15** | El equipo debe utilizar Git para registrar y revisar los cambios del código. |
 
 
 
@@ -319,13 +319,13 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 | Código | Épica | Descripción |
 | --- | --- | ---|
-| EP1 | Autenticación y control de acceso | Permitir el ingreso seguro y diferenciado a la plataforma según el rol del usuario. |
-| EP2 | Gestión de usuarios y talleres | Administrar los usuarios (alumnos, talleristas) y su relación con los talleres, incluyendo la consulta de datos sensibles y del listado de alumnos por taller. |
-| EP3 | Gestión de asistencia | Registrar, controlar y eliminar la asistencia de los alumnos a los talleres. |
-| EP4 | Gestión de material y tareas | Permitir la carga, modificación, entrega, corrección, eliminación y visualización de material, tareas y notas de cada taller. |
-| EP5 | Reportes e informes | Generar y exportar información consolidada de asistencia, talleres, alumnos y talleristas, incluyendo el histórico de calificaciones. |
-| EP6 | Gestión de perfil de usuario | Permitir a cada usuario administrar su propia información personal.|
-| EP7 | Comunicación | Permitir el intercambio de mensajes, de forma asincrónica, entre los distintos roles de la plataforma. |
+| **EP1** | Autenticación y control de acceso | Permitir el ingreso seguro y diferenciado a la plataforma según el rol del usuario. |
+| **EP2** | Gestión de usuarios y talleres | Administrar los usuarios (alumnos, talleristas) y su relación con los talleres, incluyendo la consulta de datos sensibles y del listado de alumnos por taller. |
+| **EP3** | Gestión de asistencia | Registrar, controlar y eliminar la asistencia de los alumnos a los talleres. |
+| **EP4** | Gestión de material y tareas | Permitir la carga, modificación, entrega, corrección, eliminación y visualización de material, tareas y notas de cada taller. |
+| **EP5** | Reportes e informes | Generar y exportar información consolidada de asistencia, talleres, alumnos y talleristas, incluyendo el histórico de calificaciones. |
+| **EP6** | Gestión de perfil de usuario | Permitir a cada usuario administrar su propia información personal.|
+| **EP7** | Comunicación | Permitir el intercambio de mensajes, de forma asincrónica, entre los distintos roles de la plataforma. |
 
 
 <br>
@@ -336,14 +336,45 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 | Código | Épica | Estimación en puntos |
 | --- | --- | --- |
-| EP1 | Autenticación y control de acceso | 8 |
-| EP2 | Gestión de usuarios y talleres | 18 |
-| EP3 | Gestión de asistencia | 10 |
-| EP4 | Gestión de material y tareas | 30 |
-| EP5 | Reportes e informes | 22 |
-| EP6 | Gestión de perfil de usuario | 3 |
-| EP7 | Comunicación | 8 |
-| EP-Totales | Estimacion de puntos de todas las EP | 99 |
+| **EP1** | Autenticación y control de acceso | 8 |
+| **EP2** | Gestión de usuarios y talleres | 18 |
+| **EP3** | Gestión de asistencia | 10 |
+| **EP4** | Gestión de material y tareas | 30 |
+| **EP5** | Reportes e informes | 22 |
+| **EP6** | Gestión de perfil de usuario | 3 |
+| **EP7** | Comunicación | 8 |
+| **EP Totales** | **7 EP** | **99** |
+
+<br>
+
+## Tabla 1 — Épicas ANTES de los recortes (con todos los RF originales)
+
+| Código | Épica | RF que la conformaban | Puntos |
+|---|---|---|---|
+| **EP1** | Autenticación y control de acceso | RF01 | 8 |
+| **EP2** | Gestión de usuarios y talleres | RF02, RF03, RF25, RF26 | 18 |
+| **EP3** | Gestión de asistencia | RF04, RF05, RF18 | 10 |
+| **EP4** | Gestión de material y tareas | RF06, RF07, RF08, RF09, RF10, RF16, RF17, RF24, RF27 | 30 |
+| **EP5** | Reportes e informes | RF11, RF12, RF13, RF20, RF21, RF22, RF23 | 22 |
+| **EP6** | Gestión de perfil de usuario | RF14, RF15 | 3 |
+| **EP7** | Comunicación | RF19 | 8 |
+| **Total** | | **27 RF** | **99** |
+
+
+<br>
+
+## Tabla 2 — Épicas ACTUALES (después de todos los recortes)
+
+| Código | Épica | RF que la conforman | Puntos |
+|---|---|---|---|
+| **EP1** | Autenticación y control de acceso | RF01 | 8 |
+| **EP2** | Gestión de usuarios y talleres | RF02, RF03, RF25, RF26 | 18 |
+| **EP3** | Gestión de asistencia | RF04, RF05 | 7 |
+| **EP4** | Gestión de material y tareas | RF06, RF07, RF08, RF09, RF10, RF16, RF17 | 24 |
+| **EP5** | Reportes e informes | RF11, RF12, RF13, RF20, RF23 | 17 |
+| **EP6** | Gestión de perfil de usuario | RF14 | 2 |
+| **EP7** | Comunicación | RF19 | 8 |
+| **Total** | | **21 RF** | **84** |
 
 
 <br>
