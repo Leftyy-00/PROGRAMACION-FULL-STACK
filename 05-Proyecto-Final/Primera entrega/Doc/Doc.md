@@ -347,7 +347,7 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 <br>
 
-## Tabla 1 — Épicas ANTES de los recortes (con todos los RF originales)
+## Estimacion por Épicas ANTES de los recortes.
 
 | Código | Épica | RF que la conformaban | Puntos |
 |---|---|---|---|
@@ -363,7 +363,7 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 <br>
 
-## Tabla 2 — Épicas ACTUALES (después de todos los recortes)
+## Estimacion por Épicas ACTUAL.
 
 | Código | Épica | RF que la conforman | Puntos |
 |---|---|---|---|
@@ -376,12 +376,53 @@ El sistema debe permitir la emisión de los siguientes reportes:
 | **EP7** | Comunicación | RF19 | 8 |
 | **Total** | | **21 RF** | **84** |
 
+---
 
 <br>
 
 
 ## 15. Ajuste de alcance para respetar plazo.
 
+| RF | Épica de origen | Función excluida |
+|---|---|---|
+| **RF15** | EP6 | Eliminación de datos de perfil (foto, biografía) por parte del alumno |
+| **RF18** | EP3 | Eliminación de un registro de asistencia |
+| **RF21** | EP5 | Generación de informe con histórico de calificaciones |
+| **RF22** | EP5 | Generación de informe con información detallada de alumnos |
+| **RF24** | EP4 | Visualización de notas por parte del alumno |
+| **RF27** | EP4 | Modificación de material/tareas ya subidas |
 
+**Total: 6 funciones excluidas.**
+
+<br>
+
+## 16. Propuesta presentada al cliente
+
+| Elemento | Propuesta |
+| --- | --- |
+| Producto | TheNewfutures – Plataforma de gestión de talleres en convenio con INAU |
+| Duración |  |
+| Metodología | Scrum, con 4 sprints de 2 semanas. |
+| Entregas | Incremento funcional al final de cada sprint. |
+| Forma de trabajo |  |
+| Primera versión  |  |
+| Exclusiones      |  |
+
+<br>
+
+## 17. Aprobación ficticia del cliente
+
+>!!!!!
 
 ---
+
+<br>
+
+## 18. Formato de historia de usuario
+
+Se utilizará el siguiente formato:
+
+> Como **[tipo de usuario]**, quiero **[acción o necesidad]**, para **[beneficio o resultado esperado]**.
+>
+Cada historia incluirá criterios de aceptación para saber cuándo puede considerarse terminada.
+
