@@ -232,10 +232,9 @@ El sistema debe permitir la emisión de los siguientes reportes:
 11. Exportación de informes en formatos PDF y Excel.
 12. Gestión de perfiles de usuario según el rol.
 13. Plataforma web responsive accesible desde distintos dispositivos.
-14. Comunicación asincrónica del tallerista con los alumnos de su taller.
-15. Visualización de las notas asignadas al alumno.
-16. Consulta de datos sensibles utilizados en la plataforma por parte del administrador.
-17. Consulta del listado de alumnos inscritos en el taller por parte del tallerista.
+14. Visualización de las notas asignadas al alumno.
+15. Consulta de datos sensibles utilizados en la plataforma por parte del administrador.
+16. Consulta del listado de alumnos inscritos en el taller por parte del tallerista.
 
 
 ---
@@ -250,6 +249,7 @@ El sistema debe permitir la emisión de los siguientes reportes:
 4. Listado e historial ampliado de tareas entregadas (más allá del envío/corrección básica ya incluida en v1).
 5. Sistema de notificaciones automáticas ante eventos relevantes (correcciones de tareas, faltas de asistencia, nuevas entregas).
 6. Mensajería interna entre administradores y talleristas (No en tiempo real).
+7. Comunicación asincrónica del tallerista con los alumnos de su taller.
 
 ---
 
@@ -257,8 +257,10 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 ## 11. Requerimientos funcionales:
 
+## 11. Requerimientos funcionales:
+
 |Código | Requerimiento funcional |
-|-------|---|
+|---|---|
 | **RF01** | El sistema debe permitir iniciar sesión con usuario y contraseña, diferenciando el acceso según el rol (alumno, tallerista, administrador). |
 | **RF02** | El sistema debe permitir al administrador gestionar usuarios (alumnos y talleristas) y talleres: crear, modificar, eliminar y consultar. |
 | **RF03** | El sistema debe permitir al administrador asignar alumnos y talleristas a los talleres correspondientes. |
@@ -277,15 +279,14 @@ El sistema debe permitir la emisión de los siguientes reportes:
 | **RF16** | El sistema debe permitir al tallerista eliminar material de su taller. |
 | **RF17** | El sistema debe permitir al tallerista eliminar la nota asignada a un alumno. |
 | **RF18** | El sistema debe permitir al tallerista eliminar un registro de asistencia de su taller. |
-| **RF19** | El sistema debe permitir al tallerista comunicarse con los alumnos de su taller, de forma asincrónica (no en tiempo real). |
-| **RF20** | El sistema debe permitir generar un listado de alumnos. |
-| **RF21** | El sistema debe permitir generar un informe del histórico de calificaciones de los alumnos. |
-| **RF22** | El sistema debe permitir generar un informe con información detallada de los alumnos. |
-| **RF23** | El sistema debe permitir generar un informe con información detallada de los talleristas. |
-| **RF24** | El sistema debe permitir al alumno visualizar las notas asignadas por el tallerista. |
-| **RF25** | El sistema debe permitir al administrador consultar los datos sensibles utilizados en la plataforma. |
-| **RF26** | El sistema debe permitir al tallerista consultar el listado de alumnos inscritos en su taller. |
-| **RF27** | El sistema debe permitir al tallerista modificar el material o las tareas ya subidas a su taller. |
+| **RF19** | El sistema debe permitir generar un listado de alumnos. |
+| **RF20** | El sistema debe permitir generar un informe del histórico de calificaciones de los alumnos. |
+| **RF21** | El sistema debe permitir generar un informe con información detallada de los alumnos. |
+| **RF22** | El sistema debe permitir generar un informe con información detallada de los talleristas. |
+| **RF23** | El sistema debe permitir al alumno visualizar las notas asignadas por el tallerista. |
+| **RF24** | El sistema debe permitir al administrador consultar los datos sensibles utilizados en la plataforma. |
+| **RF25** | El sistema debe permitir al tallerista consultar el listado de alumnos inscritos en su taller. |
+| **RF26** | El sistema debe permitir al tallerista modificar el material o las tareas ya subidas a su taller. |
 
 
 <br>
@@ -325,7 +326,6 @@ El sistema debe permitir la emisión de los siguientes reportes:
 | **EP4** | Gestión de material y tareas | Permitir la carga, modificación, entrega, corrección, eliminación y visualización de material, tareas y notas de cada taller. |
 | **EP5** | Reportes e informes | Generar y exportar información consolidada de asistencia, talleres, alumnos y talleristas, incluyendo el histórico de calificaciones. |
 | **EP6** | Gestión de perfil de usuario | Permitir a cada usuario administrar su propia información personal.|
-| **EP7** | Comunicación | Permitir el intercambio de mensajes, de forma asincrónica, entre los distintos roles de la plataforma. |
 
 
 <br>
@@ -342,75 +342,63 @@ El sistema debe permitir la emisión de los siguientes reportes:
 | **EP4** | Gestión de material y tareas | 30 |
 | **EP5** | Reportes e informes | 22 |
 | **EP6** | Gestión de perfil de usuario | 3 |
-| **EP7** | Comunicación | 8 |
-| **EP Totales** | **7 EP** | **99** |
+| **EP Totales** | **6 EP** | **91** |
 
 <br>
 
-## Estimacion por Épicas ANTES de los recortes.
 
-| Código | Épica | RF que la conformaban | Puntos |
-|---|---|---|---|
-| **EP1** | Autenticación y control de acceso | RF01 | 8 |
-| **EP2** | Gestión de usuarios y talleres | RF02, RF03, RF25, RF26 | 18 |
-| **EP3** | Gestión de asistencia | RF04, RF05, RF18 | 10 |
-| **EP4** | Gestión de material y tareas | RF06, RF07, RF08, RF09, RF10, RF16, RF17, RF24, RF27 | 30 |
-| **EP5** | Reportes e informes | RF11, RF12, RF13, RF20, RF21, RF22, RF23 | 22 |
-| **EP6** | Gestión de perfil de usuario | RF14, RF15 | 3 |
-| **EP7** | Comunicación | RF19 | 8 |
-| **Total** | | **27 RF** | **99** |
-
-
-<br>
-
-## Estimacion por Épicas ACTUAL.
+## 15. Estimacion por Épicas, Ajustadas.
 
 | Código | Épica | RF que la conforman | Puntos |
 |---|---|---|---|
 | **EP1** | Autenticación y control de acceso | RF01 | 8 |
-| **EP2** | Gestión de usuarios y talleres | RF02, RF03, RF25, RF26 | 18 |
+| **EP2** | Gestión de usuarios y talleres | RF02, RF03, RF24, RF25 | 18 |
 | **EP3** | Gestión de asistencia | RF04, RF05 | 7 |
 | **EP4** | Gestión de material y tareas | RF06, RF07, RF08, RF09, RF10, RF16, RF17 | 24 |
-| **EP5** | Reportes e informes | RF11, RF12, RF13, RF20, RF23 | 17 |
+| **EP5** | Reportes e informes | RF11, RF12, RF13, RF19, RF22 | 17 |
 | **EP6** | Gestión de perfil de usuario | RF14 | 2 |
-| **EP7** | Comunicación | RF19 | 8 |
-| **Total** | | **21 RF** | **84** |
+| **Total** | | **20 RF** | **76** |
+
 
 ---
 
 <br>
 
 
-## 15. Ajuste de alcance para respetar plazo.
+## 16. Ajuste de alcance para respetar plazo.
 
 | RF | Épica de origen | Función excluida |
 |---|---|---|
 | **RF15** | EP6 | Eliminación de datos de perfil (foto, biografía) por parte del alumno |
 | **RF18** | EP3 | Eliminación de un registro de asistencia |
-| **RF21** | EP5 | Generación de informe con histórico de calificaciones |
-| **RF22** | EP5 | Generación de informe con información detallada de alumnos |
-| **RF24** | EP4 | Visualización de notas por parte del alumno |
-| **RF27** | EP4 | Modificación de material/tareas ya subidas |
+| **RF20** | EP5 | Generación de informe con histórico de calificaciones |
+| **RF21** | EP5 | Generación de informe con información detallada de alumnos |
+| **RF23** | EP4 | Visualización de notas por parte del alumno |
+| **RF26** | EP4 | Modificación de material/tareas ya subidas |
 
 **Total: 6 funciones excluidas.**
 
+
 <br>
 
-## 16. Propuesta presentada al cliente
+
+## 17. Propuesta presentada al cliente
 
 | Elemento | Propuesta |
 | --- | --- |
 | Producto | TheNewfutures – Plataforma de gestión de talleres en convenio con INAU |
-| Duración |  |
-| Metodología | Scrum, con 4 sprints de 2 semanas. |
+| Duración | 12 semanas (4 sprints de 3 semanas cada uno). |
+| Metodología | Scrum, con 4 sprints de 3 semanas. |
 | Entregas | Incremento funcional al final de cada sprint. |
-| Forma de trabajo |  |
-| Primera versión  |  |
-| Exclusiones      |  |
+| Forma de trabajo | Equipo de 5 integrantes (Emiliano Sánchez — Líder/Scrum Master, Gabriel Rendon — Subcoordinador, Ignacio Viera, Maximiliano Leal, Thiago Ferragut), con reuniones periódicas de seguimiento y reparto de tareas por sprint. |
+| Primera versión | Autenticación por rol, gestión de usuarios y talleres (incluyendo consulta de datos sensibles y del listado de alumnos por taller), registro y consulta de asistencia, carga/entrega/corrección/eliminación de material y tareas, reportes de asistencia/talleres/alumnos/talleristas, gestión de perfil. |
+| Exclusiones | Foros, soporte multiformato (PNG/MP4), asistencia detallada por métricas, listado e historial ampliado de tareas entregadas, notificaciones automáticas, mensajería administrador-tallerista, eliminación de asistencia, modificación de material ya subido, visualización de notas por el alumno, histórico de calificaciones, ficha detallada de alumnos, eliminación de datos de perfil. |
+
 
 <br>
 
-## 17. Aprobación ficticia del cliente
+
+## 18. Aprobación ficticia del cliente
 
 >!!!!!
 
@@ -418,7 +406,7 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 <br>
 
-## 18. Formato de historia de usuario
+## 19. Formato de historia de usuario
 
 Se utilizará el siguiente formato:
 
@@ -426,3 +414,98 @@ Se utilizará el siguiente formato:
 >
 Cada historia incluirá criterios de aceptación para saber cuándo puede considerarse terminada.
 
+---
+
+
+## 20. Historias de Usuario iniciales.
+
+| Código | Épica | RF | Historia de Usuario | Puntos | Prioridad |
+| --- | --- | --- | --- | --- | --- |
+| HU01 | EP1 | RF01 | Como usuario del sistema (alumno, tallerista o administrador), quiero iniciar sesión con usuario y contraseña, para acceder únicamente a las funciones que corresponden a mi rol. | 8 | Alta |
+| HU02 | EP2 | RF02 | Como administrador, quiero gestionar (crear, modificar, eliminar y consultar) alumnos, talleristas y talleres, para mantener actualizada la información de la plataforma. | 5 | Alta |
+| HU03 | EP2 | RF03 | Como administrador, quiero asignar alumnos y talleristas a un taller, para que cada uno acceda únicamente a la información que le corresponde. | 3 | Alta |
+| HU04 | EP2 | RF25 | Como administrador, quiero consultar los datos sensibles utilizados en la plataforma, para supervisar su correcto uso y protección. | 3 | Baja |
+| HU05 | EP2 | RF26 | Como tallerista, quiero consultar el listado de alumnos inscritos en mi taller, para saber quiénes lo integran. | 2 | Baja |
+| HU06 | EP3 | RF04 | Como tallerista, quiero registrar la asistencia de los alumnos de mi taller en una fecha determinada, para llevar un control confiable de la participación. | 3 | Alta |
+| HU07 | EP3 | RF05 | Como tallerista, quiero consultar y modificar la asistencia ya registrada, para corregir errores de carga sin duplicar el registro. | 3 | Media |
+| HU08 | EP4 | RF06 | Como tallerista, quiero subir material de estudio y asignar tareas a mi taller, para que mis alumnos accedan al contenido y sepan qué deben entregar. | 3 | Alta |
+| HU09 | EP4 | RF07 | Como alumno, quiero ver el material y las tareas de mi taller, para saber qué contenido tengo disponible y qué debo entregar. | 2 | Alta |
+| HU10 | EP4 | RF08 | Como alumno, quiero enviar los archivos de una tarea asignada, para completar mi entrega dentro de la plataforma. | 3 | Alta |
+| HU11 | EP4 | RF09 | Como tallerista, quiero corregir las tareas entregadas por mis alumnos, para dar seguimiento a su desempeño. | 5 | Media |
+| HU12 | EP4 | RF10 | Como tallerista, quiero asignar una nota a cada alumno por una tarea entregada, para registrar formalmente su evaluación. | 2 | Baja |
+| HU13 | EP4 | RF16 | Como tallerista, quiero eliminar material de mi taller, para retirar contenido que ya no corresponde mostrar. | 2 | Baja |
+| HU14 | EP4 | RF17 | Como tallerista, quiero eliminar la nota asignada a un alumno, para corregir un registro erróneo. | 2 | Baja |
+| HU15 | EP5 | RF11 | Como administrador, quiero generar un informe de asistencia por taller, para supervisar la participación sin revisar cada registro manualmente. | 3 | Media |
+| HU16 | EP5 | RF12 | Como administrador, quiero generar un informe de talleres con sus talleristas asignados, para tener una visión general de la organización de la plataforma. | 3 | Media |
+| HU17 | EP5 | RF13 | Como administrador, quiero exportar los informes generados en PDF o Excel, para compartirlos fuera de la plataforma. | 5 | Media |
+| HU18 | EP5 | RF20 | Como administrador, quiero generar un listado de alumnos, para tener un registro consolidado de todos los inscritos. | 2 | Baja |
+| HU19 | EP5 | RF23 | Como administrador, quiero generar un informe con información detallada de los talleristas, para tener un registro consolidado del personal a cargo de los talleres. | 2 | Baja |
+| HU20 | EP6 | RF14 | Como usuario, quiero modificar mi contraseña y algunos datos de mi perfil, para mantener mi información actualizada. | 2 | Media |
+
+
+---
+
+## 21. Backlog priorizado
+
+### Sprint 1 (Semanas 1-3)
+
+| Código | RF | Historia de Usuario | Puntos | Prioridad |
+| --- | --- | --- | --- | --- |
+| HU01 | RF01 | Como usuario del sistema, quiero iniciar sesión con usuario y contraseña, para acceder únicamente a las funciones de mi rol. | 8 | Alta |
+| HU02 | RF02 | Como administrador, quiero gestionar alumnos, talleristas y talleres, para mantener actualizada la información de la plataforma. | 5 | Alta |
+| HU03 | RF03 | Como administrador, quiero asignar alumnos y talleristas a un taller, para que cada uno acceda a lo que le corresponde. | 3 | Alta |
+| HU06 | RF04 | Como tallerista, quiero registrar la asistencia de mis alumnos, para llevar un control confiable de la participación. | 3 | Alta |
+
+**Subtotal: 19 puntos**
+
+
+### Sprint 2 (Semanas 4-6)
+
+| Código | RF | Historia de Usuario | Puntos | Prioridad |
+| --- | --- | --- | --- | --- |
+| HU08 | RF06 | Como tallerista, quiero subir material y tareas a mi taller, para que mis alumnos sepan qué deben entregar. | 3 | Alta |
+| HU09 | RF07 | Como alumno, quiero ver el material y las tareas de mi taller, para saber qué debo entregar. | 2 | Alta |
+| HU10 | RF08 | Como alumno, quiero enviar los archivos de una tarea, para completar mi entrega. | 3 | Alta |
+| HU07 | RF05 | Como tallerista, quiero consultar y modificar la asistencia registrada, para corregir errores sin duplicar. | 3 | Media |
+| HU11 | RF09 | Como tallerista, quiero corregir las tareas entregadas, para dar seguimiento al desempeño. | 5 | Media |
+| HU20 | RF14 | Como usuario, quiero modificar mi contraseña y datos de perfil, para mantenerlos actualizados. | 2 | Media |
+
+**Subtotal: 18 puntos**
+
+
+### Sprint 3 (Semanas 7-9)
+
+| Código | RF | Historia de Usuario | Puntos | Prioridad |
+| --- | --- | --- | --- | --- |
+| HU15 | RF11 | Como administrador, quiero generar un informe de asistencia por taller, para supervisar la participación. | 3 | Media |
+| HU16 | RF12 | Como administrador, quiero generar un informe de talleres con sus talleristas, para tener visión general. | 3 | Media |
+| HU17 | RF13 | Como administrador, quiero exportar los informes en PDF o Excel, para compartirlos fuera de la plataforma. | 5 | Media |
+| HU04 | RF25 | Como administrador, quiero consultar los datos sensibles, para supervisar su correcto uso. | 3 | Baja |
+| HU05 | RF26 | Como tallerista, quiero consultar el listado de alumnos de mi taller, para saber quiénes lo integran. | 2 | Baja |
+
+**Subtotal: 16 puntos**
+
+
+### Sprint 4 (Semanas 10-12)
+
+| Código | RF | Historia de Usuario | Puntos | Prioridad |
+| --- | --- | --- | --- | --- |
+| HU12 | RF10 | Como tallerista, quiero asignar una nota por tarea, para registrar la evaluación. | 2 | Baja |
+| HU13 | RF16 | Como tallerista, quiero eliminar material de mi taller, para retirar contenido obsoleto. | 2 | Baja |
+| HU14 | RF17 | Como tallerista, quiero eliminar la nota asignada a un alumno, para corregir un registro erróneo. | 2 | Baja |
+| HU18 | RF20 | Como administrador, quiero generar un listado de alumnos, para tener un registro consolidado. | 2 | Baja |
+| HU19 | RF23 | Como administrador, quiero generar un informe con información de talleristas, para tener un registro consolidado. | 2 | Baja |
+
+**Subtotal: 10 puntos**
+
+---
+
+### Resumen de puntos por sprint
+
+| Sprint | Puntos | Estado |
+| --- | --- | --- |
+| 1 | 19 | Dentro del límite (20) |
+| 2 | 18 | Dentro del límite (20) |
+| 3 | 16 | Dentro del límite (20) |
+| 4 | 10 | Dentro del límite (20) |
+| **Total** | **63** |  |
