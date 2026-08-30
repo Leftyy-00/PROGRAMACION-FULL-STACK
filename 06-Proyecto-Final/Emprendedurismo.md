@@ -27,3 +27,4 @@
 ### Amenzas:
 1. Falta de Tiempo.
 2. Execso de tareas.
+3. El equipo.

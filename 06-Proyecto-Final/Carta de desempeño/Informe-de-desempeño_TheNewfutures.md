@@ -77,3 +77,9 @@ Al revisar el contenido efectivamente entregado por cada uno, más allá del cum
 El desempeño de Ignacio Viera y Maximiliano Leal muestra un panorama mixto: ambos cumplieron dentro del plazo acordado con la única tarea formalmente asignada —la identificación de amenazas de ciberseguridad—, pero a partir de ahí sus trayectorias se distancian. Maximiliano mostró iniciativa propia y sumó un aporte adicional en el frontend de la interfaz del alumno, además de participar (aunque mínimamente) en R-04. Ignacio, en cambio, no mostró esa misma iniciativa, no aportó nada más allá de la tarea asignada, y faltó sin justificar a R-04, la única reunión del período a la que no asistió.
 
 Thiago Ferragut presenta un perfil distinto: el acta señala explícitamente que no cumplió con sus tareas en el tiempo acordado, pero a diferencia de los otros dos, sí tiene aportes concretos y variados (frontend, documentación parcial, participación constante en reuniones, incluida R-04). Su limitación no está en la ausencia de trabajo entregado, sino en que su apoyo más allá de esos puntos específicos se mantuvo en un nivel de asesoramiento, sin traducirse en aportes de trabajo adicionales.
+
+## 6. Opinion del Sub-coordinador.
+
+>Los miembros del equipo no coperan, no muestran interes y no ayudan en el progreso del proyecto.
+>Solicito que Maximiliano y Ignacio, resivan la ultima advertencia, eso tambien aplica para Thiago Ferragut.
+>En caso de que no entiendan, solicito la expulcion de los ya mencionados.

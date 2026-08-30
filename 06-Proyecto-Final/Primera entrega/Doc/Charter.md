@@ -61,10 +61,9 @@
 11. Exportación de informes en formatos PDF y Excel.
 12. Gestión de perfiles de usuario según el rol.
 13. Plataforma web responsive accesible desde distintos dispositivos.
-14. Comunicación asincrónica del tallerista con los alumnos de su taller.
-15. Visualización de las notas asignadas al alumno.
-16. Consulta de datos sensibles utilizados en la plataforma por parte del administrador.
-17. Consulta del listado de alumnos inscritos en el taller por parte del tallerista.
+14. Visualización de las notas asignadas al alumno.
+15. Consulta de datos sensibles utilizados en la plataforma por parte del administrador.
+16. Consulta del listado de alumnos inscritos en el taller por parte del tallerista.
 
 
 ---
@@ -79,6 +78,7 @@
 4. Listado e historial ampliado de tareas entregadas (más allá del envío/corrección básica ya incluida en v1).
 5. Sistema de notificaciones automáticas ante eventos relevantes (correcciones de tareas, faltas de asistencia, nuevas entregas).
 6. Mensajería interna entre administradores y talleristas (No en tiempo real).
+7. Comunicación asincrónica del tallerista con los alumnos de su taller.
 
 ---
 
