@@ -4,15 +4,9 @@
 
 ---
 
-## 1. Introducción
+## 1. Stack tecnológico
 
-Este documento fundamenta las decisiones tecnológicas y arquitectónicas adoptadas para el desarrollo del sistema, en base a las tecnologías establecidas en la propuesta original del proyecto, los requerimientos funcionales y no funcionales definidos para la primera versión, y el estado actual del repositorio `proyecto-convenio-INAU`.
-
----
-
-## 2. Stack tecnológico
-
-### 2.1 Frontend
+### 1.1 Frontend
 
 | Tecnología | Uso | Justificación |
 |---|---|---|
@@ -24,7 +18,7 @@ Este documento fundamenta las decisiones tecnológicas y arquitectónicas adopta
 | **localStorage** | Persistencia temporal | Solución provisional para demostración mientras no existe backend. No reemplaza la base de datos, no ofrece seguridad real y no almacena contraseñas. |
 | **Mock data** | Simulación de datos | Permite construir y validar la lógica de las tres interfaces sin depender de que el backend esté terminado. |
 
-### 2.2 Backend (previsto)
+### 1.2 Backend (previsto)
 
 | Tecnología | Uso | Justificación |
 |---|---|---|
@@ -34,9 +28,9 @@ Este documento fundamenta las decisiones tecnológicas y arquitectónicas adopta
 | **Fetch API** | Consumo de la API desde el cliente | API nativa del navegador, sin necesidad de librerías externas, coherente con la decisión de dependencias mínimas. |
 | **Filesystem del servidor** | Almacenamiento de adjuntos | Establecido en la propuesta original. Evita la complejidad de un servicio de almacenamiento externo para una primera versión. |
 
-> **Nota:** la propuesta original presenta una ambigüedad entre PHP puro (sección 2.1) y Laravel (plantilla de README, sección 10.2). Esta definición se encuentra pendiente de resolución con el docente y el equipo.
+> **Nota:** la propuesta original del proyecto presenta una ambigüedad entre PHP puro (indicado en su stack tecnológico) y Laravel (mencionado en su plantilla de README). Esta definición se encuentra pendiente de resolución con el docente y el equipo.
 
-### 2.3 Herramientas de desarrollo
+### 1.3 Herramientas de desarrollo
 
 | Herramienta | Justificación |
 |---|---|
@@ -46,9 +40,11 @@ Este documento fundamenta las decisiones tecnológicas y arquitectónicas adopta
 
 ---
 
-## 3. Arquitectura del sistema
+<br>
 
-### 3.1 Visión general
+## 2. Arquitectura del sistema
+
+### 2.1 Visión general
 
 El sistema se compone de **interfaces web diferenciadas por rol** y un **backend centralizado** que concentra la lógica de negocio, la persistencia de datos y la exposición de endpoints REST.
 
@@ -75,7 +71,7 @@ El sistema se compone de **interfaces web diferenciadas por rol** y un **backend
       └───────────────┘             └──────────────────┘
 ```
 
-### 3.2 Estructura del repositorio
+### 2.2 Estructura del repositorio
 
 ```text
 proyecto-convenio-INAU/
@@ -117,7 +113,7 @@ proyecto-convenio-INAU/
 
 **Diferencia respecto a la plantilla original:** la propuesta del proyecto ubicaba `frontend-admin/` y `frontend-tallerista/` en la raíz del repositorio. El equipo optó por agruparlos dentro de una carpeta `frontend/` común, para mantener la raíz más limpia y facilitar la distinción entre las capas del sistema (frontend, backend, documentación). Se agregó además `frontend-alumno/`, correspondiente al tercer rol incorporado tras el relevamiento con el cliente.
 
-### 3.3 Organización del código JavaScript
+### 2.3 Organización del código JavaScript
 
 Cada panel replica la misma estructura modular:
 
@@ -132,7 +128,9 @@ Esta organización cumple NRF13 y permite que distintos integrantes trabajen en 
 
 ---
 
-## 4. Decisiones arquitectónicas
+<br>
+
+## 3. Decisiones arquitectónicas
 
 **Login único con redirección por rol.** En lugar de tres pantallas de acceso independientes, existe un único `index.html`. El backend identificará el rol del usuario autenticado y lo redirigirá al panel correspondiente. Reduce duplicación de código y cumple RF01.
 
@@ -146,7 +144,9 @@ Esta organización cumple NRF13 y permite que distintos integrantes trabajen en 
 
 ---
 
-## 5. Modelo de datos previsto
+<br>
+
+## 4. Modelo de datos previsto
 
 Tablas mínimas requeridas por la propuesta original:
 
@@ -165,9 +165,11 @@ Tablas mínimas requeridas por la propuesta original:
 
 ---
 
-## 6. Organización del trabajo
+<br>
 
-### 6.1 Roles del equipo
+## 5. Organización del trabajo
+
+### 5.1 Roles del equipo
 
 | Integrante | Rol |
 |---|---|
@@ -177,7 +179,7 @@ Tablas mínimas requeridas por la propuesta original:
 | Maximiliano Leal | Desarrollo Frontend y Backend |
 | Thiago Ferragut | Desarrollo Frontend y Backend |
 
-### 6.2 Control de versiones
+### 5.2 Control de versiones
 
 - Repositorio único en GitHub para todo el equipo.
 - Uso obligatorio de Git para trazabilidad de cambios.
@@ -185,7 +187,7 @@ Tablas mínimas requeridas por la propuesta original:
 - Commits con mensajes claros y consistentes.
 - Documentación técnica versionada dentro del repositorio (NRF14).
 
-### 6.3 Metodología
+### 5.3 Metodología
 
 - **Scrum**, con 6 sprints de 2 semanas (12 semanas totales).
 - Incremento funcional al cierre de cada sprint.
@@ -193,7 +195,9 @@ Tablas mínimas requeridas por la propuesta original:
 
 ---
 
-## 7. Alineación con los requerimientos no funcionales
+<br>
+
+## 6. Alineación con los requerimientos no funcionales
 
 | NRF | Solución tecnológica |
 |---|---|
@@ -213,7 +217,9 @@ Tablas mínimas requeridas por la propuesta original:
 
 ---
 
-## 8. Estado actual de la implementación
+<br>
+
+## 7. Estado actual de la implementación
 
 | Componente | Estado |
 |---|---|
