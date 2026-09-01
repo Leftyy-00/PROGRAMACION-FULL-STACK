@@ -4,15 +4,9 @@
 
 ---
 
-## 1. Introducción
+<br>
 
-Este documento describe la identidad visual de la plataforma: los criterios de diseño adoptados, los componentes que la conforman y la justificación de cada decisión. Su objetivo es que cualquier integrante del equipo pueda construir nuevas pantallas manteniendo la coherencia del sistema, y que las decisiones estéticas queden documentadas y sean defendibles ante el cliente y el tribunal.
-
-Se elabora a partir del estado del repositorio `proyecto-convenio-INAU`, considerando tanto la rama `main` como el trabajo en curso de la rama `cambios-frontend`.
-
----
-
-## 2. Principios de diseño
+## 1. Principios de diseño
 
 **Claridad institucional.** El sistema se utiliza en el marco de un convenio con un organismo público. La estética evita elementos decorativos llamativos y prioriza una presentación sobria, adecuada al contexto socioeducativo.
 
@@ -24,11 +18,13 @@ Se elabora a partir del estado del repositorio `proyecto-convenio-INAU`, conside
 
 ---
 
-## 3. Paleta cromática
+<br>
+
+## 2. Paleta cromática
 
 El sistema utiliza **una base neutra compartida** y **un color identitario por rol**.
 
-### 3.1 Base común
+### 2.1 Base común
 
 | Variable | Valor | Uso |
 |---|---|---|
@@ -40,7 +36,7 @@ El sistema utiliza **una base neutra compartida** y **un color identitario por r
 | `--texto-secundario` | `#667176` | Texto de apoyo, descripciones y etiquetas. |
 | `--radio` | `4px` | Radio de borde base, compartido por los tres paneles. |
 
-### 3.2 Identidad por rol
+### 2.2 Identidad por rol
 
 | Rol | Principal | Oscuro | Claro | Acento | Carácter |
 |---|---|---|---|---|---|
@@ -50,7 +46,7 @@ El sistema utiliza **una base neutra compartida** y **un color identitario por r
 
 El tono **oscuro** se emplea en barras de navegación y encabezados de tabla; el **claro**, en cabeceras de sección e íconos; el **acento**, como remate cromático en bordes y elementos destacados.
 
-### 3.3 Colores de estado
+### 2.3 Colores de estado
 
 | Estado | Color | Uso |
 |---|---|---|
@@ -62,7 +58,9 @@ Se eligieron versiones desaturadas de los verdes y rojos convencionales para que
 
 ---
 
-## 4. Tipografía
+<br>
+
+## 3. Tipografía
 
 | Aspecto | Definición | Justificación |
 |---|---|---|
@@ -75,59 +73,63 @@ Se eligieron versiones desaturadas de los verdes y rojos convencionales para que
 
 ---
 
-## 5. Componentes compartidos
+<br>
+
+## 4. Componentes compartidos
 
 Estos componentes existen en los tres paneles con idéntica definición, variando únicamente los colores según el rol.
 
-### 5.1 Barra de navegación
+### 4.1 Barra de navegación
 Fondo en el tono oscuro del rol, con borde inferior de 4 px en el color de acento. La marca se presenta en mayúsculas, peso 700 y espaciado ampliado. Es el elemento que más rápido comunica en qué panel se encuentra el usuario.
 
-### 5.2 Cabecera de sección (`hero-panel`)
+### 4.2 Cabecera de sección (`hero-panel`)
 Bloque de fondo claro con borde inferior de 3 px en el color principal y una figura geométrica inclinada en el acento sobre el margen derecho. Aporta identidad sin recurrir a imágenes, manteniendo bajo el peso de la página. En pantallas menores a 992 px la figura se oculta para no competir con el texto. Es el componente de encabezado utilizado en **todas** las pantallas del sistema.
 
-### 5.3 Tarjetas
+### 4.3 Tarjetas
 Fondo blanco, borde de 1 px y radio de 4 px, **sin sombra**. La separación entre bloques se logra por contraste de fondo y borde, no por profundidad simulada.
 
-### 5.4 Tarjetas de taller
+### 4.4 Tarjetas de taller
 Borde izquierdo de 5 px en el color principal que **cambia al acento al pasar el cursor**, junto con un leve cambio de fondo. Señal de interactividad discreta pero clara. Internamente usan una grilla de dos columnas: ícono a la izquierda, texto a la derecha.
 
-### 5.5 Tarjetas de información (`hero-card`)
+### 4.5 Tarjetas de información (`hero-card`)
 Fondo levemente tintado con borde superior de 3 px en el color principal. Presentan pares rótulo/dato: el rótulo en mayúsculas pequeñas y gris, el dato en peso 700. Se usan para mostrar datos de contexto (taller, fecha, cantidad de alumnos) sin recurrir a una tabla.
 
-### 5.6 Tablas
+### 4.6 Tablas
 Encabezado en el tono oscuro del rol con texto blanco en mayúsculas, y filas que se resaltan al pasar el cursor. Al ser el componente principal para listados de alumnos, asistencias y entregas, se priorizó el contraste del encabezado para que la estructura de columnas quede clara aun en tablas largas.
 
-### 5.7 Formularios
+### 4.7 Formularios
 Campos con altura mínima de 42 px y borde definido. Al enfocar, el borde adopta el color principal y se agrega un anillo de 2 px con transparencia. Los campos de solo lectura —como la cédula, que ningún rol puede modificar— se distinguen con **fondo gris y borde punteado**, comunicando la restricción antes de que el usuario intente editarlos.
 
-### 5.8 Botones
+### 4.8 Botones
 Altura mínima de 40 px, radio de 3 px y peso 600, sin sombras. Colores según esquema semántico: principal para acciones habituales, verde para confirmar, rojo para eliminar, claro para acciones secundarias.
 
-### 5.9 Ventanas modales
+### 4.9 Ventanas modales
 Se utilizan para acciones que requieren confirmación o carga de datos sin abandonar la pantalla actual: alta y edición de registros en el panel administrador, y carga de material y corrección de tareas en el panel tallerista. Mantener al usuario en la misma vista reduce la pérdida de contexto en flujos de trabajo repetitivos, como corregir varias entregas seguidas.
 
-### 5.10 Insignias y alertas
+### 4.10 Insignias y alertas
 Las insignias usan radio de 2 px y peso 700 en tamaño reducido, para estados de asistencia o situación del taller. Las alertas llevan un borde izquierdo reforzado de 4 px que actúa como indicador cromático del tipo de mensaje.
 
-### 5.11 Indicador de carga
+### 4.11 Indicador de carga
 Spinner de 2.2 rem en el color principal del rol, utilizado mientras se recuperan datos. Mantiene la coherencia cromática incluso en los estados transitorios de la interfaz.
 
 ---
 
-## 6. Componentes específicos por panel
+<br>
+
+## 5. Componentes específicos por panel
 
 Además de la base común, cada panel define componentes propios según las necesidades de su rol.
 
-### 6.1 Panel administrador
+### 5.1 Panel administrador
 - **Grilla de accesos:** cinco accesos directos en una fila, que se reorganizan a dos columnas y luego a una según el ancho de pantalla.
 - **Tarjetas de estadísticas:** borde superior de 3 px en el acento, con el número en gran tamaño a la izquierda y el rótulo a la derecha.
 
-### 6.2 Panel tallerista
+### 5.2 Panel tallerista
 - **Bloque de asistencia:** organizado sobre tarjetas de información que muestran el contexto del registro (taller, fecha, presentes) antes del listado de alumnos, para que el tallerista confirme de un vistazo dónde está cargando la asistencia.
 - **Gestión de material y tareas:** resuelta mediante tarjetas de resumen, tabla de listado y modales de alta y edición. Se optó por la tabla porque el tallerista administra volúmenes mayores de contenido que el alumno, y necesita ver varias columnas de información simultáneamente.
 - **Corrección de entregas:** pantalla dedicada con tabla de entregas y modal de corrección, que permite revisar y calificar sin salir del listado.
 
-### 6.3 Panel alumno
+### 5.3 Panel alumno
 - **Listas de material y tareas (`lista-item`):** filas con ícono a la izquierda, título y descripción a la derecha; el borde cambia al color principal al pasar el cursor. Reemplazan a la tabla en este panel por resultar más legibles en pantallas pequeñas.
 - **Nota destacada (`nota-destacada`):** bloque compacto con fondo tintado y número en gran tamaño, que resalta la calificación por encima del resto de la información de la tarea.
 - **Zona de archivo (`zona-archivo`):** área con **borde punteado** que señala visualmente el lugar de carga de la entrega. El borde discontinuo es una convención ampliamente reconocida para zonas de subida de archivos.
@@ -135,7 +137,9 @@ Además de la base común, cada panel define componentes propios según las nece
 
 ---
 
-## 7. Pantalla de acceso
+<br>
+
+## 6. Pantalla de acceso
 
 Fondo oscuro con una trama de cuadrícula sutil generada íntegramente por CSS (sin imágenes). La tarjeta de acceso lleva borde superior de 6 px en el acento y una sombra pronunciada, siendo la única pantalla donde se utiliza profundidad: se justifica porque es el único punto de entrada al sistema y debe destacarse por completo sobre el fondo.
 
@@ -143,7 +147,9 @@ El acceso se realiza mediante **cédula y contraseña**, en lugar de un nombre d
 
 ---
 
-## 8. Diseño responsive
+<br>
+
+## 7. Diseño responsive
 
 La interfaz cumple NRF01 mediante Bootstrap 5.3 más ajustes propios en cuatro puntos de quiebre:
 
@@ -158,11 +164,13 @@ El contenido se limita a un ancho máximo de 1200 px para evitar líneas de text
 
 ---
 
-## 9. Criterio de consistencia entre paneles
+<br>
+
+## 8. Criterio de consistencia entre paneles
 
 La consistencia del sistema se aplica en **dos niveles diferenciados**, con criterios distintos para cada uno.
 
-### 9.1 Base compartida (obligatoria)
+### 8.1 Base compartida (obligatoria)
 
 Los tres paneles comparten de forma idéntica:
 
@@ -170,11 +178,11 @@ Los tres paneles comparten de forma idéntica:
 - La base neutra: fondo, superficie, bordes, texto y radio de borde.
 - La tipografía completa y sus jerarquías.
 - Los puntos de quiebre y el ancho máximo de contenido.
-- Los componentes fundamentales descritos en la sección 5, con idénticas medidas y comportamientos.
+- Los componentes fundamentales descritos en la sección 4, con idénticas medidas y comportamientos.
 
 Cualquier cambio en este nivel debe replicarse en los tres paneles.
 
-### 9.2 Componentes específicos (permitidos)
+### 8.2 Componentes específicos (permitidos)
 
 Cada panel puede definir componentes propios cuando su rol lo justifique. Un mismo contenido puede resolverse con componentes distintos según quién lo consulte: el **material y las tareas** se presentan mediante **tabla y modales** en el panel del tallerista, que administra y edita grandes volúmenes de contenido, y mediante **listas (`lista-item`)** en el panel del alumno, que solo consulta y entrega, priorizando la legibilidad en pantallas pequeñas.
 
@@ -182,7 +190,9 @@ Esta diferencia es deliberada y responde al principio de rapidez de uso: cada ro
 
 ---
 
-## 10. Uso de variables CSS
+<br>
+
+## 9. Uso de variables CSS
 
 Toda la paleta está declarada en variables CSS bajo el selector `:root`. Ningún componente utiliza un color escrito directamente. Esto permite:
 
@@ -190,4 +200,4 @@ Toda la paleta está declarada en variables CSS bajo el selector `:root`. Ningú
 - Mantener consistencia automática entre componentes.
 - Facilitar ajustes de contraste o accesibilidad sin recorrer todo el archivo.
 
-Es la decisión técnica que sostiene la sección 9: sin variables, mantener tres paletas coherentes exigiría triplicar el trabajo ante cualquier cambio.
+Es la decisión técnica que sostiene la sección 8: sin variables, mantener tres paletas coherentes exigiría triplicar el trabajo ante cualquier cambio.
