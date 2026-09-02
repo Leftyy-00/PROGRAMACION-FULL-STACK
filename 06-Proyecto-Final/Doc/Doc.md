@@ -10,7 +10,7 @@
 
 <br>
 
-## 2. Necesidad presentada por el cliente
+## 2. Necesidad presentada por el cliente.
 
 >**El problema principal a resolver es la falta de organización y accesibilidad en la plataforma actual. Se requiere un espacio unificado donde estudiantes, talleristas y administradores dispongan de funciones específicas que permitan optimizar, asegurar y promover la accesibilidad, disponibilidad y estructuración de la información.**
 >
@@ -27,8 +27,7 @@
 
 <br>
 
-## 3. Primer análisis del equipo de desarrollo
-
+## 3. Primer análisis del equipo de desarrollo.
 
 | Área a aclarar | Preguntas iniciales del equipo |
 | --- | --- |
@@ -61,7 +60,6 @@
 <br>
 
 ## 5. Anotaciones de la entrevista con el cliente
-
 
 ### 1. Definición del Problema y Necesidad Principal
 
@@ -414,13 +412,6 @@ El sistema debe permitir la emisión de los siguientes reportes:
 
 **Costo por punto de esfuerzo:** USD 4.320 ÷ 63 puntos ≈ **USD 68,6 por punto**. Este indicador permite estimar funcionalidades futuras: una historia de 3 puntos equivale aproximadamente a USD 206, y una de 5 puntos, a USD 343.
 
-**Consideraciones:**
-
-- El costo de recursos humanos **no se factura al cliente** en este proyecto académico; se incluye para dimensionar el esfuerzo real que representaría el desarrollo en un contexto profesional.
-- El único costo recurrente que asumiría el organismo es el de infraestructura: **USD 75 anuales** para mantener el sistema en línea con disponibilidad 24/7 (NRF02).
-- Las funcionalidades excluidas por plazo (sección 16) suman 15 puntos de esfuerzo, equivalentes a **USD 1.029** adicionales. Las funcionalidades de fases futuras (sección 10) no fueron estimadas en puntos, por lo que su costo deberá calcularse al momento de definirlas.
-- No se contemplan costos de mantenimiento evolutivo, que deberían acordarse por separado.
-
 ---
 
 ## 19. Aprobación ficticia del cliente
@@ -428,8 +419,10 @@ El sistema debe permitir la emisión de los siguientes reportes:
 Luego de revisar la propuesta, el cliente responde:
 
 > "La propuesta está dentro del presupuesto máximo que habíamos previsto. Nos parece correcto empezar por una versión inicial.
-
-> Lo más importante para nosotros es que los talleristas puedan registrar la asistencia y subir el material sin complicaciones, y que la administración pueda ver en todo momento qué está pasando en cada taller. Entendemos que algunas funciones, como los foros y las notificaciones automáticas, queden para más adelante.
+>
+> Lo más importante para nosotros es que los talleristas puedan registrar la asistencia y subir el material sin complicaciones, y que la administración pueda ver en todo momento qué está pasando en cada taller. 
+>
+>Entendemos que algunas funciones, como los foros y las notificaciones automáticas, queden para más adelante.
 
 Aprobamos el proyecto con 6 ciclos de trabajo de 2 semanas. Queremos participar en las revisiones al final de cada ciclo para validar que el sistema se ajuste al trabajo real de los talleres."
 
@@ -549,7 +542,7 @@ Cada historia incluirá criterios de aceptación para saber cuándo puede consid
 
 ---
 
-### 21.2 Backlog priorizado: Resumen de puntos por sprint
+### 22.2 Backlog priorizado: Resumen de puntos por sprint
 
 | Sprint | Semanas | Puntos | Estado | Reporte quincenal |
 | --- | --- | --- | --- | --- |

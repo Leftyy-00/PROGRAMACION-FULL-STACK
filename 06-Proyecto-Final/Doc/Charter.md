@@ -11,16 +11,16 @@
 
 ### Equipo: 
 > -Emiliano Sánchez: Líder / Scrum Master <br>
-> -Gabriel Rendon: Sublíder <br>
-> -Ignacio Viera: desarrolladores Frontend y Backend <br>
-> -Maximiliano Leal: desarrolladores Frontend y Backend <br>
-> -Thiago Ferragut: desarrolladores Frontend y Backend 
+> -Gabriel Rendon: Subcoordinador <br>
+> -Ignacio Viera: desarrollador Frontend y Backend <br>
+> -Maximiliano Leal: desarrollador Frontend y Backend <br>
+> -Thiago Ferragut: desarrollador Frontend y Backend 
 
 ---
 
 ### Fecha de inicio: 17 de julio de 2026
 
-### Duración estimada: 24 semanas
+### Duración estimada: 12 semanas
 
 ---
 
@@ -100,7 +100,7 @@
 ## Riesgos iniciales:
 
 | **Riesgo**                                                  | **Impacto**                                               |
-|-------------------------------------------------------------|-----------------------------------------------------------|
+| --- | --- |
 | Tiempo insuficiente para completar el proyecto.             | Reducción del alcance o funcionalidades pendientes.       |
 | Dificultades al integrar frontend, backend y base de datos. | Retrasos y errores en el funcionamiento.                  |
 | Cambios en los requerimientos del cliente.                  | Replanificación y modificaciones del desarrollo.          |
@@ -110,12 +110,17 @@
 ---
 
 ### Plazo y metodología: 
-**Desarrollo mediante Scrum, organizado en sprints quincenales, con entrega final prevista para finales de 2026.**
+**Desarrollo mediante Scrum, organizado en 6 sprints quincenales (12 semanas), con reporte de avance al cierre de cada sprint.**
 
 ---
 
 ### Esfuerzo estimado: 
-**65 Puntos, distribuidos en seis épicas principales de desarrollo.**
+**76 Puntos, distribuidos en seis épicas principales de desarrollo, correspondientes al alcance ajustado de la primera versión.**
+
+---
+
+### Costos estimados:
+**USD 4.395 el primer año (recursos humanos e infraestructura), con un costo de mantenimiento posterior de USD 75 anuales correspondiente a hosting y dominio.**
 
 ---
 
