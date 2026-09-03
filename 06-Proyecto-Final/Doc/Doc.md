@@ -410,7 +410,7 @@ El sistema debe permitir la emisión de los siguientes reportes:
 | **Total primer año** | | **USD 4.395** |
 | **Mantenimiento anual posterior** | Hosting + dominio | **USD 75 / año** |
 
-**Costo por punto de esfuerzo:** USD 4.320 ÷ 63 puntos ≈ **USD 68,6 por punto**. Este indicador permite estimar funcionalidades futuras: una historia de 3 puntos equivale aproximadamente a USD 206, y una de 5 puntos, a USD 343.
+**Costo por punto de esfuerzo:** USD 4.320 ÷ 76 puntos ≈ **USD 56,8 por punto**. Este indicador permite estimar funcionalidades futuras: una historia de 3 puntos equivale aproximadamente a USD 170, y una de 5 puntos, a USD 284.
 
 ---
 
@@ -423,6 +423,7 @@ Luego de revisar la propuesta, el cliente responde:
 > Lo más importante para nosotros es que los talleristas puedan registrar la asistencia y subir el material sin complicaciones, y que la administración pueda ver en todo momento qué está pasando en cada taller. 
 >
 >Entendemos que algunas funciones, como los foros y las notificaciones automáticas, queden para más adelante.
+>
 
 Aprobamos el proyecto con 6 ciclos de trabajo de 2 semanas. Queremos participar en las revisiones al final de cada ciclo para validar que el sistema se ajuste al trabajo real de los talleres."
 
@@ -542,7 +543,7 @@ Cada historia incluirá criterios de aceptación para saber cuándo puede consid
 
 ---
 
-### 22.2 Backlog priorizado: Resumen de puntos por sprint
+### 22.1 Backlog priorizado: Resumen de puntos por sprint
 
 | Sprint | Semanas | Puntos | Estado | Reporte quincenal |
 | --- | --- | --- | --- | --- |
