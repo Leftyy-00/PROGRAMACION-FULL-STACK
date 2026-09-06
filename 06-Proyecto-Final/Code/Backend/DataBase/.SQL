@@ -41,6 +41,15 @@ CREATE TABLE usuarios (
 -- Ficha del alumno como participante del programa.
 -- usuario_id es NULL mientras el administrador lo registró pero aún no
 -- se le creó cuenta de acceso.
+--
+-- ATENCIÓN: cuando el alumno tiene cuenta, los campos nombre, apellido,
+-- cedula, correo, telefono y estado quedan duplicados con los de la tabla
+-- usuarios. Esta duplicación es consecuencia de que el alumno puede existir
+-- sin cuenta de acceso, y la base de datos no puede garantizar por sí sola
+-- la coincidencia entre ambos registros. La sincronización DEBE realizarse
+-- desde la capa de aplicación, mediante una única función que escriba en
+-- ambas tablas dentro de una misma transacción. No modificar estos campos
+-- con UPDATE directo por fuera de esa función.
 CREATE TABLE alumnos (
     id                 INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id         INT NULL UNIQUE,
@@ -111,10 +120,14 @@ CREATE TABLE horarios_taller (
 
 
 -- Inscripción de alumnos a talleres (RF03).
+-- fecha_inscripcion permite acotar los informes de asistencia por rango
+-- de fechas (RF11), evitando contar como ausente a un alumno en jornadas
+-- anteriores a su incorporación al taller.
 CREATE TABLE inscripciones (
-    id          INT AUTO_INCREMENT PRIMARY KEY,
-    taller_id   INT NOT NULL,
-    alumno_id   INT NOT NULL,
+    id                 INT AUTO_INCREMENT PRIMARY KEY,
+    taller_id          INT NOT NULL,
+    alumno_id          INT NOT NULL,
+    fecha_inscripcion  DATE NOT NULL,
 
     FOREIGN KEY (taller_id) REFERENCES talleres(id) ON DELETE CASCADE,
     FOREIGN KEY (alumno_id) REFERENCES alumnos(id)  ON DELETE CASCADE,
@@ -173,6 +186,11 @@ CREATE TABLE contenidos (
 
 
 -- Entrega de un alumno para una tarea, con su corrección y nota.
+--
+-- ATENCIÓN: contenido_id debe referenciar siempre un contenido de tipo
+-- 'Tarea'. MySQL no admite subconsultas dentro de un CHECK, por lo que
+-- esta validación DEBE realizarse en la capa de aplicación o mediante
+-- un disparador antes de insertar.
 CREATE TABLE entregas (
     id               INT AUTO_INCREMENT PRIMARY KEY,
     contenido_id     INT NOT NULL,
@@ -254,11 +272,9 @@ CREATE TABLE trazabilidad (
 );
 
 
-
-
-# --- =====================================================================
-# --- DATOS DE PRUEBA
-# -- =====================================================================
+-- =====================================================================
+-- DATOS DE PRUEBA
+-- =====================================================================
 
 -- Usuarios: 1 administrador, 2 talleristas, 2 alumnos con cuenta
 INSERT INTO usuarios (nombre, apellido, cedula, correo, telefono, clave_hash, rol, especialidad, estado, fecha_registro) VALUES
@@ -294,8 +310,13 @@ INSERT INTO horarios_taller (taller_id, dia, hora_inicio, hora_fin) VALUES
 (2, 'Martes',    '15:00', '17:00');
 
 
-INSERT INTO inscripciones (taller_id, alumno_id) VALUES
-(1, 1), (1, 2), (2, 1), (1, 3);
+-- Valentina se inscribió más tarde que el resto: los informes de asistencia
+-- anteriores al 2026-08-20 no deben computarla.
+INSERT INTO inscripciones (taller_id, alumno_id, fecha_inscripcion) VALUES
+(1, 1, '2026-03-10'),
+(1, 2, '2026-03-10'),
+(2, 1, '2026-03-10'),
+(1, 3, '2026-08-20');
 
 
 INSERT INTO contenidos (taller_id, tipo, titulo, descripcion, fecha_publicacion, fecha_limite) VALUES
@@ -321,8 +342,7 @@ INSERT INTO asistencias (taller_id, fecha) VALUES
 
 INSERT INTO registros_asistencia (asistencia_id, alumno_id, estado, observaciones) VALUES
 (1, 1, 'Presente',    NULL),
-(1, 2, 'Ausente',     NULL),
-(1, 3, 'Justificado', 'Presentó certificado médico.');
+(1, 2, 'Ausente',     NULL);
 
 
 -- Trazabilidad de ejemplo
