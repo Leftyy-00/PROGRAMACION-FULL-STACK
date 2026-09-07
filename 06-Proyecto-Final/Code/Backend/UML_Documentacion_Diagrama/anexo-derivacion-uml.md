@@ -128,11 +128,11 @@ Sin atributos propios. Se distingue de las demás especializaciones únicamente 
 | `cedula` | RF02 | Identificador del participante, registrado por el administrador. |
 | `nombre`, `apellido` | RF02, RF19 | Datos mínimos requeridos por el listado de alumnos. |
 | `estado` | RF02 | Baja lógica del participante. |
+| `fechaIngreso` | RF02 | Fecha de alta del alumno como participante del programa. Se completa en el momento del registro, por lo que forma parte de la primera versión, a diferencia del resto de los datos de la ficha detallada. |
 | `fechaNacimiento` **(v2)** | RF21 | Dato de la ficha detallada; permite además verificar edades en un contexto de menores. |
 | `correo`, `telefono`, `direccion` **(v2)** | RF21 | Datos de contacto de la ficha detallada. |
 | `referenteAdulto` **(v2)** | RF21 | Contacto adulto responsable, propio del contexto socioeducativo. |
 | `centroReferencia` **(v2)** | RF21 | Centro o programa al que pertenece el alumno. |
-| `fechaIngreso` **(v2)** | RF21 | Fecha de incorporación al programa. |
 | `observaciones` **(v2)** | RF21 | Campo libre de la ficha. |
 | `foto` **(v2)** | RF15 | RF15 permite al alumno eliminar su foto de perfil. |
 | `biografia` **(v2)** | RF15 | Ídem anterior. |
@@ -241,7 +241,7 @@ Sin atributos propios. Se distingue de la tarea por no requerir devolución ni a
 | Clase | Atributos (v2) | RF de origen |
 |---|---|---|
 | Alumno | `foto`, `biografia` | RF15 |
-| Alumno | `fechaNacimiento`, `correo`, `telefono`, `direccion`, `referenteAdulto`, `centroReferencia`, `fechaIngreso`, `observaciones` | RF21 |
+| Alumno | `fechaNacimiento`, `correo`, `telefono`, `direccion`, `referenteAdulto`, `centroReferencia`, `observaciones` | RF21 |
 
 Los restantes requerimientos excluidos (RF18, RF20, RF23 y RF26) no aportan atributos nuevos: operan sobre datos ya presentes en el modelo. RF23, por ejemplo, únicamente requiere que el alumno pueda consultar el atributo `nota` de `Entrega`, incorporado por RF10.
 
@@ -620,3 +620,16 @@ Cuatro reglas del modelo carecen de traducción directa y deben implementarse en
 **Justificación de por qué se aceptan estas limitaciones:** las cuatro derivan de decisiones de mapeo deliberadas —tabla única para las herencias, y separación entre la ficha del alumno y su cuenta de acceso— adoptadas por sus ventajas en las consultas y en el proceso de autenticación. Trasladar estas validaciones a la aplicación es el costo asumido a cambio.
 
 **Observación sobre la duplicación de datos personales:** se origina en la decisión de modelar al alumno como entidad administrada independiente de su cuenta, dado que el administrador puede registrarlo antes de otorgarle acceso (RF02) y el listado de alumnos debe funcionar en ambos casos (RF19). Para minimizar el riesgo de desincronización, se establece como regla del proyecto que ninguna operación modifique estos campos mediante instrucciones directas, sino exclusivamente a través de la función designada.
+
+### 5.8 Decisiones propias del modelo relacional
+
+Las siguientes decisiones no derivan del modelo conceptual sino de la implementación, y se documentan para que ningún elemento del modelo físico quede sin justificación.
+
+| Decisión | Justificación |
+|---|---|
+| `usuarios.especialidad` admite valor nulo | Consecuencia directa de la estrategia de tabla única: el atributo pertenece a `Tallerista`, por lo que queda vacío en las filas correspondientes a administradores y alumnos. Es el costo asumido al absorber las subclases en una sola tabla (ver 5.2). |
+| `reportes.contenido` se almacena como estructura de datos variable | Cada tipo de informe consolida columnas distintas: el de asistencia agrupa por taller y fecha, el listado de alumnos enumera participantes, el de talleristas incluye especialidad. Definir una tabla por tipo de informe multiplicaría la estructura sin necesidad, dado que el contenido solo se lee al exportarlo y nunca se consulta por campos individuales. |
+| `trazabilidad` referencia las entidades de forma genérica mediante `entidad` y `entidad_id`, sin clave foránea | NRF10 exige auditar acciones sobre cualquier clase del modelo. Una clave foránea obligaría a una columna por cada tabla auditada, o bien a una tabla de historial independiente por entidad. La referencia genérica permite registrar acciones sobre cualquier entidad con una única estructura. Se asume como contrapartida que la base de datos no puede verificar la integridad de esas referencias, verificación que corresponde a la capa de aplicación. |
+| Las tablas intermedias incorporan una clave primaria propia además de la restricción de unicidad sobre el par | La alternativa habitual es una clave primaria compuesta por ambas claves foráneas. Se optó por un identificador propio para mantener uniformidad con el resto de las tablas y simplificar las referencias desde la aplicación, conservando la restricción `UNIQUE` sobre el par, que es la que garantiza la regla de negocio. |
+| Se incorporan índices sobre las columnas de filtrado frecuente (`estado`, `rol`, `tipo`, `fecha`) | NRF03 exige rapidez en las operaciones habituales. Los listados e informes filtran de forma recurrente por estas columnas, por lo que los índices reducen el tiempo de respuesta sin afectar el modelo conceptual. |
+| La codificación de caracteres admite el repertorio Unicode completo | Los datos incluyen nombres propios con tildes y eñes, así como observaciones de texto libre redactadas por los usuarios. |
