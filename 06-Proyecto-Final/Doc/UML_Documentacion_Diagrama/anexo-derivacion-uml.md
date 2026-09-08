@@ -1,14 +1,20 @@
 # Anexo — Derivación del modelo de clases UML
 
+<br>
+
 ## Sistema de Gestión de Talleres en Convenio con INAU
 
 Se aplicó el método de derivación en cinco pasos a partir de los requerimientos funcionales y las historias de usuario del proyecto. El modelo resultante se presenta en el documento *Modelo de Clases UML*; este anexo documenta cómo se obtuvo y por qué se adoptó cada decisión.
 
 ---
 
+<br>
+
 ## Paso 1 — Identificación de sustantivos relevantes
 
 **Técnica:** extracción de sustantivos de los RF y las HU, y filtrado de aquellos que representan entidades con identidad propia y persistencia en el sistema.
+
+<br>
 
 ### 1.1 Sustantivos extraídos por requerimiento
 
@@ -35,6 +41,8 @@ Se aplicó el método de derivación en cinco pasos a partir de los requerimient
 | RF24 | administrador, datos sensibles, plataforma |
 | RF25 | tallerista, listado, alumnos, taller |
 
+<br>
+
 ### 1.2 Sustantivos descartados
 
 | Motivo | Sustantivos descartados |
@@ -42,6 +50,8 @@ Se aplicó el método de derivación en cinco pasos a partir de los requerimient
 | Representan al sistema mismo o a su interfaz, no a datos almacenados | sistema, plataforma, acceso, sesión, perfil |
 | Son atributos, no entidades: carecen de identidad propia fuera de la clase a la que pertenecen | contraseña, fecha, nota, datos personales, datos sensibles, información, formato |
 | Son salidas derivadas de datos existentes, no entidades del dominio | listado |
+
+<br>
 
 ### 1.3 Clases identificadas
 
@@ -63,6 +73,8 @@ Se aplicó el método de derivación en cinco pasos a partir de los requerimient
 | 14 | **Informe** | RF11, RF12, RF13, RF19, RF22 | Resultado consolidado de una consulta, exportable en distintos formatos. Ver 1.5. |
 | 15 | **RegistroTrazabilidad** | NRF10 | Registro de una acción relevante ejecutada por un usuario. Ver 1.6. |
 
+<br>
+
 ### 1.4 Decisiones de modelado
 
 **Usuario, Administrador y Tallerista se modelan mediante herencia.** RF01 exige distinguir tres roles con permisos diferenciados, pero los tres comparten los mismos datos de identificación y acceso. `Usuario` concentra esos atributos comunes como clase abstracta, y cada rol especializa el comportamiento. Solo `Tallerista` aporta un atributo propio (`especialidad`, requerido por RF22).
@@ -79,11 +91,15 @@ Se aplicó el método de derivación en cinco pasos a partir de los requerimient
 
 **Rol se descarta como clase.** Aunque RF01 lo menciona explícitamente, es un conjunto cerrado de tres valores sin atributos ni comportamiento propio. Se modela como enumeración dentro de `Usuario`.
 
+<br>
+
 ### 1.5 Observación sobre la clase Informe
 
 Los requerimientos RF11, RF12, RF19 y RF22 establecen la generación de informes, y RF13 exige poder exportarlos en formato PDF o Excel. Esta última operación requiere que el informe exista como objeto con identidad propia: para exportarlo es necesario haberlo generado previamente, con sus datos consolidados, su tipo y su formato de salida.
 
 Por ese motivo `Informe` se incorpora como clase del modelo y forma parte de la primera versión. Su persistencia habilita además el historial de informes emitidos, funcionalidad prevista para etapas posteriores, aunque ningún requerimiento de la primera versión exige conservarlos.
+
+<br>
 
 ### 1.6 Observación sobre la clase RegistroTrazabilidad
 
@@ -93,11 +109,16 @@ Se incorpora como clase porque la información debe persistirse y vincularse a u
 
 ---
 
+<br><br>
+
 ## Paso 2 — Identificación de atributos
 
 **Técnica:** por cada clase identificada, se recorren los RF y HU que la mencionan y se extraen los datos que el sistema debe almacenar sobre ella.
 
 > **Convención:** los atributos derivados de requerimientos excluidos de la primera versión se señalan con **(v2)**.
+
+
+<br>
 
 ### 2.1 Usuario *(clase abstracta)*
 
@@ -111,15 +132,21 @@ Se incorpora como clase porque la información debe persistirse y vincularse a u
 | `estado` | RF02 | Permite la baja lógica, preservando el historial exigido por NRF10. |
 | `fechaRegistro`, `ultimoAcceso` | RF24 | Datos de auditoría para la supervisión del uso de la plataforma. |
 
+<br>
+
 ### 2.2 Administrador *(hereda de Usuario)*
 
 Sin atributos propios. Se distingue de las demás especializaciones únicamente por su comportamiento y permisos.
+
+<br>
 
 ### 2.3 Tallerista *(hereda de Usuario)*
 
 | Atributo | Origen | Justificación |
 |---|---|---|
 | `especialidad` | RF22 | RF22 exige un informe con información detallada de talleristas; la especialidad es el dato que los caracteriza. |
+
+<br>
 
 ### 2.4 Alumno
 
@@ -141,6 +168,8 @@ Sin atributos propios. Se distingue de las demás especializaciones únicamente 
 
 > **Pendiente de validación:** la especificación técnica del equipo contempla un campo `situacionDerivacion`. Al tratarse de un dato particularmente sensible sobre menores que no fue relevado en la entrevista, se deja fuera del modelo hasta confirmarlo con el cliente.
 
+<br>
+
 ### 2.5 Taller
 
 | Atributo | Origen | Justificación |
@@ -153,6 +182,8 @@ Sin atributos propios. Se distingue de las demás especializaciones únicamente 
 | `estado` | RF02 | Distingue talleres activos de finalizados y permite la baja lógica. |
 | `observaciones` | RF02 | Campo libre. |
 
+<br>
+
 ### 2.6 Horario
 
 | Atributo | Origen | Justificación |
@@ -160,11 +191,15 @@ Sin atributos propios. Se distingue de las demás especializaciones únicamente 
 | `dia` | RF02 | Día de la semana en que se dicta el taller. |
 | `horaInicio`, `horaFin` | RF02 | Franja horaria correspondiente a ese día. |
 
+<br>
+
 ### 2.7 Asistencia *(jornada)*
 
 | Atributo | Origen | Justificación |
 |---|---|---|
 | `fecha` | RF04, RF05 | RF04 exige indicar la fecha de la jornada; RF05 permite consultarla y modificarla por taller y fecha. Es el único dato que corresponde a la jornada completa y no a cada alumno. |
+
+<br>
 
 ### 2.8 RegistroAsistencia *(detalle por alumno)*
 
@@ -174,6 +209,8 @@ Sin atributos propios. Se distingue de las demás especializaciones únicamente 
 | `observaciones` | RF04 | Aclaración opcional sobre el registro de ese alumno. |
 | `usuarioRegistro` | NRF10 | Identifica quién cargó o modificó este registro en particular. Se ubica en el detalle y no en la jornada porque un tallerista puede corregir el estado de un alumno concreto con posterioridad a la carga inicial. |
 
+<br>
+
 ### 2.9 Contenido *(clase abstracta)*
 
 | Atributo | Origen | Justificación |
@@ -182,9 +219,13 @@ Sin atributos propios. Se distingue de las demás especializaciones únicamente 
 | `descripcion` | RF06, RF07 | Explica de qué se trata. |
 | `fechaPublicacion` | RF07 | Permite ordenar los contenidos por novedad. |
 
+<br>
+
 ### 2.10 Material *(hereda de Contenido)*
 
 Sin atributos propios. Se distingue de la tarea por no requerir devolución ni admitir calificación.
+
+<br>
 
 ### 2.11 Tarea *(hereda de Contenido)*
 
@@ -192,6 +233,8 @@ Sin atributos propios. Se distingue de la tarea por no requerir devolución ni a
 |---|---|---|
 | `consigna` | RF06, RF08 | El alumno necesita saber qué debe entregar. |
 | `fechaLimite` | RF08 | Delimita el plazo de entrega. Es el atributo que justifica la especialización respecto del material. |
+
+<br>
 
 ### 2.12 Entrega
 
@@ -201,6 +244,8 @@ Sin atributos propios. Se distingue de la tarea por no requerir devolución ni a
 | `estado` | RF08, RF09 | Distingue pendiente, entregada y corregida, indicando al tallerista qué le resta corregir. |
 | `nota` | RF10, RF17 | RF10 la asigna y RF17 permite eliminarla, por lo que debe admitir valor nulo. |
 | `comentarioCorreccion` | RF09 | RF09 exige corregir, no solo calificar: la devolución cualitativa requiere campo propio. |
+
+<br>
 
 ### 2.13 Adjunto
 
@@ -215,6 +260,8 @@ Sin atributos propios. Se distingue de la tarea por no requerir devolución ni a
 
 > **Observación:** la clase no incorpora ningún atributo que indique si el archivo pertenece a un contenido o a una entrega. Esa información queda determinada por las asociaciones definidas en el Paso 4, que establecen que un adjunto pertenece a uno u otro de forma excluyente. El método `obtenerUrlDescarga()` resuelve la ruta base a partir de dicha asociación.
 
+<br>
+
 ### 2.14 Informe
 
 | Atributo | Origen | Justificación |
@@ -227,6 +274,8 @@ Sin atributos propios. Se distingue de la tarea por no requerir devolución ni a
 | `estado` | RF13 | Situación del informe dentro del proceso de generación. |
 | `contenido` | RF13 | Datos consolidados que conforman el informe emitido. |
 
+<br>
+
 ### 2.15 RegistroTrazabilidad
 
 | Atributo | Origen | Justificación |
@@ -235,6 +284,8 @@ Sin atributos propios. Se distingue de la tarea por no requerir devolución ni a
 | `entidad`, `entidadId` | NRF10 | Identifican sobre qué objeto se ejecutó la acción, sin requerir una clave foránea por cada clase del modelo. |
 | `fecha` | NRF10 | Momento en que se produjo la acción. |
 | `detalle` | NRF10 | Información adicional de estructura variable, como los valores anterior y posterior de un campo modificado. |
+
+<br>
 
 ### 2.16 Resumen de atributos correspondientes a la fase 2
 
@@ -247,9 +298,13 @@ Los restantes requerimientos excluidos (RF18, RF20, RF23 y RF26) no aportan atri
 
 ---
 
+<br><br>
+
 ## Paso 3 — Identificación de métodos
 
 **Técnica:** por cada clase, se extraen los verbos de acción presentes en los RF y las HU que la mencionan. Cada verbo se asigna a la clase que ejecuta la acción (si es un actor) o a la clase sobre la que opera (si es un objeto del dominio).
+
+<br>
 
 ### 3.1 Criterio de asignación
 
@@ -266,6 +321,8 @@ Este criterio evita que las clases de rol concentren la totalidad del comportami
 
 > **Convención:** los métodos derivados de requerimientos excluidos de la primera versión se señalan con **(v2)**.
 
+<br>
+
 ### 3.2 Usuario *(clase abstracta)*
 
 | Método | Verbo de origen | RF | Justificación |
@@ -277,6 +334,8 @@ Este criterio evita que las clases de rol concentren la totalidad del comportami
 | `darDeBaja()` | "eliminar" | RF02 | Implementa la baja lógica modificando el estado, sin borrar el registro. |
 
 **Justificación de `autenticar()` en la clase abstracta:** aunque cada rol posee permisos distintos, el proceso de verificación de credenciales es idéntico para los tres. Diferenciarlo por rol duplicaría lógica innecesariamente; la distinción se produce después, en la redirección.
+
+<br>
 
 ### 3.3 Administrador *(hereda de Usuario)*
 
@@ -302,6 +361,8 @@ Este criterio evita que las clases de rol concentren la totalidad del comportami
 
 **Justificación de la ubicación de los métodos de generación de informes:** el administrador es quien inicia la acción y el informe constituye su resultado, no su ejecutor. Estos métodos producen instancias de `Informe`.
 
+<br>
+
 ### 3.4 Tallerista *(hereda de Usuario)*
 
 | Método | Verbo de origen | RF | Justificación |
@@ -321,6 +382,8 @@ Este criterio evita que las clases de rol concentren la totalidad del comportami
 
 **Justificación de la separación entre `corregirTarea()` y `asignarNota()`:** RF09 y RF10 son requerimientos independientes con estimaciones diferentes. El tallerista puede devolver un comentario sin calificar aún, o modificar la nota sin alterar el comentario. Unificarlos obligaría a proporcionar siempre ambos parámetros.
 
+<br>
+
 ### 3.5 Alumno
 
 | Método | Verbo de origen | RF | Justificación |
@@ -332,6 +395,8 @@ Este criterio evita que las clases de rol concentren la totalidad del comportami
 | `eliminarDatoPerfil(campo)` **(v2)** | "eliminar ciertos datos de su perfil" | RF15 | Excluido de la primera versión. |
 
 **Justificación de los métodos propios de Alumno:** si bien su acceso al sistema se realiza mediante una cuenta de usuario asociada, las acciones de RF07 y RF08 corresponden al alumno en su condición de participante del taller, no al usuario genérico. Un administrador con cuenta activa no puede entregar tareas.
+
+<br>
 
 ### 3.6 Taller
 
@@ -345,9 +410,13 @@ Este criterio evita que las clases de rol concentren la totalidad del comportami
 
 **Justificación de su ubicación:** se trata de consultas sobre los propios datos del taller. Asignarlas a las clases de rol obligaría a que estas conocieran cómo se estructuran internamente las inscripciones y asignaciones, comprometiendo el encapsulamiento.
 
+<br>
+
 ### 3.7 Horario
 
 Sin métodos propios. Es una clase de datos puros: sus valores se consultan a través de `Taller.obtenerHorarios()` y no requiere operaciones propias.
+
+<br>
 
 ### 3.8 Asistencia *(jornada)*
 
@@ -362,11 +431,15 @@ Sin métodos propios. Es una clase de datos puros: sus valores se consultan a tr
 
 **Observación sobre `estaCompleta()`:** no proviene de un verbo literal de los requerimientos, sino de la operativa implementada en el frontend del tallerista, que impide guardar la asistencia si faltan estados por asignar. Se documenta como regla de negocio derivada de la práctica.
 
+<br>
+
 ### 3.9 RegistroAsistencia *(detalle por alumno)*
 
 | Método | Verbo de origen | RF | Justificación |
 |---|---|---|---|
 | `cambiarEstado(nuevoEstado, usuarioId)` | "modificar la asistencia registrada" | RF05 | Actualiza el estado del alumno y registra qué usuario realizó la modificación, conforme a NRF10. |
+
+<br>
 
 ### 3.10 Contenido *(clase abstracta)*
 
@@ -376,9 +449,13 @@ Sin métodos propios. Es una clase de datos puros: sus valores se consultan a tr
 | `agregarAdjunto(archivo)` | "subir" | RF06 | Vincula un archivo al contenido. |
 | `eliminar()` | "eliminar material" | RF16 | Se define en la clase base porque la operación es idéntica para materiales y tareas. |
 
+<br>
+
 ### 3.11 Material *(hereda de Contenido)*
 
 Sin métodos propios. Hereda el comportamiento de `Contenido` sin especializarlo.
+
+<br>
 
 ### 3.12 Tarea *(hereda de Contenido)*
 
@@ -387,6 +464,8 @@ Sin métodos propios. Hereda el comportamiento de `Contenido` sin especializarlo
 | `obtenerEntregas()` | "las tareas enviadas por los alumnos" | RF09 | El tallerista necesita conocer las entregas recibidas para corregirlas. |
 | `estaVencida()` | "fecha límite" | RF08 | Compara la fecha actual con la fecha límite, permitiendo identificar entregas fuera de plazo. |
 | `obtenerEntregaDe(alumnoId)` | "enviar/subir los archivos" | RF08 | Recupera la entrega de un alumno determinado, o indica que aún no ha entregado. |
+
+<br>
 
 ### 3.13 Entrega
 
@@ -401,6 +480,8 @@ Sin métodos propios. Hereda el comportamiento de `Contenido` sin especializarlo
 
 **Justificación de la aparente duplicación de `asignarNota()`:** el método homónimo de `Tallerista` representa la acción del actor (verificación de permisos e identificación de la entrega), mientras que el de `Entrega` representa la operación sobre los datos (validación del rango y actualización del estado). El primero invoca al segundo.
 
+<br>
+
 ### 3.14 Adjunto
 
 | Método | Verbo de origen | RF/NRF | Justificación |
@@ -412,6 +493,8 @@ Sin métodos propios. Hereda el comportamiento de `Contenido` sin especializarlo
 
 **Observación sobre los métodos derivados de requerimientos no funcionales:** NRF11 y NRF12 imponen validaciones concretas sobre esta clase, y su ubicación aquí evita replicar la lógica en cada punto donde se carga un archivo.
 
+<br>
+
 ### 3.15 Informe
 
 | Método | Verbo de origen | RF | Justificación |
@@ -420,11 +503,15 @@ Sin métodos propios. Hereda el comportamiento de `Contenido` sin especializarlo
 | `exportarExcel()` | "exportar... o Excel" | RF13 | Ídem. |
 | `obtenerContenido()` | "generar informes" | RF11, RF12 | Devuelve los datos consolidados del informe. |
 
+<br>
+
 ### 3.16 RegistroTrazabilidad
 
 Sin métodos propios. NRF10 exige registrar las acciones relevantes ejecutadas por los usuarios, pero ese registro **no constituye una operación del dominio**: corresponde a un mecanismo transversal que se activa automáticamente al ejecutar operaciones de creación, modificación y eliminación en cualquier clase del modelo.
 
 Incorporar un método de registro en cada clase dispersaría la lógica y contravendría el principio de responsabilidad única, por lo que su implementación corresponde a la capa de servicios. La clase existe únicamente para persistir la información resultante.
+
+<br>
 
 ### 3.17 Resumen de métodos correspondientes a la fase 2
 
@@ -439,9 +526,13 @@ Incorporar un método de registro en cada clase dispersaría la lógica y contra
 
 ---
 
+<br><br>
+
 ## Paso 4 — Asociaciones y multiplicidades
 
 **Técnica:** se identifican las relaciones entre clases a partir de las frases de los RF y las HU que vinculan dos sustantivos, y se determinan las cardinalidades según las expresiones que indican cantidad.
+
+<br>
 
 ### 4.1 Relaciones de generalización
 
@@ -451,6 +542,8 @@ Incorporar un método de registro en cada clase dispersaría la lógica y contra
 | `Contenido` | `Material`, `Tarea` | RF06 y RF07 los tratan conjuntamente, pero RF08, RF09 y RF10 aplican exclusivamente a las tareas. |
 
 **Observación:** la cuenta de acceso del alumno no se modela como especialización de `Usuario`. Un alumno no *es* un usuario del sistema: *tiene* una cuenta asociada, y puede existir sin ella.
+
+<br>
 
 ### 4.2 Asociaciones entre clases
 
@@ -464,6 +557,8 @@ Incorporar un método de registro en cada clase dispersaría la lógica y contra
 | Usuario — Informe | 1 ←→ 0..\* | RF11-RF13, RF19, RF22 | Todo informe registra quién lo generó, conforme a NRF10. |
 | Taller — Informe | 0..1 ←→ 0..\* | RF11: "informes de asistencia por taller" | **0..1** porque no todos los informes refieren a un taller: el listado de alumnos (RF19) y el de talleristas (RF22) son de alcance global. |
 | Usuario — RegistroTrazabilidad | 1 ←→ 0..\* | NRF10 | Toda acción registrada corresponde al usuario que la ejecutó. |
+
+<br>
 
 ### 4.3 Composiciones
 
@@ -483,6 +578,8 @@ Las siguientes relaciones se modelan como composición porque la parte carece de
 
 **Justificación de la restricción de exclusividad de Adjunto:** las dos composiciones apuntan a la misma clase, pero un archivo concreto proviene de un solo origen. Un adjunto pertenece a un contenido **o** a una entrega, nunca a ambos ni a ninguno. Esta restricción es la que permite al método `obtenerUrlDescarga()` determinar el directorio base correspondiente.
 
+<br>
+
 ### 4.4 Restricciones de unicidad identificadas
 
 | Restricción | Origen | Consecuencia en el modelo |
@@ -492,6 +589,8 @@ Las siguientes relaciones se modelan como composición porque la parte carece de
 | Una jornada de asistencia por taller y fecha | RF05: "consultar y modificar la asistencia registrada por taller y fecha" | `Asistencia` única por par taller-fecha. Admitir duplicados haría ambigua la consulta. |
 | Un registro por alumno dentro de cada jornada | RF04, RF05 | `RegistroAsistencia` única por par jornada-alumno. Sin ella, un alumno podría figurar simultáneamente como presente y ausente. |
 | Una entrega por alumno y tarea | RF10: "asignar una nota a cada alumno por tarea" | `Entrega` única por par tarea-alumno. Con múltiples entregas resultaría ambiguo cuál calificar. |
+
+<br>
 
 ### 4.5 Clases asociativas incorporadas
 
@@ -506,11 +605,15 @@ Dos relaciones muchos a muchos requieren atributos propios, por lo que se modela
 
 ---
 
+<br><br>
+
 ## Paso 5 — Traducción al modelo relacional
 
 **Técnica:** cada clase persistente se traduce a una tabla, las herencias se resuelven mediante una estrategia de mapeo, y las relaciones muchos a muchos se convierten en tablas intermedias.
 
 > **Alcance de este paso:** se documentan las decisiones de mapeo y sus fundamentos. La definición detallada de tipos de datos, longitudes, enumeraciones e índices se encuentra en el script `inau_talleres.sql`, comentado en su totalidad.
+
+<br>
 
 ### 5.1 Reglas de mapeo aplicadas
 
@@ -526,6 +629,8 @@ Dos relaciones muchos a muchos requieren atributos propios, por lo que se modela
 | Restricción de unicidad | Restricción `UNIQUE` sobre las columnas involucradas |
 
 **Justificación de la regla de las claves foráneas:** en toda relación uno a muchos, la clave se ubica del lado "muchos". Situarla del lado "uno" obligaría a que una fila contuviera múltiples referencias, algo que el modelo relacional no admite.
+
+<br>
 
 ### 5.2 Estrategia de mapeo de la herencia
 
@@ -544,6 +649,8 @@ Existen tres formas estándar de traducir una jerarquía de herencia. La elecci�
 **Justificación para `Contenido`:** RF07 requiere que el alumno visualice "el material y las tareas de su taller" en una misma vista. Con tablas separadas, esa consulta exigiría una operación de unión en cada acceso. El único atributo que queda nulo es `fechaLimite`, vacío en los materiales.
 
 **Contrapartida asumida:** la tabla única no permite garantizar desde la base de datos que una entrega apunte a un contenido de tipo Tarea, ni que un administrador tenga especialidad nula. Estas validaciones se trasladan a la capa de aplicación (ver 5.7).
+
+<br>
 
 ### 5.3 Correspondencia entre clases y tablas
 
@@ -569,6 +676,8 @@ Existen tres formas estándar de traducir una jerarquía de herencia. La elecci�
 
 **Resultado:** las 15 clases y 2 clases asociativas se traducen a **13 tablas** (11 de entidad y 2 intermedias), dado que cuatro subclases quedan absorbidas en las tablas de sus clases padre. Todas las clases del modelo cuentan con correspondencia en el modelo físico, y no existen tablas sin clase de origen.
 
+<br>
+
 ### 5.4 Traducción de las asociaciones
 
 | Relación UML | Implementación | Observación |
@@ -587,6 +696,8 @@ Existen tres formas estándar de traducir una jerarquía de herencia. La elecci�
 | Taller ←→ Informe | `reportes.taller_id` nulable | Nulable porque los informes globales no refieren a ningún taller |
 | Usuario ←→ RegistroTrazabilidad | `trazabilidad.usuario_id` | — |
 
+<br>
+
 ### 5.5 Traducción de la restricción de exclusividad de Adjunto
 
 La asociación excluyente se traduce mediante dos claves foráneas nulables acompañadas de una restricción de verificación:
@@ -602,9 +713,13 @@ CONSTRAINT chk_adjuntos_origen CHECK (
 
 **Limitación:** las restricciones de verificación requieren MySQL 8.0 o superior. En versiones anteriores se ignoran sin generar error, por lo que la validación debe replicarse en la capa de aplicación.
 
+<br>
+
 ### 5.6 Identificadores
 
 El modelo conceptual identifica los objetos por su existencia; el relacional requiere una clave primaria explícita. Se incorpora una columna `id` numérica autoincremental en todas las tablas, en lugar de emplear la cédula como clave, para mantener uniformidad entre tablas y eficiencia en las operaciones de unión.
+
+<br>
 
 ### 5.7 Reglas que el modelo relacional no puede expresar
 
@@ -620,6 +735,8 @@ Cuatro reglas del modelo carecen de traducción directa y deben implementarse en
 **Justificación de por qué se aceptan estas limitaciones:** las cuatro derivan de decisiones de mapeo deliberadas —tabla única para las herencias, y separación entre la ficha del alumno y su cuenta de acceso— adoptadas por sus ventajas en las consultas y en el proceso de autenticación. Trasladar estas validaciones a la aplicación es el costo asumido a cambio.
 
 **Observación sobre la duplicación de datos personales:** se origina en la decisión de modelar al alumno como entidad administrada independiente de su cuenta, dado que el administrador puede registrarlo antes de otorgarle acceso (RF02) y el listado de alumnos debe funcionar en ambos casos (RF19). Para minimizar el riesgo de desincronización, se establece como regla del proyecto que ninguna operación modifique estos campos mediante instrucciones directas, sino exclusivamente a través de la función designada.
+
+<br>
 
 ### 5.8 Decisiones propias del modelo relacional
 

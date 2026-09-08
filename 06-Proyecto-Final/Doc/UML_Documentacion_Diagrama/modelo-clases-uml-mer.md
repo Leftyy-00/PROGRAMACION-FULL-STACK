@@ -8,11 +8,7 @@ Este documento presenta el modelo de clases resultante y su traducción al model
 
 ---
 
-<br>
-
 ## 1. Clases del modelo
-
-<br>
 
 ### 1.1 Usuario *(abstracta)*
 
@@ -20,15 +16,11 @@ Este documento presenta el modelo de clases resultante y su traducción al model
 |---|---|
 | `cedula`, `claveHash`, `nombre`, `apellido`, `correo`, `telefono`, `rol`, `estado`, `fechaRegistro`, `ultimoAcceso` | `autenticar()`, `modificarContrasena()`, `modificarDatosPersonales()`, `obtenerRol()`, `darDeBaja()` |
 
-<br>
-
 ### 1.2 Administrador *(hereda de Usuario)*
 
 | Atributos | Métodos |
 |---|---|
 | — | `crearUsuario()`, `modificarUsuario()`, `eliminarUsuario()`, `consultarUsuario()`, `crearTaller()`, `modificarTaller()`, `eliminarTaller()`, `asignarAlumnoATaller()`, `asignarTalleristaATaller()`, `consultarDatosSensibles()`, `generarInformeAsistencia()`, `generarInformeTalleres()`, `generarListadoAlumnos()`, `generarInformeTalleristas()`, `exportarInforme()`, `generarInformeCalificaciones()` **(v2)**, `generarInformeDetalladoAlumnos()` **(v2)** |
-
-<br>
 
 ### 1.3 Tallerista *(hereda de Usuario)*
 
@@ -36,15 +28,11 @@ Este documento presenta el modelo de clases resultante y su traducción al model
 |---|---|
 | `especialidad` | `registrarAsistencia()`, `consultarAsistencia()`, `modificarAsistencia()`, `subirMaterial()`, `crearTarea()`, `eliminarMaterial()`, `corregirTarea()`, `asignarNota()`, `eliminarNota()`, `consultarAlumnosDeTaller()`, `eliminarAsistencia()` **(v2)**, `modificarContenido()` **(v2)** |
 
-<br>
-
 ### 1.4 Alumno
 
 | Atributos | Métodos |
 |---|---|
 | `cedula`, `nombre`, `apellido`, `estado`, `fechaIngreso`, `fechaNacimiento` **(v2)**, `correo` **(v2)**, `telefono` **(v2)**, `direccion` **(v2)**, `referenteAdulto` **(v2)**, `centroReferencia` **(v2)**, `observaciones` **(v2)**, `foto` **(v2)**, `biografia` **(v2)** | `visualizarMaterial()`, `visualizarTareas()`, `entregarTarea()`, `visualizarNotas()` **(v2)**, `eliminarDatoPerfil()` **(v2)** |
-
-<br>
 
 ### 1.5 Taller
 
@@ -52,15 +40,11 @@ Este documento presenta el modelo de clases resultante y su traducción al model
 |---|---|
 | `nombre`, `tematica`, `descripcion`, `centro`, `direccion`, `salon`, `fechaInicio`, `fechaFin`, `estado`, `observaciones` | `obtenerAlumnos()`, `obtenerTalleristas()`, `obtenerContenidos()`, `obtenerHorarios()`, `estaActivo()` |
 
-<br>
-
 ### 1.6 Horario
 
 | Atributos | Métodos |
 |---|---|
 | `dia`, `horaInicio`, `horaFin` | — |
-
-<br>
 
 ### 1.7 Asistencia *(jornada)*
 
@@ -68,15 +52,11 @@ Este documento presenta el modelo de clases resultante y su traducción al model
 |---|---|
 | `fecha` | `agregarRegistro()`, `modificarRegistro()`, `contarPresentes()`, `estaCompleta()` |
 
-<br>
-
 ### 1.8 RegistroAsistencia *(detalle por alumno)*
 
 | Atributos | Métodos |
 |---|---|
-| `estado`, `observaciones`, `usuarioRegistro` | `cambiarEstado()` |
-
-<br>
+| `estado`, `observaciones` | `cambiarEstado()` |
 
 ### 1.9 Contenido *(abstracta)*
 
@@ -84,15 +64,11 @@ Este documento presenta el modelo de clases resultante y su traducción al model
 |---|---|
 | `titulo`, `descripcion`, `fechaPublicacion` | `obtenerAdjuntos()`, `agregarAdjunto()`, `eliminar()` |
 
-<br>
-
 ### 1.10 Material *(hereda de Contenido)*
 
 | Atributos | Métodos |
 |---|---|
 | — | — |
-
-<br>
 
 ### 1.11 Tarea *(hereda de Contenido)*
 
@@ -100,15 +76,11 @@ Este documento presenta el modelo de clases resultante y su traducción al model
 |---|---|
 | `consigna`, `fechaLimite` | `obtenerEntregas()`, `estaVencida()`, `obtenerEntregaDe()` |
 
-<br>
-
 ### 1.12 Entrega
 
 | Atributos | Métodos |
 |---|---|
 | `fechaEntrega`, `estado`, `nota`, `comentarioCorreccion` | `registrarEnvio()`, `asignarNota()`, `eliminarNota()`, `agregarComentario()`, `obtenerAdjuntos()`, `fueEntregadaATiempo()` |
-
-<br>
 
 ### 1.13 Adjunto
 
@@ -116,23 +88,17 @@ Este documento presenta el modelo de clases resultante y su traducción al model
 |---|---|
 | `nombreOriginal`, `nombreArchivo`, `ruta`, `tipoMime`, `tamanoBytes`, `fechaSubida` | `validarFormato()`, `validarTamano()`, `generarNombreSeguro()`, `obtenerUrlDescarga()` |
 
-<br>
-
 ### 1.14 Informe
 
 | Atributos | Métodos |
 |---|---|
 | `nombre`, `tipo`, `fechaInicio`, `fechaFin`, `fechaGeneracion`, `formato`, `estado`, `contenido` | `exportarPDF()`, `exportarExcel()`, `obtenerContenido()` |
 
-<br>
-
 ### 1.15 RegistroTrazabilidad
 
 | Atributos | Métodos |
 |---|---|
 | `accion`, `entidad`, `entidadId`, `fecha`, `detalle` | — |
-
-<br>
 
 ### 1.16 Clases asociativas
 
@@ -142,8 +108,6 @@ Este documento presenta el modelo de clases resultante y su traducción al model
 | `Inscripcion` | Taller ←→ Alumno | `fechaInscripcion` |
 
 ---
-
-<br><br>
 
 ## 2. Relaciones
 
@@ -158,6 +122,7 @@ Este documento presenta el modelo de clases resultante y su traducción al model
 | Taller | Asistencia | Composición | 1 ◆— 0..\* | — |
 | Asistencia | RegistroAsistencia | Composición | 1 ◆— 1..\* | — |
 | RegistroAsistencia | Alumno | Asociación | 0..\* ←→ 1 | — |
+| RegistroAsistencia | Usuario | Asociación | 0..\* ←→ 1 | — |
 | Taller | Contenido | Composición | 1 ◆— 0..\* | — |
 | Tarea | Entrega | Composición | 1 ◆— 0..\* | — |
 | Alumno | Entrega | Asociación | 1 ←→ 0..\* | — |
@@ -167,11 +132,9 @@ Este documento presenta el modelo de clases resultante y su traducción al model
 | Taller | Informe | Asociación | 0..1 ←→ 0..\* | — |
 | Usuario | RegistroTrazabilidad | Asociación | 1 ←→ 0..\* | — |
 
-**Totales:** 15 clases, 2 clases asociativas, 2 generalizaciones, 7 composiciones y 8 asociaciones simples.
+**Totales:** 15 clases, 2 clases asociativas, 2 generalizaciones, 7 composiciones y 9 asociaciones simples.
 
 ---
-
-<br><br>
 
 ## 3. Restricciones de unicidad
 
@@ -186,17 +149,11 @@ Este documento presenta el modelo de clases resultante y su traducción al model
 
 ---
 
-<br>
-
 ## 4. Traducción al modelo relacional
-
-<br>
 
 ### 4.1 Estrategia adoptada
 
 Las dos jerarquías de herencia (`Usuario` y `Contenido`) se implementan mediante **tabla única con columna discriminadora**: `usuarios.rol` y `contenidos.tipo`.
-
-<br>
 
 ### 4.2 Correspondencia clases-tablas
 
@@ -224,8 +181,6 @@ Las dos jerarquías de herencia (`Usuario` y `Contenido`) se implementan mediant
 
 ---
 
-<br><br>
-
 ## 5. Reglas delegadas a la capa de aplicación
 
 Cuatro reglas del modelo no pueden expresarse en la base de datos y deben implementarse en el backend.
@@ -240,8 +195,6 @@ Cuatro reglas del modelo no pueden expresarse en la base de datos y deben implem
 **Regla de proyecto:** ninguna operación debe modificar los campos duplicados mediante instrucciones directas. Toda actualización se realiza a través de una única función que escriba en ambas tablas dentro de la misma transacción.
 
 ---
-
-<br><br>
 
 ## 6. Elementos correspondientes a la fase 2
 
@@ -259,17 +212,15 @@ Estos elementos figuran en el modelo para reflejar el diseño completo del siste
 
 ---
 
-<br><br>
+<br>
 
 ## 7. Tabla de trazabilidad general: entidad ↔ requerimiento ↔ historia de usuario
-
-<br>
 
 | Entidad/Clase | RF de origen | NRF relacionados | HU de origen | Épica |
 |---|---|---|---|---|
 | `Usuario` *(abstracta)* | RF01, RF02, RF14 | NRF07, NRF08, NRF09 | HU01, HU02, HU20 | EP1, EP2, EP6 |
-| `Administrador` | RF02, RF03, RF24 | NRF07 | HU02, HU03, HU04 | EP2 |
-| `Tallerista` | RF06, RF09, RF10, RF16, RF17, RF22, RF25 | NRF07 | HU05, HU08, HU11, HU12, HU13, HU14, HU19 | EP2, EP3, EP4 |
+| `Administrador` | RF02, RF03, RF11, RF12, RF13, RF19, RF22, RF24 | NRF03, NRF07 | HU02, HU03, HU04, HU15, HU16, HU17, HU18, HU19 | EP2, EP5 |
+| `Tallerista` | RF04, RF05, RF06, RF09, RF10, RF16, RF17, RF22, RF25 | NRF05, NRF07 | HU05, HU06, HU07, HU08, HU11, HU12, HU13, HU14, HU19 | EP2, EP3, EP4, EP5 |
 | `Alumno` | RF02, RF07, RF08, RF19 | NRF08 | HU02, HU09, HU10, HU18 | EP2, EP4, EP5 |
 | `Taller` | RF02, RF03, RF12 | NRF09 | HU02, HU03, HU16 | EP2, EP5 |
 | `Horario` | RF02 | — | HU02 | EP2 |
@@ -285,15 +236,15 @@ Estos elementos figuran en el modelo para reflejar el diseño completo del siste
 | `AsignacionTallerista` *(asociativa)* | RF03 | — | HU03 | EP2 |
 | `Inscripcion` *(asociativa)* | RF03 | — | HU03 | EP2 |
 
-<br>
-
 ### Aclaraciones sobre casos particulares
+
+**Un mismo requerimiento puede figurar en dos clases.** Los requerimientos que describen una acción se asignan tanto a la clase que la ejecuta como a aquella sobre la que opera. RF11, por ejemplo, aparece en `Administrador` —donde reside el método `generarInformeAsistencia()`— y en `Informe`, que es el objeto producido. La duplicación es deliberada: refleja el criterio de asignación de métodos establecido en el Paso 3 de la derivación, según el cual quien inicia una acción y aquello sobre lo que actúa constituyen elementos distintos del modelo.
 
 **`RegistroTrazabilidad` es la única clase sin RF ni HU de origen.** Deriva exclusivamente de NRF10 y no corresponde a ninguna épica, ya que su registro se activa transversalmente en operaciones de todas ellas.
 
 **`Usuario` abarca tres épicas** porque concentra elementos de origen diverso: la autenticación (EP1), su gestión como entidad administrada (EP2) y la edición del perfil propio (EP6).
 
-**`Tallerista` es la clase con mayor dispersión**, al participar en gestión de usuarios (EP2), asistencia (EP3) y contenidos (EP4). Refleja que es el rol con más operaciones asignadas en el sistema.
+**`Tallerista` es la clase con mayor dispersión**, al participar en gestión de usuarios (EP2), asistencia (EP3), contenidos (EP4) e informes (EP5, como objeto del informe de talleristas). Refleja que es el rol con más operaciones asignadas en el sistema.
 
 **`Contenido`, `Material` y `Tarea` comparten RF de origen** porque RF06 y RF07 los mencionan conjuntamente. La diferencia aparece en RF08, RF09 y RF10, exclusivos de `Tarea`.
 
@@ -303,7 +254,7 @@ Estos elementos figuran en el modelo para reflejar el diseño completo del siste
 
 ---
 
-<br><br>
+<br>
 
 ## 8. Diagrama de clases
 
@@ -423,7 +374,6 @@ classDiagram
     class RegistroAsistencia {
         +EstadoAsistencia estado
         +String observaciones
-        +int usuarioRegistro
         +cambiarEstado(nuevoEstado, usuarioId) void
     }
 
@@ -523,6 +473,7 @@ classDiagram
 
     Asistencia "1" *-- "1..*" RegistroAsistencia : detalla
     RegistroAsistencia "0..*" -- "1" Alumno : corresponde a
+    RegistroAsistencia "0..*" -- "1" Usuario : registrado por
 
     Tarea "1" *-- "0..*" Entrega : recibe
     Alumno "1" -- "0..*" Entrega : realiza
@@ -549,8 +500,6 @@ classDiagram
 
 **Enumeraciones.** Los tipos `Rol`, `Estado`, `EstadoAsistencia` y `EstadoEntrega` corresponden a conjuntos cerrados de valores documentados en el script de base de datos. No se representan como clases independientes por carecer de atributos y comportamiento propios.
 
----
-
 ### Leyenda de símbolos
 
 | Símbolo | Significado |
@@ -564,11 +513,11 @@ classDiagram
 
 ---
 
-<br><br>
+<br>
 
 ## 9. Modelo Entidad-Relación (MER)
 
-Cada clase persistente del diagrama de clases se traduce a una tabla. Las clases asociativas (`AsignacionTallerista`, `Inscripcion`) se convierten en tablas intermedias por representar relaciones muchos a muchos con atributos propios. Las jerarquías de herencia se resuelven mediante tabla única con columna discriminadora: `usuarios.rol` y `contenidos.tipo`.
+Cada clase persistente del diagrama de clases se traduce a una tabla, según la correspondencia detallada en la sección 4.2. Las clases asociativas (`AsignacionTallerista`, `Inscripcion`) se convierten en tablas intermedias por representar relaciones muchos a muchos con atributos propios. Las jerarquías de herencia se resuelven mediante tabla única con columna discriminadora: `usuarios.rol` y `contenidos.tipo`.
 
 ```mermaid
 erDiagram
@@ -589,6 +538,7 @@ erDiagram
     ALUMNOS ||--o{ ENTREGAS : "realiza"
 
     ASISTENCIAS ||--o{ REGISTROS_ASISTENCIA : "detalla"
+    USUARIOS ||--o{ REGISTROS_ASISTENCIA : "registra"
     CONTENIDOS ||--o{ ENTREGAS : "recibe"
     CONTENIDOS |o--o{ ADJUNTOS : "incluye"
     ENTREGAS |o--o{ ADJUNTOS : "incluye"
@@ -671,6 +621,7 @@ erDiagram
         int id PK
         int asistencia_id FK "UK con alumno_id"
         int alumno_id FK
+        int usuario_registro FK
         enum estado "Presente | Ausente | Justificado | Tardanza"
         text observaciones "NULL"
     }
@@ -739,8 +690,6 @@ erDiagram
 **Exclusividad de `ADJUNTOS`.** Las columnas `contenido_id` y `entrega_id` figuran como claves foráneas nulables, pero el diagrama no puede expresar que sean mutuamente excluyentes. La restricción se implementa mediante una verificación en la base de datos y se justifica en el anexo.
 
 **Tipos de dato y longitudes.** Se indica el tipo general de cada columna. Las longitudes exactas, valores por defecto e índices se encuentran definidos en el script `inau_talleres.sql`.
-
----
 
 ### Leyenda de la notación
 
