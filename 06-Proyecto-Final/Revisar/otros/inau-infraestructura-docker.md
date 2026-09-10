@@ -4,7 +4,7 @@
 
 ---
 
-> Este documento define el entorno de desarrollo/despliegue en contenedores para el sistema de **TheNewfutures**, usando **HTML + CSS + JS** en el frontend (`frontend-admin`, `frontend-tallerista`, `frontend-alumno`), **PHP** en el backend y **MySQL** como base de datos. Se resuelve con `docker compose` para reemplazar el uso actual de **XAMPP o servidor local** (mencionado como entorno de ejecución durante el desarrollo en `docs/PrimeraVista.md`, sección "Entorno técnico"), de forma que los 5 integrantes del equipo trabajen con el mismo entorno sin instalar XAMPP cada uno por su cuenta, y el proyecto quede listo para moverse a un hosting externo cuando INAU lo requiera.
+> Este documento define el entorno de desarrollo/despliegue en contenedores para el sistema de **TheNewfutures**, usando **HTML + CSS + JS** en el frontend (`frontend-admin`, `frontend-tallerista`, `frontend-alumno`), **PHP** en el backend y **MySQL** como base de datos. Se resuelve con `docker compose` para reemplazar el uso actual de **XAMPP o servidor local** (mencionado como entorno de ejecución durante el desarrollo en `docs/03-diseño/Justificacion Tecnologica.md`, sección 1.3), de forma que los 5 integrantes del equipo trabajen con el mismo entorno sin instalar XAMPP cada uno por su cuenta, y el proyecto quede listo para moverse a un hosting externo cuando INAU lo requiera.
 
 ---
 
@@ -12,49 +12,54 @@
 
 | Decisión | Justificación |
 |---|---|
-| PHP + Apache en vez de un framework pesado | El equipo son 5 estudiantes de 3.º BT Informática con un plazo de 16 semanas (Charter del proyecto). PHP corre sin build step adicional, es lo que ya está definido como backend en `docs/PrimeraVista.md` ("PHP para el backend", "MySQL para la base de datos"), y es ampliamente soportado por hostings económicos — relevante porque INAU, como organismo público, no necesariamente cuenta con infraestructura de servidor dedicada. |
-| Frontend HTML + CSS + JS servido por el mismo contenedor PHP (sin SPA/build) | NRF01 "diseño responsive, adaptándose a computadora, tablet y teléfono"; el frontend ya está construido así (Bootstrap + CSS propio, sin framework de JS), consistente con la decisión ya tomada por el equipo en `docs/PrimeraVista.md` §14.3 ("Bootstrap como base"). |
-| Un único punto de login (`index.html` + `js/auth.js` en la raíz) | Corresponde exactamente a la decisión ya documentada por el equipo en `docs/PrimeraVista.md` §14.1: *"No se crearán páginas de acceso separadas por rol. El backend identificará al usuario y lo redirigirá al panel correspondiente."* El contenedor `web` sirve ese `index.html` como raíz del document root. |
+| PHP + Apache en vez de un framework pesado | El equipo son 5 estudiantes de 3.º BT Informática con un plazo de 12 semanas (Charter del proyecto). PHP corre sin build step adicional, es lo que ya está definido como backend en `docs/03-diseño/Justificacion Tecnologica.md`, sección 1.2 ("PHP para el backend", "MySQL para la base de datos"), y es ampliamente soportado por hostings económicos — relevante porque INAU, como organismo público, no necesariamente cuenta con infraestructura de servidor dedicada. |
+| Frontend HTML + CSS + JS servido por el mismo contenedor PHP (sin SPA/build) | NRF01 "diseño responsive, adaptándose a computadora, tablet y teléfono"; el frontend ya está construido así (Bootstrap + CSS propio, sin framework de JS), consistente con la decisión ya tomada por el equipo en `docs/03-diseño/Justificacion Tecnologica.md`, sección 1.1 (Bootstrap como base). |
+| Un único punto de login (`index.html` en la raíz) | Corresponde exactamente a la decisión ya documentada por el equipo en `docs/03-diseño/Justificacion Tecnologica.md`, sección 3: *"En lugar de tres pantallas de acceso independientes, existe un único `index.html`. El backend identificará el rol del usuario autenticado y lo redirigirá al panel correspondiente."* El contenedor `web` sirve ese `index.html` como raíz del document root. |
 | MySQL en contenedor separado con volumen persistente | NRF09 "garantizar la persistencia confiable de los datos en una base de datos relacional". Aísla los datos del ciclo de vida del contenedor de aplicación. |
-| phpMyAdmin como servicio opcional | Facilita a los talleristas/administradores del equipo de desarrollo inspeccionar datos durante la etapa de pruebas, sin instalar un cliente MySQL aparte. |
+| phpMyAdmin como servicio opcional | Facilita al equipo de desarrollo inspeccionar datos durante la etapa de pruebas, sin instalar un cliente MySQL aparte. |
 | Variables sensibles vía `.env` (no hardcodeadas) | NRF08 "proteger los datos personales de los usuarios" — las credenciales de base de datos no deben quedar en el repositorio ni en la imagen. |
-| Backend separado del frontend a nivel de código (carpeta `backend/`) | NRF06 "arquitectura separada entre frontend y backend". El frontend (`frontend-admin/`, `frontend-tallerista/`, `frontend-alumno/`) sigue siendo HTML/JS estático que consume los endpoints PHP de `backend/api/`, tal como ya prevé el propio código actual (los `main.js` de cada panel están preparados para reemplazar los archivos `mock/` por la API real cuando el backend esté listo). |
+| Backend separado del frontend a nivel de código (carpeta `backend/`) | NRF06 "arquitectura separada entre frontend y backend". El frontend (`frontend-admin/`, `frontend-tallerista/`, `frontend-alumno/`) sigue siendo HTML/JS estático que consume los endpoints PHP de `backend/api/`, tal como ya prevé el propio código actual (los `main.js` de cada panel están preparados para reemplazar los archivos de datos simulados por la API real cuando el backend esté listo). |
 
 ---
 
 ## 2. Estructura de carpetas del proyecto
 
-Esta estructura respeta la que ya existe en el repositorio (`frontend/`, `index.html`, `js/`, `backend/`), agregando solamente lo necesario para levantar el stack:
+Esta estructura respeta la que ya existe en el repositorio, agregando solamente lo necesario para levantar el stack:
 
 ```
 proyecto-convenio-INAU/
 ├── docker-compose.yml
 ├── .env                        # NO se commitea (ver .gitignore)
 ├── .env.example                # plantilla versionada
-├── db/
-│   └── init/
-│       └── 001_schema.sql      # DDL inicial (ver sección 8, a completar con el MER final del equipo)
 ├── php/
 │   ├── Dockerfile
 │   └── php.ini
 ├── index.html                  # login único (ya existe) — punto de entrada de todos los roles
-├── js/
-│   └── auth.js                 # hoy valida contra USUARIOS_DEMO; pasa a llamar a backend/api/login.php
+├── docs/                       # documentación organizada por etapa
 ├── frontend/
 │   ├── frontend-admin/
+│   │   ├── css/  js/           # incluye auth.js, hoy con usuarios de demostración
+│   │   └── 11 páginas HTML
 │   ├── frontend-tallerista/
-│   └── frontend-alumno/        # pendiente de JS propio (ver docs/informe-sast.md)
+│   │   ├── css/  js/
+│   │   └── 9 páginas HTML
+│   └── frontend-alumno/
+│       ├── css/
+│       └── 7 páginas HTML      # pendiente de lógica JavaScript propia
 └── backend/
+    ├── DataBase/
+    │   └── inau_talleres.sql   # esquema real, ejecutado al inicializar el contenedor
     ├── api/
     │   ├── login.php
     │   ├── talleres.php
     │   ├── asistencias.php
-    │   ├── tareas.php
+    │   ├── contenidos.php
+    │   ├── entregas.php
     │   ├── informes.php
     │   └── perfil.php
     └── includes/
         ├── conexion.php
-        └── sesion.php          # equivalente en PHP de verificarSesion() (NRF07)
+        └── sesion.php          # control de acceso por rol en el servidor (NRF07)
 ```
 
 ---
@@ -67,7 +72,7 @@ services:
     build:
       context: ./php
       dockerfile: Dockerfile
-    container_name: inau_tallerista_web
+    container_name: inau_talleres_web
     restart: unless-stopped
     ports:
       - "${APP_PORT:-8080}:80"
@@ -84,11 +89,11 @@ services:
       db:
         condition: service_healthy
     networks:
-      - tallerista_net
+      - talleres_net
 
   db:
     image: mysql:8.0
-    container_name: inau_tallerista_db
+    container_name: inau_talleres_db
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -102,7 +107,7 @@ services:
       --default-time-zone=-03:00
     volumes:
       - db_data:/var/lib/mysql
-      - ./db/init:/docker-entrypoint-initdb.d:ro
+      - ./backend/DataBase:/docker-entrypoint-initdb.d:ro
     ports:
       - "127.0.0.1:3306:3306"   # expuesto solo en localhost, no hacia afuera (NRF08)
     healthcheck:
@@ -111,11 +116,11 @@ services:
       timeout: 5s
       retries: 10
     networks:
-      - tallerista_net
+      - talleres_net
 
   phpmyadmin:
     image: phpmyadmin:5
-    container_name: inau_tallerista_phpmyadmin
+    container_name: inau_talleres_phpmyadmin
     restart: unless-stopped
     environment:
       PMA_HOST: db
@@ -127,12 +132,12 @@ services:
       db:
         condition: service_healthy
     networks:
-      - tallerista_net
+      - talleres_net
     profiles:
       - herramientas   # se levanta solo con: docker compose --profile herramientas up
 
 networks:
-  tallerista_net:
+  talleres_net:
     driver: bridge
 
 volumes:
@@ -144,7 +149,8 @@ volumes:
 
 | Elemento | Justificación |
 |---|---|
-| `web` monta la raíz del proyecto (`./:/var/www/html`) | El document root necesita servir `index.html`, `js/auth.js` y `frontend/` como estático, y `backend/api/*.php` como endpoints, tal como ya está organizado el repositorio actual — no hace falta mover archivos a una carpeta `public/` nueva. |
+| `web` monta la raíz del proyecto (`./:/var/www/html`) | El document root necesita servir `index.html` y `frontend/` como estático, y `backend/api/*.php` como endpoints, tal como ya está organizado el repositorio actual — no hace falta mover archivos a una carpeta `public/` nueva. |
+| `db` monta `./backend/DataBase` como directorio de inicialización | MySQL ejecuta automáticamente los scripts `.sql` de esa carpeta en el primer arranque, de modo que el esquema real del proyecto se aplica sin mantener una copia paralela. |
 | `db` con `ports: 127.0.0.1:3306:3306` | El puerto de MySQL solo se expone en la máquina local del desarrollador (para administración/debug con un cliente MySQL propio), nunca hacia la red externa — NRF08. |
 | `healthcheck` en `db` + `depends_on: condition: service_healthy` en `web` | Evita que Apache/PHP arranque antes de que MySQL esté listo, reduciendo errores intermitentes de conexión — NRF03 (respuesta rápida) desde el primer arranque. |
 | `phpmyadmin` bajo `profiles: [herramientas]` | No se levanta por defecto (reduce superficie de ataque); el equipo lo activa solo cuando necesita inspeccionar datos. |
@@ -165,8 +171,8 @@ APP_PORT=8080
 PMA_PORT=8081
 
 MYSQL_ROOT_PASSWORD=CAMBIAR_ESTA_CLAVE_ROOT
-MYSQL_DATABASE=inau_tallerista
-MYSQL_APP_USER=tallerista_app
+MYSQL_DATABASE=inau_talleres
+MYSQL_APP_USER=talleres_app
 MYSQL_APP_PASSWORD=CAMBIAR_ESTA_CLAVE_APP
 ```
 
@@ -187,7 +193,7 @@ FROM php:8.2-apache
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 # Configuración propia de PHP (uploads, límites, zona horaria)
-COPY php.ini /usr/local/etc/php/conf.d/tallerista.ini
+COPY php.ini /usr/local/etc/php/conf.d/talleres.ini
 
 # Apache: permitir .htaccess y activar mod_rewrite
 RUN a2enmod rewrite
@@ -201,19 +207,20 @@ WORKDIR /var/www/html
 ```ini
 date.timezone = America/Montevideo
 
-; NRF11/NRF12: adjuntos de tareas/material restringidos a PDF y JPG,
-; con tamaño máximo acotado. El límite del servidor es la primera barrera;
-; el tipo de archivo (PDF/JPG) igual debe validarse explícitamente en PHP
-; (extensión + tipo MIME real), nunca confiar solo en esta configuración.
-upload_max_filesize = 5M
-post_max_size = 6M
+; NRF11/NRF12: adjuntos de tareas/material restringidos a PDF, imágenes JPG
+; y documentos de oficina (DOCX, XLSX, PPTX), con tamaño máximo acotado.
+; El límite del servidor es la primera barrera; el tipo de archivo igual debe
+; validarse explícitamente en PHP (extensión + tipo MIME real), nunca confiar
+; solo en esta configuración.
+upload_max_filesize = 10M
+post_max_size = 12M
 
 memory_limit = 128M
 display_errors = Off
 log_errors = On
 error_log = /var/log/apache2/php_errors.log
 
-; Sesiones (equivalente en el backend de sesionActiva/usuarioActual del frontend)
+; Sesiones (equivalente en el backend del control de sesión del frontend)
 session.cookie_httponly = 1
 session.cookie_samesite = "Lax"
 ```
@@ -234,8 +241,8 @@ function obtenerConexion(): mysqli
 {
     $host     = getenv('DB_HOST')     ?: 'db';
     $puerto   = (int) (getenv('DB_PORT') ?: 3306);
-    $base     = getenv('DB_NAME')     ?: 'inau_tallerista';
-    $usuario  = getenv('DB_USER')     ?: 'tallerista_app';
+    $base     = getenv('DB_NAME')     ?: 'inau_talleres';
+    $usuario  = getenv('DB_USER')     ?: 'talleres_app';
     $password = getenv('DB_PASSWORD') ?: '';
 
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
@@ -249,7 +256,7 @@ function obtenerConexion(): mysqli
 
 ### `backend/includes/sesion.php` — NRF07, control de acceso por rol
 
-Es el equivalente en el servidor de la función `verificarSesion()` que ya existe en `frontend-admin/js/main.js` y `frontend-tallerista/js/main.js` (ver `docs/CAMBIOS-SEGURIDAD.md`). El frontend bloquea la *navegación*; esto bloquea el *dato*, que es lo que realmente importa una vez que exista una API real.
+Es el equivalente en el servidor de la verificación de sesión que ya realiza el `main.js` de cada panel. El frontend bloquea la *navegación*; esto bloquea el *dato*, que es lo que realmente importa una vez que exista una API real.
 
 ```php
 <?php
@@ -282,16 +289,19 @@ require_once __DIR__ . '/../includes/conexion.php';
 require_once __DIR__ . '/../includes/sesion.php';
 
 // NRF07: solo un tallerista autenticado puede registrar/consultar asistencia
-$usuario = requerirRol('Tallerista');
+$usuario = requerirRol('tallerista');
 
 $conexion = obtenerConexion();
 $tallerId = (int) ($_GET['taller_id'] ?? 0);
 $fecha    = $_GET['fecha'] ?? date('Y-m-d');
 
+// La asistencia se estructura en dos niveles: la jornada (asistencias) y el
+// estado de cada alumno dentro de ella (registros_asistencia).
 $consulta = $conexion->prepare(
-    'SELECT a.id, al.nombre, al.apellido, a.presente
-     FROM asistencias a
-     JOIN alumnos al ON al.id = a.alumno_id
+    'SELECT r.id, al.nombre, al.apellido, r.estado
+     FROM registros_asistencia r
+     JOIN asistencias a ON a.id = r.asistencia_id
+     JOIN alumnos al ON al.id = r.alumno_id
      WHERE a.taller_id = ? AND a.fecha = ?
      ORDER BY al.apellido'
 );
@@ -302,13 +312,12 @@ $resultado = $consulta->get_result();
 $filas = [];
 while ($fila = $resultado->fetch_assoc()) {
     // htmlspecialchars() aunque la respuesta sea JSON: si en algún punto
-    // el frontend inserta este dato con innerHTML (como ya audita
-    // docs/informe-sast.md), llega neutralizado igual.
+    // el frontend inserta este dato con innerHTML, llega neutralizado igual.
     $filas[] = [
         'id'       => (int) $fila['id'],
         'nombre'   => htmlspecialchars($fila['nombre'], ENT_QUOTES, 'UTF-8'),
         'apellido' => htmlspecialchars($fila['apellido'], ENT_QUOTES, 'UTF-8'),
-        'presente' => (bool) $fila['presente'],
+        'estado'   => $fila['estado'],   // Presente | Ausente | Justificado | Tardanza
     ];
 }
 
@@ -316,11 +325,11 @@ header('Content-Type: application/json');
 echo json_encode($filas);
 ```
 
-> Se usa `mysqli` con **consultas preparadas** (`prepare` + `bind_param`) para evitar inyección SQL, y `htmlspecialchars()` en toda salida — ambos son la contraparte, del lado del servidor, de la validación que NRF05 exige "tanto en el frontend como en el backend", y de la protección anti-XSS ya verificada en el frontend (`docs/informe-sast.md`, sección 1.4-c).
+> Se usa `mysqli` con **consultas preparadas** (`prepare` + `bind_param`) para evitar inyección SQL, y `htmlspecialchars()` en toda salida — ambos son la contraparte, del lado del servidor, de la validación que NRF05 exige "tanto en el frontend como en el backend".
 
-### Nota importante sobre `js/auth.js`
+### Nota importante sobre la autenticación actual
 
-El `js/auth.js` construido durante la Segunda Entrega de seguridad autentica contra un listado `USUARIOS_DEMO` en texto plano **porque todavía no existía backend** (documentado explícitamente en `docs/POLITICA-SEGURIDAD-v1.md`, sección 4.2). Cuando `backend/api/login.php` esté levantado con este entorno Docker, ese archivo debe cambiar únicamente en la función `autenticarUsuario()`, para que haga un `fetch('/backend/api/login.php', ...)` y el servidor compare la contraseña con `password_verify()` contra un hash guardado con `password_hash()` — nunca contraseñas en texto plano en una tabla `usuarios`. El resto de `auth.js` (validación de cédula, manejo de intentos fallidos, redirección por rol) no necesita tocarse.
+El archivo `frontend/frontend-admin/js/auth.js` autentica contra un listado de usuarios de demostración en texto plano, **porque todavía no existe backend**. Cuando `backend/api/login.php` esté levantado con este entorno Docker, ese archivo debe cambiar únicamente en su función de autenticación, para que haga un `fetch('/backend/api/login.php', ...)` y el servidor compare la contraseña con `password_verify()` contra el hash guardado en `usuarios.clave_hash` — nunca contraseñas en texto plano. El resto de `auth.js` (validación de cédula, manejo de intentos fallidos, redirección por rol) no necesita tocarse.
 
 ---
 
@@ -356,102 +365,25 @@ Accesos por defecto:
 
 ---
 
-## 8. `db/init/001_schema.sql` — punto de partida
+## 8. Inicialización de la base de datos
 
-Basado en las entidades ya identificadas por el equipo en `docs/PrimeraVista.md`, sección 13 ("Modelo de datos preliminar"). Es un punto de partida para discutir con el equipo, **no** un MER cerrado — falta completar tipos exactos, `mensajes`/`adjuntos`/`historial de actividad` una vez que esos módulos se definan con más detalle.
+El esquema de la base de datos está definido en `backend/DataBase/inau_talleres.sql`, derivado del modelo de clases mediante el método documentado en `docs/03-diseño/Modelado/`. Consta de trece tablas: once de entidad y dos intermedias.
 
-```sql
-CREATE TABLE roles (
-    id   TINYINT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(20) NOT NULL UNIQUE  -- 'Administrador' | 'Tallerista' | 'Alumno'
-);
+El contenedor `db` ejecuta ese script automáticamente en el primer arranque, mediante el montaje de la carpeta en `/docker-entrypoint-initdb.d`. No se define un esquema propio para el entorno Docker: mantener un segundo script produciría dos versiones divergentes de la misma estructura.
 
-CREATE TABLE usuarios (
-    id            INT PRIMARY KEY AUTO_INCREMENT,
-    cedula        VARCHAR(15) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
-    nombre        VARCHAR(80) NOT NULL,
-    apellido      VARCHAR(80) NOT NULL,
-    rol_id        TINYINT NOT NULL,
-    creado_en     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (rol_id) REFERENCES roles(id)
-);
+**Consideraciones para el entorno en contenedor:**
 
-CREATE TABLE talleres (
-    id          INT PRIMARY KEY AUTO_INCREMENT,
-    nombre      VARCHAR(120) NOT NULL,
-    descripcion TEXT
-);
-
--- Asignación de talleristas a talleres (un taller puede tener varios talleristas)
-CREATE TABLE talleres_talleristas (
-    taller_id     INT NOT NULL,
-    tallerista_id INT NOT NULL,
-    PRIMARY KEY (taller_id, tallerista_id),
-    FOREIGN KEY (taller_id) REFERENCES talleres(id),
-    FOREIGN KEY (tallerista_id) REFERENCES usuarios(id)
-);
-
--- Inscripción de alumnos a talleres (un alumno puede estar en varios talleres)
-CREATE TABLE talleres_alumnos (
-    taller_id INT NOT NULL,
-    alumno_id INT NOT NULL,
-    PRIMARY KEY (taller_id, alumno_id),
-    FOREIGN KEY (taller_id) REFERENCES talleres(id),
-    FOREIGN KEY (alumno_id) REFERENCES usuarios(id)
-);
-
-CREATE TABLE asistencias (
-    id        INT PRIMARY KEY AUTO_INCREMENT,
-    taller_id INT NOT NULL,
-    alumno_id INT NOT NULL,
-    fecha     DATE NOT NULL,
-    presente  BOOLEAN NOT NULL DEFAULT FALSE,
-    UNIQUE KEY uq_asistencia (taller_id, alumno_id, fecha),
-    FOREIGN KEY (taller_id) REFERENCES talleres(id),
-    FOREIGN KEY (alumno_id) REFERENCES usuarios(id)
-);
-
-CREATE TABLE tareas (
-    id            INT PRIMARY KEY AUTO_INCREMENT,
-    taller_id     INT NOT NULL,
-    titulo        VARCHAR(150) NOT NULL,
-    descripcion   TEXT,
-    archivo_ruta  VARCHAR(255),   -- NRF11: solo .pdf/.jpg validado en PHP antes de guardar
-    creado_en     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (taller_id) REFERENCES talleres(id)
-);
-
-CREATE TABLE entregas (
-    id           INT PRIMARY KEY AUTO_INCREMENT,
-    tarea_id     INT NOT NULL,
-    alumno_id    INT NOT NULL,
-    archivo_ruta VARCHAR(255) NOT NULL,
-    nota         DECIMAL(4,2),
-    entregado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (tarea_id) REFERENCES tareas(id),
-    FOREIGN KEY (alumno_id) REFERENCES usuarios(id)
-);
-
--- NRF10: trazabilidad de acciones importantes
-CREATE TABLE historial_actividad (
-    id          INT PRIMARY KEY AUTO_INCREMENT,
-    usuario_id  INT NOT NULL,
-    accion      VARCHAR(120) NOT NULL,
-    detalle     TEXT,
-    creado_en   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
-);
-
-INSERT INTO roles (nombre) VALUES ('Administrador'), ('Tallerista'), ('Alumno');
-```
+- El script comienza con `DROP DATABASE IF EXISTS`, apropiado para desarrollo pero que debe retirarse antes de cualquier despliegue con datos reales.
+- Los datos de prueba incluidos utilizan hashes de contraseña reales, válidos para probar el inicio de sesión pero que no deben conservarse en un entorno con datos de INAU.
+- El script requiere MySQL 8.0 o superior por el uso de restricciones `CHECK`. La imagen `mysql:8.0` del compose cumple ese requisito.
+- La base se llama `inau_talleres`, valor que debe coincidir con `MYSQL_DATABASE` en el archivo `.env`.
 
 ---
 
 ## 9. Relación con el resto del proyecto
 
-- Los roles y el flujo de un único login coinciden exactamente con lo ya definido en `docs/PrimeraVista.md`, secciones 13 y 14.1.
-- `backend/includes/sesion.php` es la contraparte del lado del servidor de `verificarSesion()`, agregado al frontend en la Segunda Entrega de seguridad (`docs/CAMBIOS-SEGURIDAD.md`, punto 1) — ambos controles deben coexistir: el del frontend evita mostrar pantallas sin sesión, el del backend evita entregar datos aunque alguien se salte el frontend.
-- Los formatos y tamaños de archivo restringidos en `php.ini` (sección 5) instrumentan NRF11 y NRF12, ya identificados en `docs/requerimientos.md`.
-- La tabla `historial_actividad` instrumenta NRF10 ("trazabilidad de las acciones importantes"), listado en `docs/requerimientos.md` y en las entidades preliminares de `docs/PrimeraVista.md` §13 ("historial de actividad").
-- Antes de conectar este backend a datos reales de INAU, revisar `docs/POLITICA-SEGURIDAD-v1.md` (contraseñas hasheadas, HTTPS obligatorio, niveles de acceso).
+- Los roles y el flujo de un único login coinciden exactamente con lo ya definido en `docs/03-diseño/Justificacion Tecnologica.md`, sección 3, y en `docs/03-diseño/Modelado/modelo-clases-uml-mer.md`.
+- `backend/includes/sesion.php` es la contraparte del lado del servidor de la verificación de sesión que ya realiza el frontend — ambos controles deben coexistir: el del frontend evita mostrar pantallas sin sesión, el del backend evita entregar datos aunque alguien se salte el frontend.
+- Los formatos y tamaños de archivo restringidos en `php.ini` (sección 5) instrumentan NRF11 y NRF12, ya identificados en `docs/02-analisis/requerimientos.md`.
+- La tabla `trazabilidad` instrumenta NRF10 ("trazabilidad de las acciones importantes"), listado en `docs/02-analisis/requerimientos.md` y modelado como clase `RegistroTrazabilidad` en `docs/03-diseño/Modelado/modelo-clases-uml-mer.md`.
+- Antes de conectar este backend a datos reales de INAU deben verificarse tres condiciones: contraseñas almacenadas mediante hash seguro, conexión bajo HTTPS y verificación de permisos por rol en cada endpoint, conforme a NRF07 y NRF08.

@@ -155,6 +155,11 @@ CREATE TABLE asistencias (
  
 -- Detalle: estado de cada alumno dentro de una jornada.
 --
+-- usuario_registro identifica a quien cargó o modificó por última vez este
+-- registro en particular (NRF10). Se ubica en el detalle y no en la jornada
+-- porque un tallerista puede corregir el estado de un alumno concreto con
+-- posterioridad a la carga inicial.
+--
 -- NOTA: la última asistencia de un alumno no se almacena como columna
 -- en la tabla alumnos, sino que se obtiene consultando esta tabla:
 --   SELECT MAX(a.fecha) FROM registros_asistencia r
@@ -163,14 +168,16 @@ CREATE TABLE asistencias (
 -- Se evita así almacenar un dato derivado que exigiría mantenerse
 -- sincronizado en cada registro de asistencia.
 CREATE TABLE registros_asistencia (
-    id             INT AUTO_INCREMENT PRIMARY KEY,
-    asistencia_id  INT NOT NULL,
-    alumno_id      INT NOT NULL,
-    estado         ENUM('Presente', 'Ausente', 'Justificado', 'Tardanza') NOT NULL,
-    observaciones  TEXT,
- 
-    FOREIGN KEY (asistencia_id) REFERENCES asistencias(id) ON DELETE CASCADE,
-    FOREIGN KEY (alumno_id)     REFERENCES alumnos(id)     ON DELETE CASCADE,
+    id                INT AUTO_INCREMENT PRIMARY KEY,
+    asistencia_id     INT NOT NULL,
+    alumno_id         INT NOT NULL,
+    usuario_registro  INT NOT NULL,
+    estado            ENUM('Presente', 'Ausente', 'Justificado', 'Tardanza') NOT NULL,
+    observaciones     TEXT,
+
+    FOREIGN KEY (asistencia_id)    REFERENCES asistencias(id) ON DELETE CASCADE,
+    FOREIGN KEY (alumno_id)        REFERENCES alumnos(id)     ON DELETE CASCADE,
+    FOREIGN KEY (usuario_registro) REFERENCES usuarios(id),
     UNIQUE (asistencia_id, alumno_id)
 );
  
@@ -339,20 +346,23 @@ INSERT INTO entregas (contenido_id, alumno_id, fecha_entrega, estado, nota, come
 (2, 2, '2026-08-16', 'Entregada', NULL, NULL);
  
  
--- Adjuntos: uno del material publicado y uno por cada entrega de alumno
+-- Adjuntos: uno del material publicado y uno por cada entrega de alumno.
+-- Los formatos utilizados corresponden a los permitidos por NRF11:
+-- PDF, imágenes JPG y documentos de oficina.
 INSERT INTO adjuntos (contenido_id, entrega_id, nombre_original, nombre_archivo, ruta, tipo_mime, tamano_bytes, fecha_subida) VALUES
-(1,    NULL, 'guia-html.pdf',     'a1f4c8e2b93d47.pdf',  '/uploads/contenidos/', 'application/pdf', 482310, '2026-08-01 10:15:00'),
-(NULL, 1,    'pagina-sofia.html', '7d2b9f0ac41e58.html', '/uploads/entregas/',   'text/html',        12480, '2026-08-15 19:42:00'),
-(NULL, 2,    'pagina-mateo.html', 'c39e5a71bd8062.html', '/uploads/entregas/',   'text/html',        10920, '2026-08-16 21:07:00');
+(1,    NULL, 'guia-html.pdf',      'a1f4c8e2b93d47.pdf',  '/uploads/contenidos/', 'application/pdf',                                                           482310, '2026-08-01 10:15:00'),
+(NULL, 1,    'entrega-sofia.pdf',  '7d2b9f0ac41e58.pdf',  '/uploads/entregas/',   'application/pdf',                                                            98450, '2026-08-15 19:42:00'),
+(NULL, 2,    'entrega-mateo.docx', 'c39e5a71bd8062.docx', '/uploads/entregas/',   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',   134200, '2026-08-16 21:07:00');
  
  
 -- Registro de asistencia de una jornada del taller 1
 INSERT INTO asistencias (taller_id, fecha) VALUES
 (1, '2026-08-14');
  
-INSERT INTO registros_asistencia (asistencia_id, alumno_id, estado, observaciones) VALUES
-(1, 1, 'Presente',    NULL),
-(1, 2, 'Ausente',     NULL);
+-- El tallerista 3 (Martín Rodríguez) es quien cargó esta jornada
+INSERT INTO registros_asistencia (asistencia_id, alumno_id, usuario_registro, estado, observaciones) VALUES
+(1, 1, 3, 'Presente',    NULL),
+(1, 2, 3, 'Ausente',     NULL);
  
  
 -- Trazabilidad de ejemplo

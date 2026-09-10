@@ -1,45 +1,43 @@
 # Revisión integral de coherencia — Proyecto TheNewfutures / INAU
 
-**Fecha de revisión:** 7 de septiembre de 2026  
-**Fuente principal:** `proyecto-convenio-INAU(2).zip` entregado para la revisión.  
-**Alcance:** documentación, estructura de repositorio, HTML, CSS, JavaScript y SQL presentes en el ZIP.
+**Fecha de revisión:** 9 de septiembre de 2026
+**Fuente:** rama `cambios-frontend` del repositorio `proyecto-convenio-INAU`.
+**Alcance:** documentación, estructura de repositorio, HTML, CSS, JavaScript y SQL presentes en el repositorio.
 
-> Esta revisión distingue entre lo que está realmente presente en el ZIP, lo que la documentación declara y lo que todavía está planificado. No se considera una implementación como terminada solo porque esté descrita en un documento.
+> Esta revisión distingue entre lo que está realmente presente en el repositorio, lo que la documentación declara y lo que todavía está planificado. No se considera una implementación como terminada solo porque esté descrita en un documento.
 
 ---
 
 ## 1. Diagnóstico general
 
-El proyecto tiene una **arquitectura general coherente** y una separación clara entre frontend, backend previsto y documentación. El frontend del tallerista es el bloque más avanzado; el frontend administrador ya posee una cantidad importante de páginas y JavaScript; el frontend alumno tiene las vistas HTML/CSS, pero no tiene JavaScript; el backend todavía no tiene implementación PHP, aunque ya existe un esquema SQL bastante avanzado.
+El proyecto tiene una **arquitectura general coherente** y una separación clara entre frontend, backend previsto y documentación. El frontend del tallerista es el bloque más avanzado; el frontend administrador posee una cantidad importante de páginas y JavaScript; el frontend alumno tiene las vistas HTML y CSS, pero no tiene JavaScript; el backend está iniciado pero sin avances incorporados al repositorio, aunque ya existe un esquema SQL completo.
 
-El principal problema actual no es la idea del sistema sino la **sincronización entre documentos y código**. Hay decisiones recientes que todavía no fueron propagadas a toda la documentación y hay varios documentos técnicos vacíos.
+La documentación se reorganizó recientemente en carpetas por etapa del proyecto y la mayoría de sus piezas están completas. El principal problema pendiente es la **sincronización entre los datos de prueba del frontend y los de la base de datos**, además de la implementación del login y del panel del alumno.
 
 ### Estado general
 
 | Área | Estado | Observación |
 |---|---|---|
-| Análisis del problema | Avanzado | Hay entrevista, análisis y fundamentación. |
-| Alcance | Definido pero con versiones mezcladas | Hay diferencias entre Charter, requerimientos, PrimeraVista y decisiones posteriores. |
-| Frontend tallerista | Avanzado | HTML/CSS/JS y mock data implementados en varias pantallas. |
-| Frontend administrador | En desarrollo avanzado | Hay 11 HTML y 13 módulos funcionales de JS, pero faltan ajustes y validación integral. |
-| Frontend alumno | Inicial | Hay 7 HTML y CSS, pero no existe carpeta JS en el ZIP actual. |
-| Login | Pendiente | `index.html` existe, pero `auth.js` está vacío. |
-| Backend PHP | No iniciado | `backend/` no contiene API PHP implementada. |
-| Base de datos | Avanzado como diseño | Existe SQL con tablas, claves, restricciones y datos de prueba. |
-| API REST | Pendiente | `docs/api.md` está vacío y no hay endpoints PHP. |
-| Modelo de datos documental | Pendiente | `docs/modelado.md` está vacío, aunque el SQL ya contiene un modelo importante. |
-| Planificación documental | Pendiente | `docs/planificacion.md` está vacío. |
-| Testing documental | Pendiente | `docs/testing.md` está vacío. |
-| Seguridad | Parcialmente avanzada | Existe análisis de amenazas y buenas prácticas, pero falta vincularlo con pruebas e implementación real. |
-| Infraestructura | Avanzada como propuesta | Existe documentación de Docker/XAMPP/Apache/MySQL, pero el stack todavía no está reflejado completamente en el repositorio. |
-| Identidad visual | Definida | Existe documentación y CSS por panel. |
-| Uso ético de IA | Documentado | Existe declaración y registro de herramientas utilizadas. |
+| Análisis del problema | Completo | Entrevista, análisis, requerimientos, historias de usuario y backlog. |
+| Alcance | Definido | Alcance incluido, excluido y ajuste por plazo documentados de forma coherente. |
+| Frontend tallerista | Avanzado | Nueve páginas con lógica completa y datos simulados, incluida la gestión de material y la corrección de entregas. |
+| Frontend administrador | Avanzado | Once páginas y quince módulos de JavaScript funcionales con datos simulados. |
+| Frontend alumno | Inicial | Siete páginas HTML y hoja de estilos; no existe carpeta `js/`. |
+| Login | Pendiente | `index.html` existe con diseño terminado, pero la autenticación no está implementada. |
+| Backend PHP | Iniciado | Sin avances incorporados al repositorio a la fecha. |
+| Base de datos | Completa como diseño | Trece tablas con claves, restricciones, índices y datos de prueba. |
+| API REST | Pendiente | `docs/04-implementacion/api.md` está vacío. |
+| Modelo de datos documental | Completo | Modelo de clases, MER, anexo de derivación y análisis del modelo. |
+| Planificación documental | Completa | Backlog priorizado en seis sprints. |
+| Testing documental | Pendiente | `docs/04-implementacion/testing.md` está vacío. |
+| Seguridad | Parcial | Existe análisis de amenazas; falta vincularlo con pruebas e implementación real. |
+| Infraestructura | Definida como propuesta | Documentación de entorno Docker; el stack todavía no está reflejado en el repositorio. |
+| Identidad visual | Definida | Documentación completa y hojas de estilo por panel. |
+| Uso ético de IA | Documentado | Declaración con registro de herramientas utilizadas y firmas. |
 
 ---
 
-# 2. Estructura actual real del repositorio
-
-La estructura encontrada es:
+## 2. Estructura actual real del repositorio
 
 ```text
 proyecto-convenio-INAU/
@@ -49,24 +47,38 @@ proyecto-convenio-INAU/
 │
 ├── backend/
 │   ├── .md
-│   └── DataBase/.SQL
+│   └── DataBase/
+│       └── inau_talleres.sql
 │
 ├── docs/
-│   ├── Acta de Reuniones.md
-│   ├── Charter.md
-│   ├── Declaración de Etica en el uso de IA.md
-│   ├── Doc.md
 │   ├── Documentación de infraestructura.md
 │   ├── Estructura del Repositorio.md
-│   ├── Identidad Visual.md
-│   ├── Justificacion Tecnologica.md
 │   ├── PrimeraVista.md
-│   ├── api.md
-│   ├── modelado.md
-│   ├── planificacion.md
-│   ├── requerimientos.md
-│   └── seguridad.md
-│   └── testing.md
+│   │
+│   ├── 01-gestion/
+│   │   ├── Acta de Reuniones.md
+│   │   ├── Charter.md
+│   │   └── Declaración de Etica en el uso de IA.md
+│   │
+│   ├── 02-analisis/
+│   │   ├── Doc.md
+│   │   ├── planificacion.md
+│   │   └── requerimientos.md
+│   │
+│   ├── 03-diseño/
+│   │   ├── Identidad Visual.md
+│   │   ├── Justificacion Tecnologica.md
+│   │   └── Modelado/
+│   │       ├── Análisis del Modelo.md
+│   │       ├── anexo-derivacion-uml.md
+│   │       └── modelo-clases-uml-mer.md
+│   │
+│   ├── 04-implementacion/
+│   │   ├── api.md
+│   │   └── testing.md
+│   │
+│   └── ciberseguridad/
+│       └── Identificación de amenazas.md
 │
 └── frontend/
     ├── frontend-admin/
@@ -81,363 +93,202 @@ proyecto-convenio-INAU/
 | Administrador | 11 | 15 | 1 |
 | Tallerista | 9 | 12 | 1 |
 | Alumno | 7 | 0 | 1 |
-| Login raíz | 1 | `auth.js` no está en raíz | utiliza CSS externo |
+| Login (raíz) | 1 | 0 | usa CSS del panel tallerista |
 
-El README actual **no coincide con estos números**. Describe un estado anterior con 10 HTML/3 JS para administrador y 7 HTML/10 JS para tallerista, y no incorpora el frontend alumno como existe actualmente.
+**Total: 80 archivos en el repositorio.**
 
----
-
-# 3. Coherencia funcional por rol
-
-## Administrador
-
-El administrador dispone actualmente de pantallas para:
-
-- Dashboard.
-- Talleristas.
-- Detalle de tallerista.
-- Alumnos.
-- Detalle de alumno.
-- Talleres.
-- Detalle de taller.
-- Asistencias.
-- Reportes.
-- Detalle de reporte.
-- Perfil.
-
-Además, las pantallas cargan módulos específicos y `mock-data.js`.
-
-El JavaScript actual permite trabajar de forma simulada con listados, búsquedas, detalles, estadísticas y algunos formularios/modales.
-
-**Conclusión:** es un frontend administrativo avanzado, pero todavía debe terminar de validarse módulo por módulo y pasar posteriormente a Fetch/API.
-
-## Tallerista
-
-Dispone de:
-
-- Dashboard.
-- Perfil.
-- Mis talleres.
-- Detalle del taller.
-- Asistencia.
-- Informes.
-- Detalle de informe.
-- Material.
-- Corrección de tareas.
-
-Existe una arquitectura modular por pantalla y datos simulados más ricos.
-
-**Conclusión:** es actualmente la parte frontend más madura del proyecto.
-
-## Alumno
-
-Hay siete páginas:
-
-- Dashboard.
-- Mis talleres.
-- Detalle del taller.
-- Tareas.
-- Detalle de tarea.
-- Asistencia.
-- Perfil.
-
-Pero **no existe una carpeta `js/` en el ZIP actual**. Varias páginas incluso incluyen referencias a `js/*.js`; en particular `asistencia.html` referencia cuatro archivos JavaScript inexistentes.
-
-**Conclusión:** la interfaz alumno está diseñada, pero su funcionalidad JavaScript todavía no está implementada.
+El README todavía describe un estado anterior y debe actualizarse.
 
 ---
 
-# 4. Principales incoherencias detectadas
+## 3. Coherencia funcional por rol
 
-## 4.1 Mensajería eliminada, pero todavía aparece en documentación
+### Administrador
 
-La mensajería fue retirada del desarrollo por decisión de los profesores. En el código actual ya no existe un módulo `mensajes.js` en los paneles.
+Dispone de pantallas para dashboard, talleristas, detalle de tallerista, alumnos, detalle de alumno, talleres, detalle de taller, asistencias, reportes, detalle de reporte y perfil.
 
-Sin embargo, todavía aparece en:
+Las pantallas cargan módulos específicos junto con `mock-data.js`. El JavaScript actual permite trabajar de forma simulada con listados, búsquedas, detalles, estadísticas y formularios con ventanas modales.
 
-- `Charter.md`.
-- `Doc.md`.
-- `PrimeraVista.md`.
-- `Identidad Visual.md` en referencias generales a mensajes.
-- `Justificacion Tecnologica.md` (`mensajes_internos`).
-- `Documentación de infraestructura.md`.
+**Conclusión:** frontend administrativo avanzado, pendiente de validación módulo por módulo y de la migración posterior a la API.
 
-**Acción recomendada:** realizar una limpieza global de documentación y eliminar la mensajería como funcionalidad del alcance actual. Puede quedar mencionada únicamente en un apartado de "funcionalidad descartada durante el desarrollo", si se desea dejar constancia de la decisión.
+### Tallerista
+
+Dispone de dashboard, perfil, mis talleres, detalle del taller, asistencia, informes, detalle de informe, material y corrección de tareas.
+
+Existe una arquitectura modular por pantalla y datos simulados más completos que los del resto de los paneles.
+
+**Conclusión:** es la parte más madura del proyecto.
+
+### Alumno
+
+Hay siete páginas: dashboard, mis talleres, detalle del taller, tareas, detalle de tarea, asistencia y perfil.
+
+**No existe la carpeta `js/`**, pero las siete páginas referencian cuatro archivos JavaScript cada una (`mock-data.js`, `utils.js`, `main.js` y el módulo propio de la pantalla). En consecuencia, ninguna página del panel del alumno funciona actualmente.
+
+**Conclusión:** la interfaz está diseñada, pero su funcionalidad no está implementada.
 
 ---
 
-## 4.2 Tres roles vs. alcance actual
+## 4. Principales incoherencias detectadas
 
-La documentación y el SQL manejan tres roles:
+### 4.1 Los datos de prueba de adjuntos violan NRF11
+
+NRF11 restringe los formatos de archivos adjuntos a PDF, imágenes JPG y documentos de oficina. Sin embargo, los datos de prueba del script SQL incluyen dos adjuntos de tipo `text/html`:
 
 ```text
-Administrador
-Tallerista
-Alumno
+pagina-sofia.html   → MIME: text/html
+pagina-mateo.html   → MIME: text/html
 ```
 
-El `Charter`, `requerimientos.md` y `PrimeraVista.md` siguen considerando acceso de alumno dentro del MVP.
+Son archivos que el propio sistema rechazaría al aplicar la validación de formato.
 
-El código actual, sin embargo, no implementa ese acceso todavía: existen las páginas, pero no existe `frontend-alumno/js/` y el login tampoco está implementado.
+**Acción recomendada:** reemplazar esos registros por adjuntos de un formato permitido, manteniendo la coherencia entre los datos de prueba y los requerimientos.
 
-Esto **no es necesariamente una contradicción funcional**: puede presentarse correctamente como "alcance definido, implementación pendiente". El problema aparece cuando algunos documentos describen el rol alumno como funcional y otros lo presentan como fuera del sistema.
+### 4.2 Los identificadores del mock data no coinciden con los del SQL
 
-**Acción recomendada:** establecer una frase única: "El sistema contempla administrador, tallerista y alumno; el panel alumno está diseñado pero su lógica y autenticación se encuentran pendientes".
+En `frontend-admin/js/mock-data.js` el tallerista Martín Rodríguez tiene `id: 5`, y los talleres apuntan a `talleristaId: 5`. En los datos de prueba del SQL, ese mismo tallerista tiene `id: 3`.
 
----
+Esto no afecta el funcionamiento actual, dado que ambas fuentes son independientes, pero producirá inconsistencias al sustituir los datos simulados por llamadas a la API.
 
-## 4.3 Estados de taller diferentes
+**Acción recomendada:** definir los datos de prueba desde una única fuente y hacer que el mock data reproduzca exactamente los mismos registros que el SQL.
 
-La documentación técnica define como posibles estados:
+### 4.3 El panel del alumno referencia archivos inexistentes
 
-- Planificado.
-- En curso.
-- Finalizado.
-- Suspendido.
+Las siete páginas del panel del alumno incluyen etiquetas `<script>` hacia `js/mock-data.js`, `js/utils.js`, `js/main.js` y su módulo correspondiente. Ninguno de esos archivos existe.
 
-El SQL actual define solamente:
+**Acción recomendada:** implementar la carpeta `js/` del panel siguiendo la misma estructura modular de los otros dos, o retirar temporalmente las referencias si la implementación se posterga.
 
-```sql
-ENUM('Activo', 'Finalizado')
-```
+### 4.4 El login utiliza una ruta absoluta hacia el CSS de otro panel
 
-Mientras los mock data usan principalmente `Activo`.
+`index.html` carga sus estilos desde `/frontend/frontend-tallerista/css/styles.css`. Presenta dos inconvenientes: la ruta absoluta solo funciona si el sitio se sirve desde la raíz del dominio, y la pantalla de acceso —que no pertenece a ningún rol— depende de la hoja de estilos de un panel específico.
 
-**Esto debe resolverse antes de implementar el backend**, porque afecta base de datos, filtros, validaciones, interfaz y reportes.
+**Acción recomendada:** crear una hoja de estilos propia para el login, en una carpeta común, con ruta relativa.
 
----
+### 4.5 El login no tiene implementación de autenticación
 
-## 4.4 Estados de asistencia diferentes
+`index.html` existe con el diseño terminado, pero no hay ningún archivo JavaScript que procese el formulario. El `auth.js` presente en el panel del administrador está vacío.
 
-La documentación define cuatro estados:
+Esto bloquea RF01 y, en consecuencia, la diferenciación de acceso por rol.
 
-- Presente.
-- Ausente.
-- Justificado.
-- Tardanza.
+### 4.6 PrimeraVista.md conserva definiciones superadas
 
-El SQL contempla los cuatro.
+El documento `PrimeraVista.md`, que registra el estado del proyecto en julio, contiene definiciones que fueron modificadas posteriormente:
 
-El frontend tallerista implementado en este ZIP trabaja todavía con:
+| Definición en PrimeraVista | Estado actual |
+|---|---|
+| Estados de taller: planificado, en curso, finalizado, suspendido | Activo y finalizado |
+| Modelo de datos preliminar con `mensajes_internos` e `historial_actividad` | Trece tablas sin mensajería, con `trazabilidad` |
+| Dos roles con acceso al sistema | Tres roles |
 
-- Presente.
-- Ausente.
-- Justificado.
+**Acción recomendada:** conservar el documento como registro histórico, agregando una nota inicial que aclare su fecha y remita a la documentación vigente en `03-diseño/`.
 
-**Pendiente:** agregar `Tardanza` y observaciones de forma consistente en el frontend antes de la integración.
+### 4.7 El README no refleja el estado actual
 
----
+Describe un estado anterior: no incluye el panel del alumno, indica menos archivos de los existentes y no refleja las páginas incorporadas al panel del tallerista.
 
-## 4.5 Modelo de datos documental vs SQL
+### 4.8 Documentación técnica pendiente
 
-La documentación de arquitectura menciona una tabla independiente `talleristas`, mientras que el SQL actual no crea esa tabla. Los talleristas se encuentran representados como usuarios cuyo `rol` es `tallerista` y luego son asociados mediante `taller_tallerista`.
-
-Esto puede ser perfectamente válido, pero debe quedar definido en el modelo oficial.
-
-Actualmente el modelo conceptual y el físico no están 100 % sincronizados.
-
-**Recomendación:** utilizar `usuarios` como entidad de autenticación y una tabla `talleristas` solamente si realmente se necesitan datos exclusivos que no convenga colocar en `usuarios`; de lo contrario, documentar claramente que un tallerista es un usuario con rol `tallerista`.
-
----
-
-## 4.6 IDs y datos del mock data no coinciden todavía con SQL
-
-En `frontend-admin/js/mock-data.js` el tallerista principal es:
+Dos documentos permanecen vacíos:
 
 ```text
-id: 5 → Martín Rodríguez
+docs/04-implementacion/api.md
+docs/04-implementacion/testing.md
 ```
 
-Y los talleres apuntan a:
+Ambos son entregables explícitos del proyecto.
 
-```text
-talleristaId: 5
-```
+### 4.9 Archivos con nomenclatura irregular
 
-En cambio, en el SQL de prueba los usuarios talleristas son, por ejemplo:
+- `backend/.md` es un archivo cuyo nombre consiste únicamente en la extensión. Si su función es preservar la carpeta en el control de versiones, corresponde renombrarlo a `.gitkeep`, como en el resto del repositorio.
+- `docs/seguridad.md` existía en la rama principal con contenido, pero no aparece tras la reorganización de carpetas. Corresponde recuperarlo y ubicarlo en `04-implementacion/`.
+- La carpeta `03-diseño` contiene un carácter acentuado, a diferencia de las demás. Los nombres de ruta con tildes pueden generar inconvenientes en enlaces y en determinados entornos.
 
-```text
-id 2 → María López
-id 3 → Martín Rodríguez
-```
+### 4.10 Ausencia de `.gitignore` y `LICENSE`
 
-Por lo tanto, los identificadores de prueba del frontend y de la base de datos **no están alineados**.
-
-Esto no rompe el mock frontend porque son fuentes independientes, pero será un problema al integrar Fetch + PHP + MySQL si se espera reutilizar los mismos IDs.
-
-**Acción recomendada:** definir los datos de prueba de una sola fuente y después hacer que mock data y SQL representen exactamente los mismos registros.
+Ambos archivos están contemplados en la plantilla original del proyecto y no se encuentran en el repositorio. El `.gitignore` resulta especialmente relevante ante la incorporación del entorno Docker, que requiere excluir el archivo `.env` con las credenciales de base de datos.
 
 ---
 
-## 4.7 Adjuntos: formatos declarados vs datos de prueba
+## 5. Estado de requisitos funcionales
 
-`requerimientos.md` y la justificación tecnológica restringen la versión inicial a PDF e imágenes JPG.
+De los veintiséis requerimientos definidos, veinte integran el alcance de la primera versión y seis fueron postergados por restricción de plazo.
 
-Sin embargo, el SQL de prueba contiene un adjunto:
-
-```text
-pagina-sofia.html
-MIME: text/html
-```
-
-Esto contradice la restricción documental de formatos.
-
-**Acción recomendada:** decidir oficialmente si HTML será permitido. Si no lo será, eliminar el registro de prueba y mantener únicamente los tipos definidos en el requisito.
-
----
-
-## 4.8 Login todavía pendiente
-
-`index.html` existe y visualmente funciona como pantalla de acceso, pero:
-
-```text
-js/auth.js
-```
-
-en el frontend administrador está vacío, y en la raíz el login referencia:
-
-```html
-<script src="js/auth.js"></script>
-```
-
-sin que exista una implementación funcional equivalente en la raíz.
-
-Además, el CSS del login utiliza una ruta absoluta hacia el CSS del tallerista:
-
-```text
-/frontend/frontend-tallerista/css/styles.css
-```
-
-Esto funciona solamente bajo determinadas raíces del servidor y no representa una estructura ideal para una aplicación portable.
-
-**Acción recomendada:** crear un `css` compartido para el login o una hoja específica de raíz y posteriormente implementar `auth.js` en la raíz.
-
----
-
-## 4.9 Backend no iniciado, aunque el SQL ya está bastante avanzado
-
-El Acta de reuniones indica comienzo del backend y, en la reunión R-09, asigna tareas relacionadas con base de datos y backend.
-
-En el estado real actual:
-
-- existe SQL;
-- no existe API PHP;
-- no existen endpoints implementados;
-- `backend/.md` está vacío.
-
-**Conclusión correcta para presentación:** "El diseño de base de datos está avanzado y existe un esquema SQL de prueba; la implementación del backend y API REST está pendiente".
-
----
-
-## 4.10 Documentación técnica vacía
-
-Los siguientes cuatro documentos están vacíos:
-
-```text
-api.md
-modelado.md
-planificacion.md
-testing.md
-```
-
-Este es uno de los puntos más importantes a resolver porque son entregables explícitos.
-
----
-
-## 4.11 README desactualizado
-
-El README describe un estado anterior del proyecto. Entre otras cosas:
-
-- no incluye `frontend-alumno`;
-- indica menos archivos JS de los existentes;
-- indica menos páginas de las actuales;
-- no refleja el avance real del administrador;
-- no refleja las nuevas páginas del tallerista.
-
-Debe actualizarse antes de la entrega.
-
----
-
-# 5. Estado de requisitos funcionales
+### Requerimientos de la primera versión
 
 | Código | Requisito | Estado actual |
 |---|---|---|
 | RF01 | Login y diferenciación por rol | Pendiente: interfaz sí, autenticación no. |
-| RF02 | CRUD administrador de usuarios y talleres | Parcial: frontend y mocks; backend pendiente. |
-| RF03 | Asignación alumnos/talleristas | Parcial: UI/mock; persistencia pendiente. |
-| RF04 | Registrar asistencia | Avanzado en frontend tallerista; simulación local. |
-| RF05 | Consultar/modificar asistencia | Parcial/avanzado en frontend; backend pendiente. |
-| RF06 | Subir material y tareas | Frontend tallerista preparado; persistencia/archivos pendiente. |
-| RF07 | Alumno visualizar material/tareas | HTML preparado; JS pendiente. |
-| RF08 | Alumno enviar archivos | HTML preparado; lógica y backend pendientes. |
-| RF09 | Tallerista corregir tareas | Existe `correccion-tarea.js`; integración persistente pendiente. |
-| RF10 | Asignar notas | Datos/flujo preparado; backend pendiente. |
-| RF11 | Informes de asistencia | Frontend/mocks avanzados; generación real pendiente. |
-| RF12 | Informes de talleres/talleristas | Frontend/mocks avanzados; backend pendiente. |
-| RF13 | Exportación PDF/Excel | No implementada de forma real. |
-| RF14 | Perfil según rol | Parcial: tallerista y administrador funcionan con simulación. |
-| RF15 | Alumno eliminar datos de perfil | HTML existe; JS pendiente. |
+| RF02 | Gestión de usuarios y talleres | Parcial: frontend con datos simulados; persistencia pendiente. |
+| RF03 | Asignación de alumnos y talleristas | Parcial: interfaz y datos simulados; persistencia pendiente. |
+| RF04 | Registrar asistencia | Avanzado en frontend tallerista, con almacenamiento local. |
+| RF05 | Consultar y modificar asistencia | Avanzado en frontend; backend pendiente. |
+| RF06 | Subir material y tareas | Implementado en frontend tallerista; persistencia de archivos pendiente. |
+| RF07 | Alumno visualiza material y tareas | HTML preparado; JavaScript pendiente. |
+| RF08 | Alumno envía archivos | HTML preparado; lógica y backend pendientes. |
+| RF09 | Tallerista corrige tareas | Implementado en `correccion-tarea.js`; persistencia pendiente. |
+| RF10 | Asignar notas | Implementado en frontend; backend pendiente. |
+| RF11 | Informes de asistencia | Frontend avanzado con datos simulados; generación real pendiente. |
+| RF12 | Informes de talleres y talleristas | Frontend avanzado; backend pendiente. |
+| RF13 | Exportación en PDF o Excel | No implementada: la descarga actual produce un archivo de texto provisional. |
+| RF14 | Gestión de perfil según rol | Parcial: funciona con simulación en administrador y tallerista. |
+| RF16 | Eliminar material | Implementado en `material.js`; persistencia pendiente. |
+| RF17 | Eliminar nota asignada | Implementado en frontend; persistencia pendiente. |
+| RF19 | Generar listado de alumnos | Contemplado en el módulo de reportes; generación real pendiente. |
+| RF22 | Informe de talleristas | Contemplado en el módulo de reportes; generación real pendiente. |
+| RF24 | Consultar datos sensibles | No implementado. |
+| RF25 | Listado de alumnos del taller | Implementado en el detalle del taller del panel tallerista. |
+
+### Requerimientos postergados por plazo
+
+| Código | Requisito |
+|---|---|
+| RF15 | Alumno elimina datos de su perfil |
+| RF18 | Eliminar registro de asistencia |
+| RF20 | Informe con histórico de calificaciones |
+| RF21 | Informe con información detallada de alumnos |
+| RF23 | Alumno visualiza sus notas |
+| RF26 | Modificar material o tareas ya publicadas |
 
 ---
 
-# 6. Estado de requisitos no funcionales
+## 6. Estado de requisitos no funcionales
 
 | Código | Requisito | Evaluación |
 |---|---|---|
-| NRF01 | Responsive | Implementado en frontend mediante Bootstrap/CSS. |
-| NRF02 | 24/7 | Objetivo de despliegue, aún no demostrable. |
-| NRF03 | Rapidez | Diseño liviano; falta prueba objetiva. |
-| NRF04 | Navegación clara | Avanzado en frontend. |
-| NRF05 | Validación frontend/backend | Frontend parcial/avanzado; backend pendiente. |
-| NRF06 | Separación frontend/backend | Arquitectura prevista y carpetas separadas. |
-| NRF07 | Control por rol | Previsto, autenticación/backend pendientes. |
-| NRF08 | Protección de datos | Documentada, todavía no implementada completamente. |
-| NRF09 | Persistencia relacional | SQL diseñado; DB real pendiente. |
-| NRF10 | Trazabilidad | Tabla SQL diseñada; registro real pendiente. |
-| NRF11 | Restricción de archivos | Documentada, pero debe alinearse con datos de prueba. |
-| NRF12 | Tamaño de archivos | Documentado como configuración prevista; pendiente backend. |
-| NRF13 | Código organizado | Avanzado, especialmente en tallerista. |
-| NRF14 | Documentación | Parcial: varios documentos aún vacíos. |
-| NRF15 | Git | Implementado. |
-| NRF16 | Pull Requests | Declarado en documentación; debe quedar respaldado por flujo real cuando corresponda. |
+| NRF01 | Diseño responsive | Implementado mediante Bootstrap y hojas de estilo propias. |
+| NRF02 | Disponibilidad 24 horas | Objetivo de despliegue, aún no demostrable. |
+| NRF03 | Rapidez en operaciones | Diseño liviano e índices definidos en el SQL; falta medición objetiva. |
+| NRF04 | Navegación clara y consistente | Avanzado en los paneles implementados. |
+| NRF05 | Validación en frontend y backend | Frontend avanzado; backend pendiente. |
+| NRF06 | Separación frontend y backend | Arquitectura prevista y carpetas separadas. |
+| NRF07 | Control de acceso por rol | Previsto; autenticación y backend pendientes. |
+| NRF08 | Protección de datos personales | Documentada; implementación pendiente del backend. |
+| NRF09 | Persistencia relacional | Esquema SQL completo; base de datos no desplegada. |
+| NRF10 | Trazabilidad | Tabla `trazabilidad` diseñada; registro real pendiente. |
+| NRF11 | Restricción de formatos | Documentada, pero contradicha por los datos de prueba (ver 4.1). |
+| NRF12 | Restricción de tamaño | Documentada como configuración prevista; pendiente del backend. |
+| NRF13 | Código organizado | Avanzado, especialmente en los paneles de administrador y tallerista. |
+| NRF14 | Documentación técnica | Avanzada; restan `api.md` y `testing.md`. |
+| NRF15 | Uso de Git | Implementado. |
+| NRF16 | Pull Requests obligatorias | Declarado en la documentación y respaldado por el flujo de ramas del repositorio. |
 
 ---
 
-# 7. Base de datos actual
+## 7. Base de datos actual
 
-El SQL contiene una base bastante completa para la etapa actual. Incluye:
+El script SQL define trece tablas:
 
-- `usuarios`
-- `alumnos`
-- `talleres`
-- `taller_tallerista`
-- `horarios_taller`
-- `inscripciones`
-- `asistencias`
-- `registros_asistencia`
-- `contenidos`
-- `entregas`
-- `adjuntos`
-- `reportes`
-- `trazabilidad`
+`usuarios`, `alumnos`, `talleres`, `taller_tallerista`, `horarios_taller`, `inscripciones`, `asistencias`, `registros_asistencia`, `contenidos`, `entregas`, `adjuntos`, `reportes` y `trazabilidad`.
 
-Además incluye:
+Incluye claves primarias y foráneas, restricciones de unicidad, índices sobre las columnas de filtrado frecuente, restricciones de verificación, datos de prueba y hashes de contraseña válidos.
 
-- claves primarias;
-- claves foráneas;
-- restricciones `UNIQUE`;
-- índices;
-- algunos `CHECK`;
-- datos de prueba;
-- hashes de contraseña de prueba.
-
-Esto permite afirmar que el equipo **ya pasó de la idea de base de datos a un primer esquema físico SQL**, aunque todavía falta validarlo contra el modelo documental y conectar el backend.
+El esquema se corresponde con el modelo de clases documentado en `03-diseño/Modelado/`, con la correspondencia clase-tabla verificada en el Paso 5 del anexo de derivación. La única salvedad son los datos de prueba señalados en 4.1 y 4.2.
 
 ---
 
-# 8. Seguridad
+## 8. Seguridad
 
-El documento de seguridad identifica tres amenazas principales:
+El documento de identificación de amenazas reconoce tres riesgos principales:
 
 | Amenaza | Probabilidad | Impacto | Riesgo | Clasificación |
 |---|---:|---:|---:|---|
@@ -445,120 +296,77 @@ El documento de seguridad identifica tres amenazas principales:
 | XSS | 3 | 3 | 9 | Tolerable |
 | Ransomware | 2 | 4 | 8 | Tolerable |
 
-Las buenas prácticas propuestas incluyen:
+Las buenas prácticas propuestas incluyen validación de entradas, sanitización, preferencia por `textContent` sobre `innerHTML`, autenticación segura, HTTPS, permisos por rol, actualización de dependencias y documentación de medidas.
 
-- validación de entradas;
-- sanitización;
-- preferencia por `textContent`;
-- reducción del uso inseguro de `innerHTML`;
-- autenticación segura;
-- HTTPS;
-- permisos por rol;
-- actualización de dependencias;
-- pruebas de seguridad;
-- documentación de medidas.
-
-En el JavaScript actual se observa, por ejemplo, uso de `escaparHTML()` y `textContent` en varios módulos, lo que demuestra que parte de estas decisiones ya están siendo aplicadas en el frontend.
-
-La seguridad real del sistema, sin embargo, dependerá principalmente del backend.
+En el JavaScript actual se observa el uso de funciones de escape y de `textContent` en varios módulos, lo que indica que parte de estas decisiones ya se aplica en el frontend. La seguridad efectiva del sistema, no obstante, dependerá principalmente del backend.
 
 ---
 
-# 9. Identidad visual
+## 9. Identidad visual
 
-La documentación de identidad visual define una línea común:
+La documentación define una línea común: fondo cálido, superficies blancas, bordes discretos, tipografía del sistema, radio de borde pequeño, identidad cromática propia por rol, estados diferenciados por color, diseño responsive y componentes reutilizables.
 
-- fondo cálido;
-- superficies blancas;
-- bordes discretos;
-- tipografía Arial/Helvetica;
-- radio base pequeño;
-- roles con identidad cromática propia;
-- estados diferenciados por color;
-- diseño responsive;
-- componentes reutilizables.
-
-Se han realizado cambios posteriores en CSS para reducir la apariencia excesivamente generada por plantilla/IA. Esa decisión debe reflejarse en la documentación de identidad visual para que el documento y el código cuenten la misma historia.
+Los tres paneles comparten la misma base y se diferencian únicamente por su paleta, criterio documentado y verificable en las tres hojas de estilo.
 
 ---
 
-# 10. Gestión del proyecto
+## 10. Gestión del proyecto
 
-El proyecto cuenta con un Acta de reuniones de R-01 a R-09. Allí se registra:
+El proyecto cuenta con un acta de reuniones de R-01 a R-09, donde se registra la organización inicial del equipo, la entrevista con el cliente, la distribución de tareas, las dificultades de participación, los cambios de alcance, los avances de documentación y el comienzo del backend.
 
-- inicio y organización del equipo;
-- entrevista;
-- distribución de tareas;
-- dificultades de participación;
-- cambios de alcance;
-- avances de documentación;
-- comienzo del backend y base de datos;
-- asignaciones para la etapa previa a la segunda entrega.
-
-El `Charter` establece:
-
-- INAU como cliente/patrocinador;
-- Emiliano Sánchez como líder/Scrum Master;
-- cinco integrantes;
-- 16 semanas estimadas;
-- riesgos principales relacionados con tiempo, integración, cambios de requerimientos, coordinación y migración.
+El Charter establece a INAU como cliente y patrocinador, a Emiliano Sánchez como líder y Scrum Master, cinco integrantes, una duración de doce semanas organizadas en seis sprints quincenales, un esfuerzo estimado de setenta y seis puntos y los riesgos principales del proyecto.
 
 ---
 
-# 11. Conclusión de coherencia
+## 11. Conclusión de coherencia
 
 ### Lo que está bien alineado
 
-1. La arquitectura general frontend → API REST → PHP → MySQL es consistente.
-2. Bootstrap + HTML + CSS + JavaScript Vanilla está bien alineado con la justificación tecnológica.
-3. El uso de mock data antes del backend está correctamente planteado.
-4. La estructura modular del JavaScript del tallerista y administrador es coherente con la arquitectura documentada.
-5. El SQL representa gran parte de las entidades funcionales previstas.
-6. Las decisiones básicas de seguridad están documentadas y algunas ya aparecen aplicadas en frontend.
+1. La arquitectura general frontend → API REST → PHP → MySQL es consistente entre todos los documentos.
+2. El stack de Bootstrap, HTML, CSS y JavaScript sin framework coincide con la justificación tecnológica.
+3. El uso de datos simulados antes del backend está correctamente planteado y documentado.
+4. La estructura modular del JavaScript es coherente con la arquitectura descrita.
+5. El esquema SQL se corresponde con el modelo de clases, con trazabilidad verificada paso a paso.
+6. El alcance incluido, el excluido y el ajuste por plazo son coherentes entre el documento principal, el Charter y el modelo.
+7. Las decisiones de seguridad están documentadas y algunas ya aparecen aplicadas en el frontend.
 
 ### Lo que debe corregirse prioritariamente
 
-1. Eliminar la mensajería de la documentación o marcarla claramente como descartada.
-2. Actualizar README y estructura documental al estado real.
-3. Alinear estados de talleres.
-4. Alinear estados de asistencia.
-5. Alinear mock data con SQL.
-6. Alinear el modelo documental con el modelo físico.
-7. Resolver la restricción de archivos.
-8. Implementar el login.
-9. Completar `api.md`, `modelado.md`, `planificacion.md` y `testing.md`.
-10. Implementar el JavaScript del frontend alumno si se mantiene dentro del MVP.
+1. Corregir los datos de prueba de adjuntos, que contradicen NRF11.
+2. Alinear los identificadores del mock data con los del SQL.
+3. Implementar el JavaScript del panel del alumno o retirar sus referencias.
+4. Implementar la autenticación del login.
+5. Corregir la ruta del CSS del login.
+6. Actualizar el README.
+7. Agregar una nota de vigencia a `PrimeraVista.md`.
+8. Completar `api.md` y `testing.md`.
+9. Recuperar `seguridad.md` y ubicarlo en `04-implementacion/`.
+10. Crear `.gitignore` y `LICENSE`.
 
 ---
 
-# 12. Orden recomendado de trabajo
+## 12. Orden recomendado de trabajo
 
 ```text
-1. Congelar alcance actual
+1. Corregir datos de prueba del SQL (adjuntos)
         ↓
-2. Limpiar documentación de mensajes
+2. Alinear mock data con SQL
         ↓
-3. Corregir inconsistencias de estados / roles / archivos
+3. Actualizar README y nota de vigencia en PrimeraVista
         ↓
-4. Actualizar README y PrimeraVista
+4. Crear .gitignore y LICENSE; recuperar seguridad.md
         ↓
-5. Completar modelado.md
+5. Implementar login (auth.js + CSS propio)
         ↓
-6. Completar api.md
+6. Implementar JavaScript del panel alumno
         ↓
-7. Completar planificacion.md
+7. Implementar backend PHP y endpoints
         ↓
-8. Completar testing.md
+8. Desplegar MySQL y conectar
         ↓
-9. Terminar frontend administrador y alumno
+9. Reemplazar datos simulados por Fetch API
         ↓
-10. Implementar login
+10. Completar api.md con los endpoints implementados
         ↓
-11. Implementar backend PHP
-        ↓
-12. Conectar MySQL
-        ↓
-13. Reemplazar mock data por Fetch API
-        ↓
-14. Testing integral
+11. Testing integral y completar testing.md
 ```

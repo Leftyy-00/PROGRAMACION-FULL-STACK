@@ -207,7 +207,8 @@ Sin atributos propios. Se distingue de las demás especializaciones únicamente 
 |---|---|---|
 | `estado` | RF04 | Situación del alumno en la jornada: presente, ausente, justificado o tardanza. |
 | `observaciones` | RF04 | Aclaración opcional sobre el registro de ese alumno. |
-| `usuarioRegistro` | NRF10 | Identifica quién cargó o modificó este registro en particular. Se ubica en el detalle y no en la jornada porque un tallerista puede corregir el estado de un alumno concreto con posterioridad a la carga inicial. |
+
+> **Observación sobre la identificación del responsable:** NRF10 exige registrar quién cargó o modificó cada registro de asistencia. Ese vínculo no se modela como atributo sino como asociación con `Usuario`, definida en el Paso 4. Se ubica en el detalle y no en la jornada porque un tallerista puede corregir el estado de un alumno concreto con posterioridad a la carga inicial, y la trazabilidad debe reflejar quién realizó esa modificación puntual.
 
 <br>
 
@@ -553,6 +554,7 @@ Incorporar un método de registro en cada clase dispersaría la lógica y contra
 | Taller — Tallerista | 1..\* ←→ 0..\* | RF03: "asignar... talleristas a los talleres" | Un taller no puede dictarse sin responsable, y el plural habilita más de uno. Un tallerista puede no tener talleres asignados tras su alta, o tener varios. |
 | Taller — Alumno | 0..\* ←→ 0..\* | RF03, RF25 | Un taller admite **0..\*** alumnos porque al crearse no tiene inscriptos. Un alumno participa en **0..\*** talleres: la especificación admite más de uno. |
 | RegistroAsistencia — Alumno | 0..\* ←→ 1 | RF04 | Todo registro corresponde a **1** alumno, ya que el estado es individual. Un alumno acumula **0..\*** registros, uno por jornada. |
+| RegistroAsistencia — Usuario | 0..\* ←→ 1 | NRF10 | Todo registro identifica al usuario que lo cargó o modificó por última vez. Es **1** porque la responsabilidad sobre un registro no puede ser compartida ni quedar indeterminada. Un usuario acumula **0..\*** registros a lo largo de su actividad. |
 | Alumno — Entrega | 1 ←→ 0..\* | RF08 | Toda entrega pertenece a **1** alumno: no existen entregas anónimas ni grupales. Un alumno realiza **0..\*** entregas, una por tarea completada. |
 | Usuario — Informe | 1 ←→ 0..\* | RF11-RF13, RF19, RF22 | Todo informe registra quién lo generó, conforme a NRF10. |
 | Taller — Informe | 0..1 ←→ 0..\* | RF11: "informes de asistencia por taller" | **0..1** porque no todos los informes refieren a un taller: el listado de alumnos (RF19) y el de talleristas (RF22) son de alcance global. |
@@ -687,6 +689,7 @@ Existen tres formas estándar de traducir una jerarquía de herencia. La elecci�
 | Taller ◆— Asistencia | `asistencias.taller_id` con cascada y `UNIQUE(taller_id, fecha)` | La restricción garantiza una única jornada por taller y fecha |
 | Asistencia ◆— RegistroAsistencia | `registros_asistencia.asistencia_id` con cascada | — |
 | RegistroAsistencia ←→ Alumno | `registros_asistencia.alumno_id` y `UNIQUE(asistencia_id, alumno_id)` | Impide dos estados para un mismo alumno en una jornada |
+| RegistroAsistencia ←→ Usuario | `registros_asistencia.usuario_registro` | No nulable: todo registro identifica a su responsable |
 | Taller ◆— Contenido | `contenidos.taller_id` con cascada | — |
 | Tarea ◆— Entrega | `entregas.contenido_id` con cascada | Ver salvedad en 5.7 |
 | Alumno ←→ Entrega | `entregas.alumno_id` y `UNIQUE(contenido_id, alumno_id)` | Una única entrega por alumno y tarea |

@@ -127,6 +127,8 @@ Este registro no se activa desde las clases del dominio sino desde la capa de se
 
 incluidos los que no provienen de un requerimiento funcional: `RegistroTrazabilidad` y la asociación entre `RegistroAsistencia` y `Usuario`, derivados de NRF10; los métodos `validarFormato()` y `validarTamano()`, derivados de NRF11 y NRF12; y los métodos `estaCompleta()` y `generarNombreSeguro()`, señalados explícitamente como derivados de la operativa.
 
+Los cuatro requerimientos restantes del alcance de la primera versión se ejercitan de forma transversal: RF01 al inicio de cada paso mediante la autenticación, RF14 cuando cualquier usuario edita su perfil, y RF24 y RF25 como consultas del administrador y del tallerista sobre información ya registrada.
+
 **Conclusión del análisis:** el circuito operativo completo se resuelve con las 15 clases del modelo, sin requerir estructuras adicionales. Las decisiones de diseño que en el momento de tomarlas podían parecer sobreabundantes —la separación de la asistencia en dos niveles, la especialización de material y tarea, la fecha de inscripción— encuentran su justificación funcional en un paso concreto del circuito.
 
 <br>
