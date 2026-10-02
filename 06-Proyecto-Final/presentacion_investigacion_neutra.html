@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presentación · Investigación Científica</title>
+  <style>
+    :root{
+      --bg:#f4f4f1;
+      --slide:#fbfbf8;
+      --ink:#222725;
+      --muted:#6b716e;
+      --line:#d8d8d2;
+      --accent:#5b635f;
+      --soft:#ecece7;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow:hidden;
+    }
+    .deck{height:100vh;width:100vw;display:flex;align-items:center;justify-content:center;padding:28px}
+    .slide{
+      display:none;
+      width:min(1180px,100%);
+      height:min(665px,calc(100vh - 56px));
+      background:var(--slide);
+      border:1px solid var(--line);
+      box-shadow:0 22px 60px rgba(30,35,32,.12);
+      padding:56px 66px;
+      position:relative;
+      overflow:hidden;
+    }
+    .slide.active{display:block}
+    .slide::before{
+      content:"";
+      position:absolute;inset:0 0 auto 0;height:7px;background:var(--accent);
+    }
+    .kicker{font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:18px}
+    h1{font-size:54px;line-height:1.04;margin:0 0 24px;font-weight:750;letter-spacing:-.03em;max-width:980px}
+    h2{font-size:40px;line-height:1.08;margin:0 0 28px;font-weight:740;letter-spacing:-.02em;max-width:980px}
+    h3{font-size:24px;margin:0 0 12px;color:var(--accent)}
+    p{font-size:22px;line-height:1.44;margin:0 0 18px;max-width:1000px;color:#303633}
+    ul{margin:12px 0 0 0;padding:0;list-style:none;display:grid;gap:15px;max-width:1020px}
+    li{font-size:20px;line-height:1.35;padding-left:28px;position:relative;color:#333936}
+    li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+    .three{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:18px}
+    .box{background:var(--soft);border:1px solid var(--line);padding:24px;border-radius:10px;min-height:150px}
+    .box p,.box li{font-size:18px}.box ul{gap:9px}
+    .quote{font-size:28px;line-height:1.35;border-left:6px solid var(--accent);padding-left:24px;color:#2a2f2d;max-width:980px}
+    .meta{position:absolute;left:66px;bottom:38px;font-size:14px;color:var(--muted);letter-spacing:.03em}
+    .num{position:absolute;right:66px;bottom:38px;font-size:14px;color:var(--muted)}
+    table{border-collapse:collapse;width:100%;font-size:17px;margin-top:8px;background:white;border:1px solid var(--line)}
+    th,td{border-bottom:1px solid var(--line);padding:13px 14px;text-align:left;vertical-align:top;line-height:1.28}
+    th{background:var(--soft);font-weight:700;color:#303633}
+    td:first-child,th:first-child{width:24%;font-weight:700}
+    .controls{position:fixed;right:26px;bottom:22px;display:flex;gap:10px;z-index:10}
+    button{border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 14px;border-radius:999px;font-size:14px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+    button:hover{background:var(--soft)}
+    .progress{position:fixed;left:0;bottom:0;height:4px;background:var(--accent);width:0;transition:.25s;width:calc((var(--i) + 1) / var(--n) * 100%)}
+    .small p{font-size:19px}.small li{font-size:18px}.small h2{font-size:36px}
+    @media print{
+      body{overflow:visible;background:white}.deck{height:auto;display:block;padding:0}.slide{display:block;page-break-after:always;width:100vw;height:56.25vw;box-shadow:none;border:none}.controls,.progress{display:none}
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide active">
+      <div class="kicker">Investigación científica</div>
+      <h1>Sistema de Gestión de Talleres en Convenio con INAU</h1>
+      <p>TheNewfutures · Marco del proyecto y análisis sociológico</p>
+      <div class="num">1 / 14</div>
+      <div class="meta">
+        <ul>
+          <li>Gabriel Rendon</li>
+          <li>Emiliano Sánchez</li>
+          <li>Thiago Ferragut</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">01 · Presentación</div>
+      <h2>¿En qué consiste el proyecto?</h2>
+      <p>Desarrollo de una plataforma web para centralizar la gestión de talleres socioeducativos ejecutados en convenio con INAU.</p>
+      <ul>
+        <li>Administración de talleres y participantes.</li>
+        <li>Registro de asistencias.</li>
+        <li>Publicación de material didáctico.</li>
+        <li>Entrega y corrección de tareas.</li>
+        <li>Generación de informes.</li>
+      </ul>
+      <div class="meta">Marco del proyecto</div><div class="num">2 / 14</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">02 · Problema</div>
+      <h2>Problema central</h2>
+      <p class="quote">Ausencia de una herramienta digital centralizada para la gestión de talleres, lo que dificulta la accesibilidad, disponibilidad y organización de la información.</p>
+      <ul>
+        <li>Información dispersa y sin centralizar.</li>
+        <li>Dificultades operativas en tareas cotidianas.</li>
+        <li>Falta de trazabilidad y seguimiento.</li>
+        <li>Reportes elaborados manualmente.</li>
+      </ul>
+      <div class="meta">Formulación del problema</div><div class="num">3 / 14</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">03 · Alcance</div>
+      <h2>Delimitación del problema</h2>
+      <div class="cols">
+        <div>
+          <h3>Incluye</h3>
+          <ul><li>Gestión operativa de talleres.</li><li>Roles y accesos diferenciados.</li><li>Registro de asistencias, materiales, tareas e informes.</li></ul>
+        </div>
+        <div>
+          <h3>No incluye en primera versión</h3>
+          <ul><li>Diseño pedagógico de los talleres.</li><li>Gestión presupuestaria del convenio.</li><li>Comunicación interna ampliada.</li><li>Historial ampliado de tareas entregadas.</li></ul>
+        </div>
+      </div>
+      <div class="meta">Delimitación</div><div class="num">4 / 14</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">04 · Pregunta</div>
+      <h2>Pregunta de investigación</h2>
+      <p class="quote">¿De qué manera una plataforma web centralizada, con acceso diferenciado por rol, puede mejorar la organización, accesibilidad y control de la información en la gestión de talleres en convenio con INAU?</p>
+      <p>La pregunta orienta el análisis hacia las características concretas que debe reunir la solución en este contexto.</p>
+      <div class="meta">Pregunta central</div><div class="num">5 / 14</div>
+    </section>
+
+    <section class="slide small">
+      <div class="kicker">05 · Diseño metodológico</div>
+      <h2>Tipo de investigación</h2>
+      <table>
+        <tr><th>Criterio</th><th>Tipo</th><th>Justificación sintética</th></tr>
+        <tr><td>Finalidad</td><td>Aplicada</td><td>Resuelve un problema práctico mediante software.</td></tr>
+        <tr><td>Profundidad</td><td>Descriptiva</td><td>Caracteriza situación, actores y necesidades.</td></tr>
+        <tr><td>Enfoque</td><td>Cualitativo</td><td>Usa datos descriptivos obtenidos por indagación abierta.</td></tr>
+        <tr><td>Variables</td><td>No experimental</td><td>Releva la realidad sin manipular variables.</td></tr>
+        <tr><td>Datos</td><td>Campo y documental</td><td>Combina entrevista y documentación técnica.</td></tr>
+        <tr><td>Tiempo</td><td>Transversal</td><td>Información recogida en un único momento.</td></tr>
+      </table>
+      <div class="meta">Metodología</div><div class="num">6 / 14</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">06 · Recolección de datos</div>
+      <h2>Técnicas utilizadas</h2>
+      <div class="cols">
+        <div class="box"><h3>Entrevista estructurada</h3><p>Técnica principal del relevamiento. Guiada por un cuestionario organizado en bloques temáticos para identificar roles, permisos, reglas, reportes, seguridad y alcance.</p></div>
+        <div class="box"><h3>Análisis documental</h3><p>Complementó la entrevista con restricciones técnicas: stack, arquitectura, endpoints REST, modelo de datos, requisitos no funcionales y organización del trabajo.</p></div>
+      </div>
+      <div class="meta">Instrumentos</div><div class="num">7 / 14</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">07 · Análisis de datos</div>
+      <h2>Procedimiento de análisis</h2>
+      <div class="three">
+        <div class="box"><h3>1. Organizar</h3><p>Transcripción y clasificación de las notas de entrevista.</p></div>
+        <div class="box"><h3>2. Derivar</h3><p>Conversión de afirmaciones del cliente en requerimientos.</p></div>
+        <div class="box"><h3>3. Delimitar</h3><p>Separación entre funciones indispensables y postergables.</p></div>
+      </div>
+      <div class="box" style="margin-top:24px;min-height:auto"><h3>4. Planificar</h3><p>Agrupación en épicas, historias de usuario y estimaciones de esfuerzo.</p></div>
+      <div class="meta">Proceso</div><div class="num">8 / 14</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">08 · Limitaciones</div>
+      <h2>Condicionantes del relevamiento</h2>
+      <ul>
+        <li>Se trabajó con un único informante clave: un tallerista.</li>
+        <li>No se entrevistó directamente a administradores ni alumnos.</li>
+        <li>No hubo observación directa del proceso actual.</li>
+        <li>La entrevista ocurrió en una única instancia.</li>
+        <li>No se relevaron datos cuantitativos sobre volumen de uso.</li>
+      </ul>
+      <p>Estas limitaciones se compensan parcialmente con validaciones al cierre de cada sprint.</p>
+      <div class="meta">Alcance metodológico</div><div class="num">9 / 14</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">09 · Análisis sociológico</div>
+      <h2>Tres marcos de lectura</h2>
+      <div class="three">
+        <div class="box"><h3>Karl Marx</h3><p>Proceso de trabajo, estandarización y control.</p></div>
+        <div class="box"><h3>Manuel Castells</h3><p>Sociedad red, flujos de información y conectividad.</p></div>
+        <div class="box"><h3>Octavio Ianni</h3><p>Modernización, racionalización institucional y gestión por datos.</p></div>
+      </div>
+      <p>Las categorías se aplican al proyecto con distintos niveles de pertinencia y alcance.</p>
+      <div class="meta">Marco sociológico</div><div class="num">10 / 14</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">10 · Marx</div>
+      <h2>Proceso de trabajo y control</h2>
+      <ul>
+        <li>La plataforma formaliza operaciones que antes dependían del criterio operativo de cada tallerista.</li>
+        <li>La trazabilidad vuelve el trabajo visible y verificable para la administración.</li>
+        <li>La automatización puede reducir carga administrativa, aunque su impacto depende de decisiones institucionales posteriores.</li>
+      </ul>
+      <p>La lectura es analógica: se concentra en el proceso de trabajo, no en la producción capitalista.</p>
+      <div class="meta">Lectura marxista</div><div class="num">11 / 14</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">11 · Castells</div>
+      <h2>Informacionalismo y sociedad red</h2>
+      <ul>
+        <li>La gestión se desplaza del espacio físico hacia un sistema accesible desde distintos dispositivos y lugares.</li>
+        <li>La plataforma funciona como nodo articulador entre administración, talleristas y alumnos.</li>
+        <li>La arquitectura de permisos codifica una jerarquía institucional de acceso a la información.</li>
+        <li>Queda pendiente verificar conectividad y disponibilidad real de dispositivos.</li>
+      </ul>
+      <div class="meta">Sociedad red</div><div class="num">12 / 14</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">12 · Ianni</div>
+      <h2>Modernización y racionalización</h2>
+      <ul>
+        <li>La institución formula sus necesidades con vocabulario propio de la gestión por datos: organización, disponibilidad, control y trazabilidad.</li>
+        <li>El sistema traduce prácticas socioeducativas en información estructurada.</li>
+        <li>Lo que no se registra puede quedar invisibilizado en la gestión.</li>
+        <li>El equipo técnico limitó el registro de datos sensibles no validados.</li>
+      </ul>
+      <div class="meta">Modernización institucional</div><div class="num">13 / 14</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">13 · Cierre</div>
+      <h2>Consideración final</h2>
+      <p class="quote">Un sistema de información no es un instrumento neutral: define qué se registra, quién accede y bajo qué formato.</p>
+      <ul>
+        <li>Validar la conectividad de los usuarios.</li>
+        <li>Consultar directamente a alumnos y administradores.</li>
+        <li>Mantener canales para valorar lo que el sistema no registra.</li>
+      </ul>
+      <div class="meta">Conclusión</div><div class="num">14 / 14</div>
+    </section>
+  </main>
+  <div class="controls"><button onclick="prevSlide()">Anterior</button><button onclick="nextSlide()">Siguiente</button></div>
+  <div class="progress" id="progress"></div>
+  <script>
+    const slides=[...document.querySelectorAll('.slide')];
+    let i=0;
+    const progress=document.getElementById('progress');
+    function show(n){
+      slides[i].classList.remove('active');
+      i=(n+slides.length)%slides.length;
+      slides[i].classList.add('active');
+      document.documentElement.style.setProperty('--i', i);
+      document.documentElement.style.setProperty('--n', slides.length);
+    }
+    function nextSlide(){show(i+1)}
+    function prevSlide(){show(i-1)}
+    document.addEventListener('keydown',e=>{
+      if(['ArrowRight','PageDown',' '].includes(e.key)) nextSlide();
+      if(['ArrowLeft','PageUp'].includes(e.key)) prevSlide();
+    });
+    show(0);
+  </script>
+</body>
+</html>

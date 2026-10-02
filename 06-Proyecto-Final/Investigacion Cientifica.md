@@ -38,6 +38,8 @@ De acuerdo con lo relevado en la entrevista con el cliente, la situación actual
 
 El proyecto aborda exclusivamente la **gestión operativa** de los talleres. Quedan fuera del problema planteado los aspectos pedagógicos del diseño de los talleres, la gestión presupuestaria del convenio y cualquier proceso administrativo del organismo que no esté vinculado directamente a la ejecución de los talleres.
 
+Corresponde precisar además que dos de las dificultades relevadas no se resuelven en la primera versión del sistema. La **comunicación entre talleristas y administración** fue identificada durante la entrevista como una necesidad, pero quedó fuera del alcance inicial: el propio cliente la formuló entre las funcionalidades deseables para etapas posteriores. De igual modo, el **historial ampliado de tareas entregadas** se postergó, conservándose únicamente el registro de las entregas individuales necesario para su corrección.
+
 > **Observación metodológica:** durante la entrevista, el cliente no especificó la metodología concreta con la que se realizan actualmente estas tareas —si se utilizan planillas, registros en papel u otros medios—. Por lo tanto, el problema se formula a partir de las **dificultades** que el cliente identificó, y no a partir de una descripción detallada del proceso vigente. Esta limitación se retoma en el apartado 4.6.
 
 ---
@@ -59,7 +61,7 @@ Se plantea como pregunta de tipo **"de qué manera"** y no como una pregunta cer
 De la pregunta central se desprenden las siguientes preguntas orientadoras, que guiaron el relevamiento:
 
 1. ¿Qué roles intervienen en la gestión de los talleres y qué operaciones debe habilitar el sistema para cada uno?
-2. ¿Qué información resulta indispensable registrar, consultar, modificar y eliminar en cada uno de esos roles?
+2. ¿Qué información resulta indispensable ver, cargar, modificar y eliminar en cada uno de esos roles?
 3. ¿Qué funcionalidades constituyen el mínimo indispensable para que el sistema resulte útil en la operativa diaria, y cuáles pueden postergarse a etapas posteriores?
 4. ¿Qué condiciones de seguridad y protección de datos debe cumplir el sistema, considerando que gestiona información personal de menores de edad?
 5. ¿Qué condiciones técnicas —disponibilidad, tiempo de respuesta y compatibilidad con distintos dispositivos— debe satisfacer para adecuarse al uso previsto?
@@ -98,7 +100,7 @@ Es la técnica principal del relevamiento y la fuente de la que provienen la tot
 
 **Justificación de la elección de la técnica.** Se optó por una entrevista estructurada, y no por una conversación abierta, porque el relevamiento debía cubrir de forma sistemática todas las dimensiones necesarias para especificar un sistema: qué hace cada rol, qué datos se manejan, qué restricciones existen y qué se espera del producto. Una guía previa asegura que ningún bloque quede sin abordar y facilita el análisis posterior, al organizar las respuestas en categorías predefinidas.
 
-**Diseño del instrumento.** La guía se construyó a partir de un análisis preliminar del equipo, en el que se identificaron las áreas que requerían aclaración —roles y usuarios, organización de los talleres, identificación de participantes, registro de asistencia, tipos de contenido, foros, infraestructura, datos sensibles y plazos—, y se formularon preguntas específicas para cada una.
+**Diseño del instrumento.** La guía se construyó a partir de un análisis preliminar del equipo, en el que se identificaron las áreas que requerían aclaración —roles y usuarios, organización de los talleres, identificación de participantes, registro de asistencia, tipos de contenido, foros, usuarios técnicos, infraestructura, datos sensibles y plazos—, y se formularon preguntas específicas para cada una.
 
 Un rasgo característico del instrumento es que, para relevar los permisos de cada rol, se aplicó un mismo esquema de cuatro preguntas repetido para los tres roles: qué puede **ver**, qué puede **cargar**, qué puede **modificar** y qué puede **eliminar** cada tipo de usuario. Esta simetría permitió obtener una matriz de permisos completa y comparable entre roles, que luego se tradujo directamente en requerimientos funcionales.
 
@@ -151,7 +153,7 @@ Se dejan explicitadas las siguientes limitaciones, que condicionan el alcance de
 
 Estas limitaciones se compensaron parcialmente mediante instancias de validación con el cliente al cierre de cada sprint, previstas en la metodología de trabajo adoptada.
 
-**---**
+---
 
 <br><br><br>
 
@@ -163,9 +165,9 @@ Estas limitaciones se compensaron parcialmente mediante instancias de validació
 
 ## Nota preliminar sobre la base empírica
 
-Este análisis se apoya en los datos efectivamente relevados durante el proyecto: la entrevista estructurada con un tallerista del convenio, la documentación técnica del sistema y las decisiones de alcance adoptadas por el equipo.
+Este análisis se apoya en los datos efectivamente relevados durante el proyecto: la entrevista estructurada con un tallerista del convenio, la documentación técnica del sistema y las decisiones de alcance adoptadas por el equipo. El relevamiento no incluyó a representantes del rol administrador ni a alumnos participantes, de modo que las consideraciones referidas a esos dos actores se apoyan en lo que el informante expresó sobre ellos y en la estructura del sistema, no en su testimonio directo.
 
-Corresponde señalar una limitación que condiciona la lectura sociológica: **el relevamiento no capturó cómo se gestionan actualmente los talleres**. El cliente describió las dificultades que percibe —información dispersa, escasa trazabilidad, comunicación limitada— pero no especificó con qué medios se realizan hoy las tareas. Por lo tanto, este análisis no puede afirmar qué prácticas existen antes del sistema, y se limita a interpretar **lo que el sistema introduce** y **lo que el propio cliente formuló como necesidad**. Allí donde se plantea una hipótesis sobre la situación previa, se la señala explícitamente como tal.
+Corresponde señalar una limitación adicional que condiciona la lectura sociológica: **el relevamiento no capturó cómo se gestionan actualmente los talleres**. El cliente describió las dificultades que percibe —información dispersa, escasa trazabilidad, comunicación limitada— pero no especificó con qué medios se realizan hoy las tareas. Por lo tanto, este análisis no puede afirmar qué prácticas existen antes del sistema, y se limita a interpretar **lo que el sistema introduce** y **lo que el propio cliente formuló como necesidad**. Allí donde se plantea una hipótesis sobre la situación previa, se la señala explícitamente como tal.
 
 ---
 
@@ -199,7 +201,7 @@ Puede distinguirse la utilidad que el sistema tiene para cada actor:
 | Alumno | Acceder al material y entregar tareas sin depender de la presencia física. |
 | Administración | Supervisar la actividad, generar informes y disponer de evidencia auditable del convenio. |
 
-Estas utilidades no son contradictorias, pero tampoco idénticas. El sistema fue solicitado y validado por la administración, no por los talleristas ni por los alumnos, lo que se refleja en que **el rol administrador es el único con acceso irrestricto** a la información de la plataforma.
+Estas utilidades no son contradictorias, pero tampoco idénticas. El sistema responde a una demanda institucional formulada por el organismo, y no a una necesidad expresada colectivamente por talleristas o alumnos. Si bien el relevamiento se realizó con un tallerista, este intervino en calidad de informante del proceso operativo y no como representante de los intereses de su rol. Esa asimetría se refleja en la arquitectura resultante: **el rol administrador es el único con acceso irrestricto** a la información de la plataforma.
 
 ---
 
@@ -280,5 +282,5 @@ Las tres perspectivas coinciden en un punto: **un sistema de información no es 
 Reconocerlo no invalida el proyecto ni cuestiona la necesidad que lo origina, que fue formulada por el propio cliente y responde a dificultades concretas. Permite, en cambio, identificar tres cuestiones que el desarrollo técnico por sí solo no resuelve:
 
 1. **La conectividad de los usuarios** no fue verificada, y sin ella la plataforma puede excluir en lugar de incluir.
-2. **Los alumnos y los talleristas no fueron consultados directamente** durante el relevamiento: sus necesidades se infirieron a partir de un único informante.
+2. **Los alumnos y los administradores no fueron consultados directamente** durante el relevamiento: sus necesidades se infirieron a partir del testimonio de un único tallerista, que aportó su propia perspectiva sobre el proceso operativo.
 3. **Lo que el sistema no registra deja de ser visible** para la gestión, lo que exige mantener otros canales de valoración de la tarea socioeducativa.
